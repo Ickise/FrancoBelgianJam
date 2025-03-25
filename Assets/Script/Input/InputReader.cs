@@ -9,9 +9,6 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
     public event Action LeftTriggerPressed = delegate { };
     public event Action<Vector2> AimMovementEvent = delegate { };
 
-    // public bool rightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
-    // public bool leftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
-
     private PlayerInputActions inputActions;
 
     void OnEnable()

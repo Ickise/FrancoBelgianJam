@@ -18,7 +18,6 @@ public abstract class ToolBase : MonoBehaviour
     protected void OnDisable()
     {
         inputReader.AimMovementEvent -= GetInputValue;
-        toolRigidbody.linearVelocity = Vector3.zero;
     }
 
     protected void FixedUpdate()

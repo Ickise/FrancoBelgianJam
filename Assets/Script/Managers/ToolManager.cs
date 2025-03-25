@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToolsManager : MonoBehaviour
+public class ToolManager : MonoBehaviour
 {
     [SerializeField, Header("References")] private InputReader inputReader;
     [SerializeField] private ToolBase vacuum;
