@@ -4,7 +4,8 @@ public class EnergyManager : MonoBehaviour
 {
     public static EnergyManager instance;
 
-    private int maxEnergy = 100;
+    [SerializeField, Header("Settings")] private int maxEnergy = 100;
+    
     private int currentEnergy;
 
     private void Awake()
