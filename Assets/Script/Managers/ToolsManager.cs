@@ -1,38 +1,52 @@
-using System;
 using UnityEngine;
 
 public class ToolsManager : MonoBehaviour
 {
     [SerializeField, Header("References")] private InputReader inputReader;
-    [SerializeField] private GameObject vacuum;
-    [SerializeField] private GameObject soundMaker;
+    [SerializeField] private ToolBase vacuum;
+    [SerializeField] private ToolBase soundMaker;
+
+    private ToolBase activeTool;
+
+    private Vector3 lastPosition;
+    private Vector3 lastVelocity;
 
     private void OnEnable()
     {
-        inputReader.RightTriggerPressed += AppearVacuum;
-        inputReader.LeftTriggerPressed += AppearSoundMaker;
+        //  inputReader.RightTriggerPressed += AppearVacuum;
+        // inputReader.LeftTriggerPressed += AppearSoundMaker;
     }
 
     private void OnDisable()
     {
-        inputReader.RightTriggerPressed -= AppearVacuum;
-        inputReader.LeftTriggerPressed -= AppearSoundMaker;
+        //   inputReader.RightTriggerPressed -= AppearVacuum;
+        //  inputReader.LeftTriggerPressed -= AppearSoundMaker;
     }
 
     private void Start()
     {
-        AppearSoundMaker();
+        activeTool = soundMaker;
+        soundMaker.gameObject.SetActive(true);
+        vacuum.gameObject.SetActive(false);
     }
 
-    private void AppearVacuum()
+    private void SwitchTool(ToolBase newTool)
     {
-        vacuum.SetActive(true);
-        soundMaker.SetActive(false);
-    }
-    
-    private void AppearSoundMaker()
-    {
-        soundMaker.SetActive(true);
-        vacuum.SetActive(false);
+        if (activeTool != newTool)
+        {
+            Rigidbody activeRb = activeTool.GetComponent<Rigidbody>();
+            lastPosition = activeTool.transform.position;
+            lastVelocity = activeRb.linearVelocity;
+
+            activeRb.linearVelocity = Vector3.zero;
+            activeTool.gameObject.SetActive(false);
+
+            Rigidbody newRb = newTool.GetComponent<Rigidbody>();
+            newTool.transform.position = lastPosition;
+            newRb.linearVelocity = lastVelocity;
+            newTool.gameObject.SetActive(true);
+
+            activeTool = newTool;
+        }
     }
 }

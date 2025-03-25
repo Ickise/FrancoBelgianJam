@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public abstract class ToolBase : MonoBehaviour
 {
@@ -11,28 +10,28 @@ public abstract class ToolBase : MonoBehaviour
 
     private Vector3 movement;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         inputReader.AimMovementEvent += GetInputValue;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         inputReader.AimMovementEvent -= GetInputValue;
         toolRigidbody.linearVelocity = Vector3.zero;
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         MoveTool();
     }
 
-    private void GetInputValue(Vector2 direction)
+    protected void GetInputValue(Vector2 direction)
     {
         movement = new Vector3(direction.x, 0, direction.y);
     }
 
-    private void MoveTool()
+    protected void MoveTool()
     {
         toolRigidbody.linearVelocity = movement * speed;
     }
