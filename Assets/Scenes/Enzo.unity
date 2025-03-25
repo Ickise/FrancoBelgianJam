@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
-  vacuum: {fileID: 1663538275}
-  soundMaker: {fileID: 1965489228}
+  vacuum: {fileID: 1663538281}
+  soundMaker: {fileID: 1965489234}
 --- !u!1 &426792416
 GameObject:
   m_ObjectHideFlags: 0
