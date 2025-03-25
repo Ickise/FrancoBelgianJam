@@ -13,7 +13,10 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     private PlayerInputActions inputActions;
 
-    void OnEnable()
+    public bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
+    public bool LeftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
+
+    private void OnEnable()
     {
         if (inputActions == null)
         {
@@ -32,7 +35,7 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
         inputActions.Disable();
     }
 
-    public void OnMakeSound(InputAction.CallbackContext context)
+    private void HandleToolInput(InputAction.CallbackContext context, Action triggerAction)
     {
         if (context.started)
         {
@@ -48,26 +51,17 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
             return;
         }
 
-        LeftTriggerPressed.Invoke();
+        triggerAction.Invoke();
+    }
+
+    public void OnMakeSound(InputAction.CallbackContext context)
+    {
+        HandleToolInput(context, LeftTriggerPressed);
     }
 
     public void OnVaccum(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            ActionButtonHeld.Invoke();
-        }
-        else if (context.canceled)
-        {
-            ActionButtonPressed.Invoke();
-        }
-
-        if (!context.performed)
-        {
-            return;
-        }
-
-        RightTriggerPressed.Invoke();
+        HandleToolInput(context, RightTriggerPressed);
     }
 
     public void OnAimMovement(InputAction.CallbackContext context)
@@ -80,7 +74,4 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
         AimMovementEvent.Invoke(inputActions.Player.AimMovement.ReadValue<Vector2>());
     }
-
-    public bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
-    public bool LeftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
 }
