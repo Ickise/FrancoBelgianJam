@@ -396,6 +396,10 @@ MonoBehaviour:
   toolRigidbody: {fileID: 1663538280}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   speed: 3
+  suctionRadius: 3
+  objectLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1736266934
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +674,10 @@ MonoBehaviour:
   toolRigidbody: {fileID: 1965489233}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   speed: 3
+  soundObjectPrefab: {fileID: 1967885985215529998, guid: 05236304e5773f84b977491530501375, type: 3}
+  powerfulSoundPrefab: {fileID: 1967885985215529998, guid: 71346b9b7561d4a4d91cb2ab6a7ff2a0, type: 3}
+  holdThreshold: 2
+  timeToDestroy: 5
 --- !u!1 &2091847855
 GameObject:
   m_ObjectHideFlags: 0

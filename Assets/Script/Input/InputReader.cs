@@ -7,6 +7,8 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
     public event Action RightTriggerPressed = delegate { };
     public event Action LeftTriggerPressed = delegate { };
+    public event Action ActionButtonPressed = delegate { };
+    public event Action ActionButtonHeld = delegate { };
     public event Action<Vector2> AimMovementEvent = delegate { };
 
     private PlayerInputActions inputActions;
@@ -32,19 +34,39 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     public void OnMakeSound(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            ActionButtonHeld.Invoke();
+        }
+        else if (context.canceled)
+        {
+            ActionButtonPressed.Invoke();
+        }
+
         if (!context.performed)
         {
             return;
         }
+
         LeftTriggerPressed.Invoke();
     }
 
     public void OnVaccum(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            ActionButtonHeld.Invoke();
+        }
+        else if (context.canceled)
+        {
+            ActionButtonPressed.Invoke();
+        }
+
         if (!context.performed)
         {
             return;
         }
+
         RightTriggerPressed.Invoke();
     }
 

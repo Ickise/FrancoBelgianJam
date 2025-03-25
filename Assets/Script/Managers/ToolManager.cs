@@ -15,12 +15,16 @@ public class ToolManager : MonoBehaviour
     {
         inputReader.RightTriggerPressed += () => SwitchTool(vacuum);
         inputReader.LeftTriggerPressed += () => SwitchTool(soundMaker);
+        inputReader.ActionButtonPressed += () => activeTool?.UseTool(false);
+        inputReader.ActionButtonHeld += () => activeTool?.UseTool(true);
     }
 
     private void OnDisable()
     {
         inputReader.RightTriggerPressed -= () => SwitchTool(vacuum);
         inputReader.LeftTriggerPressed -= () => SwitchTool(soundMaker);
+        inputReader.ActionButtonPressed -= () => activeTool?.UseTool(false);
+        inputReader.ActionButtonHeld -= () => activeTool?.UseTool(true);
     }
 
     private void Start()
@@ -34,18 +38,9 @@ public class ToolManager : MonoBehaviour
     {
         if (activeTool == newTool) return;
 
-        Rigidbody activeRb = activeTool.GetComponent<Rigidbody>();
-        lastPosition = activeTool.transform.position;
-        lastVelocity = activeRb.linearVelocity;
-
-        activeRb.linearVelocity = Vector3.zero;
         activeTool.gameObject.SetActive(false);
-
-        Rigidbody newRb = newTool.GetComponent<Rigidbody>();
-        newTool.transform.position = lastPosition;
-        newRb.linearVelocity = lastVelocity;
+        newTool.transform.position = activeTool.transform.position;
         newTool.gameObject.SetActive(true);
-
         activeTool = newTool;
     }
 }

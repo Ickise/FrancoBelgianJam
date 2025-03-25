@@ -34,4 +34,6 @@ public abstract class ToolBase : MonoBehaviour
     {
         toolRigidbody.linearVelocity = movement * speed;
     }
+    
+    public abstract void UseTool(bool isHeld);
 }
