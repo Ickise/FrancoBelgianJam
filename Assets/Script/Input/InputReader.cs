@@ -9,7 +9,7 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
     public event Action LeftTriggerPressed = delegate { };
     public event Action ActionButtonPressed = delegate { };
     public event Action ActionButtonHeld = delegate { };
-    public event Action<Vector2> AimMovementEvent = delegate { };
+    public event Action<Vector2> MovementEvent = delegate { };
 
     private PlayerInputActions inputActions;
 
@@ -66,14 +66,14 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
         HandleToolInput(context, RightTriggerPressed);
     }
 
-    public void OnAimMovement(InputAction.CallbackContext context)
+    public void OnMovement(InputAction.CallbackContext context)
     {
         if (!context.performed)
         {
-            AimMovementEvent.Invoke(Vector2.zero);
+            MovementEvent.Invoke(Vector2.zero);
             return;
         }
 
-        AimMovementEvent.Invoke(inputActions.Player.AimMovement.ReadValue<Vector2>());
+        MovementEvent.Invoke(inputActions.Player.Movement.ReadValue<Vector2>());
     }
 }

@@ -47,7 +47,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""AimMovement"",
+                    ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""192afe1c-6aba-4304-ae0e-17b91354ff4b"",
                     ""expectedControlType"": ""Vector2"",
@@ -108,18 +108,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AimMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3fe81a3-0f04-4a5b-813a-9860c86a3242"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AimMovement"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -132,7 +121,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MakeSound = m_Player.FindAction("MakeSound", throwIfNotFound: true);
         m_Player_Vaccum = m_Player.FindAction("Vaccum", throwIfNotFound: true);
-        m_Player_AimMovement = m_Player.FindAction("AimMovement", throwIfNotFound: true);
+        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -201,14 +190,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_MakeSound;
     private readonly InputAction m_Player_Vaccum;
-    private readonly InputAction m_Player_AimMovement;
+    private readonly InputAction m_Player_Movement;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MakeSound => m_Wrapper.m_Player_MakeSound;
         public InputAction @Vaccum => m_Wrapper.m_Player_Vaccum;
-        public InputAction @AimMovement => m_Wrapper.m_Player_AimMovement;
+        public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -224,9 +213,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Vaccum.started += instance.OnVaccum;
             @Vaccum.performed += instance.OnVaccum;
             @Vaccum.canceled += instance.OnVaccum;
-            @AimMovement.started += instance.OnAimMovement;
-            @AimMovement.performed += instance.OnAimMovement;
-            @AimMovement.canceled += instance.OnAimMovement;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -237,9 +226,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Vaccum.started -= instance.OnVaccum;
             @Vaccum.performed -= instance.OnVaccum;
             @Vaccum.canceled -= instance.OnVaccum;
-            @AimMovement.started -= instance.OnAimMovement;
-            @AimMovement.performed -= instance.OnAimMovement;
-            @AimMovement.canceled -= instance.OnAimMovement;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -261,6 +250,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMakeSound(InputAction.CallbackContext context);
         void OnVaccum(InputAction.CallbackContext context);
-        void OnAimMovement(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
 }
