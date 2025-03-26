@@ -23,7 +23,7 @@ public class FartController : MonoBehaviour
     {
         gameManager = GameManager.instance;
         cowPosition = GetComponentInParent<Transform>().position;
-        SwitchState(new EvilState(this));
+        SwitchState(new FollowState(this));
     }
 
     private void Update()
