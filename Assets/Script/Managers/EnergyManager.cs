@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnergyManager : MonoBehaviour
 {
     public static EnergyManager instance;
+    
+    [SerializeField, Header("References")] private UIEnergy uiEnergy;
 
     [SerializeField, Header("Settings")] private int maxEnergy = 100;
     
@@ -18,10 +20,7 @@ public class EnergyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
+        
         currentEnergy = maxEnergy;
     }
 
@@ -29,5 +28,16 @@ public class EnergyManager : MonoBehaviour
     {
         currentEnergy = isIncreasing ? currentEnergy + amount : currentEnergy - amount;
         currentEnergy = Mathf.Clamp(currentEnergy, 0, maxEnergy);
+        uiEnergy.UpdateEnergyUI();
+    }
+    
+    public int GetCurrentEnergy()
+    {
+        return currentEnergy;
+    }
+    
+    public int GetMaxEnergy()
+    {
+        return maxEnergy;
     }
 }
