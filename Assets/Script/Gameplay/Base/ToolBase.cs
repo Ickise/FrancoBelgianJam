@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class ToolBase : MonoBehaviour
 {
-    [SerializeField, Header("References")] private Transform toolTransform;
+    [SerializeField, Header("Inheritance References")] private Transform toolTransform;
     [SerializeField] private Rigidbody toolRigidbody;
     [SerializeField] private InputReader inputReader;
 
-    [SerializeField, Header("Settings")] private float speed = 3f;
+    [SerializeField, Header("Inheritance Settings")] private float speed = 3f;
 
     private Vector3 movement;
 
