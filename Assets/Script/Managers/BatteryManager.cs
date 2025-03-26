@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections;
 
 public class BatteryManager : MonoBehaviour
 {
@@ -21,6 +19,8 @@ public class BatteryManager : MonoBehaviour
     private float gasConversionRate = 0.5f;
     private float actionConsumptionRate = 1f;
 
+    private float actionTime;
+
     private GameManager gameManager;
 
     private void Awake()
@@ -37,11 +37,39 @@ public class BatteryManager : MonoBehaviour
         currentBattery = maxBattery;
         maxOvercharge = maxBattery * 1.5f;
     }
-    
+
+    private void OnEnable()
+    {
+        inputReader.AnyTriggerHeld += () => ChangeEnergyValue(vacuumConsumption, false);
+    }
+
+    private void OnDisable()
+    {
+        inputReader.AnyTriggerHeld -= () => ChangeEnergyValue(vacuumConsumption, false);
+    }
+
     private void Start()
     {
         gameManager = GameManager.instance;
         uiBattery.UpdateEnergyUI();
+    }
+
+    private void Update()
+    {
+        if (inputReader.RightTriggerIsPressed || inputReader.LeftTriggerIsPressed)
+        {
+            actionTime += Time.deltaTime;
+
+            if (actionTime >= actionConsumptionRate)
+            {
+                ChangeEnergyValue(makeNoiseConsumption, false);
+                actionTime = 0f;
+            }
+        }
+        else
+        {
+            actionTime = 0f;
+        }
     }
 
     private void ChangeEnergyValue(float amount, bool isIncreasing)
@@ -62,10 +90,8 @@ public class BatteryManager : MonoBehaviour
         {
             gameManager.GameOver();
         }
-    }
 
-    private void DepleteBattery()
-    {
+        actionTime = 0f;
     }
 
     public void RechargeBattery(float gasAmount)
@@ -82,10 +108,5 @@ public class BatteryManager : MonoBehaviour
     public float GetMaxBattery()
     {
         return maxBattery;
-    }
-
-    private IEnumerator ConsumeBattery()
-    {
-        yield return null;
     }
 }

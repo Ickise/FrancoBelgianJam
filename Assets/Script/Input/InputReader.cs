@@ -1,15 +1,14 @@
-using UnityEngine.InputSystem;
-using UnityEngine;
 using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
 public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
-    public event Action RightTriggerPressed = delegate { };
-    public event Action LeftTriggerPressed = delegate { };
-    public event Action ActionButtonPressed = delegate { };
-    public event Action ActionButtonHeld = delegate { };
+    public event Action RightTriggerEvent = delegate { };
+    public event Action LeftTriggerEvent = delegate { };
     public event Action<Vector2> MovementEvent = delegate { };
+    public event Action AnyTriggerHeld = delegate { };
 
     private PlayerInputActions inputActions;
 
@@ -25,55 +24,31 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
         }
     }
 
-    public void EnablePlayerInputs()
+    public void EnablePlayerInputs() => inputActions.Enable();
+    public void DisablePlayerInputs() => inputActions.Disable();
+
+    private void HandleTriggerInput(InputAction.CallbackContext context, Action heldAction)
     {
-        inputActions.Enable();
-    }
+        if (!context.performed) return;
 
-    public void DisablePlayerInputs()
-    {
-        inputActions.Disable();
-    }
-
-    private void HandleToolInput(InputAction.CallbackContext context, Action triggerAction)
-    {
-        if (context.started)
-        {
-            ActionButtonHeld.Invoke();
-        }
-        else if (context.canceled)
-        {
-            ActionButtonPressed.Invoke();
-        }
-
-        if (!context.performed)
-        {
-            return;
-        }
-
-        triggerAction.Invoke();
+        heldAction.Invoke();
+        AnyTriggerHeld.Invoke();
     }
 
     public void OnMakeSound(InputAction.CallbackContext context)
     {
         if (RightTriggerIsPressed) return;
-        HandleToolInput(context, LeftTriggerPressed);
+        HandleTriggerInput(context, LeftTriggerEvent);
     }
 
     public void OnVaccum(InputAction.CallbackContext context)
     {
         if (LeftTriggerIsPressed) return;
-        HandleToolInput(context, RightTriggerPressed);
+        HandleTriggerInput(context, RightTriggerEvent);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (!context.performed)
-        {
-            MovementEvent.Invoke(Vector2.zero);
-            return;
-        }
-
-        MovementEvent.Invoke(inputActions.Player.Movement.ReadValue<Vector2>());
+        MovementEvent.Invoke(context.performed ? inputActions.Player.Movement.ReadValue<Vector2>() : Vector2.zero);
     }
 }
