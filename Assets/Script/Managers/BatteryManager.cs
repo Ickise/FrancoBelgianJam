@@ -1,11 +1,13 @@
-using UnityEngine;
 using System;
+using UnityEngine;
+using System.Collections;
 
 public class BatteryManager : MonoBehaviour
 {
     public static BatteryManager instance;
-    
+
     [SerializeField, Header("References")] private UIBattery uiBattery;
+    [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float maxBattery = 100f;
     [SerializeField] private float moveConsumption = 1f;
@@ -13,13 +15,13 @@ public class BatteryManager : MonoBehaviour
     [SerializeField] private float makeNoiseConsumption = 2f;
     [SerializeField] private float gasIntoEnergyConversion = 2f;
 
-    private GameManager gameManager;
-
     private float currentBattery;
+    private float maxOvercharge;
+    private float overchargeDepletionRate = 0.3f;
+    private float gasConversionRate = 0.5f;
     private float actionConsumptionRate = 1f;
-    private float overchargeDepletionRate = .3f;
-    private float gasConversionRate = .5f;
-    private float maxOvercharge = 150f; // Pourcentage de 150%
+
+    private GameManager gameManager;
 
     private void Awake()
     {
@@ -33,28 +35,43 @@ public class BatteryManager : MonoBehaviour
         }
 
         currentBattery = maxBattery;
+        maxOvercharge = maxBattery * 1.5f;
     }
-
+    
     private void Start()
     {
         gameManager = GameManager.instance;
         uiBattery.UpdateEnergyUI();
     }
 
-    public void ChangeEnergyValue(int amount, bool isIncreasing)
+    private void ChangeEnergyValue(float amount, bool isIncreasing)
     {
-        EnergyIsSoldOut();
-        currentBattery = isIncreasing ? currentBattery + amount : currentBattery - amount;
-        currentBattery = Mathf.Clamp(currentBattery, 0, maxBattery);
-        uiBattery.UpdateEnergyUI();
-    }
+        if (isIncreasing)
+        {
+            currentBattery += amount;
+        }
+        else
+        {
+            currentBattery -= amount;
+        }
 
-    public void EnergyIsSoldOut()
-    {
+        currentBattery = Mathf.Clamp(currentBattery, 0, maxOvercharge);
+        uiBattery.UpdateEnergyUI();
+
         if (currentBattery <= 0)
         {
             gameManager.GameOver();
         }
+    }
+
+    private void DepleteBattery()
+    {
+    }
+
+    public void RechargeBattery(float gasAmount)
+    {
+        float energyGained = gasAmount * gasIntoEnergyConversion;
+        ChangeEnergyValue(energyGained, true);
     }
 
     public float GetCurrentBattery()
@@ -65,5 +82,10 @@ public class BatteryManager : MonoBehaviour
     public float GetMaxBattery()
     {
         return maxBattery;
+    }
+
+    private IEnumerator ConsumeBattery()
+    {
+        yield return null;
     }
 }

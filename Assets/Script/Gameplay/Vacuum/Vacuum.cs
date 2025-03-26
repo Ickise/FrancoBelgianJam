@@ -71,6 +71,7 @@ public class Vacuum : ToolBase
                 objRb.linearVelocity = Vector3.zero;
             }
         }
+
         suckedObjects.Clear();
     }
 }

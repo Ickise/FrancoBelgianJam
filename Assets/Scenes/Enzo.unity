@@ -1371,6 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBattery: {fileID: 425865508}
+  inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   maxBattery: 100
   moveConsumption: 1
   vacuumConsumption: 2
