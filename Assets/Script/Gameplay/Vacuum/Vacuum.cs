@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -13,7 +12,7 @@ public class Vacuum : ToolBase
     [SerializeField] private InputReader inputReader;
 
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
-    
+
     private GasManager gasManager;
     private ScoreManager scoreManager;
 
@@ -34,17 +33,22 @@ public class Vacuum : ToolBase
                 if (IsInSuctionCone(obj.transform.position))
                 {
                     Rigidbody objRb = obj.GetComponent<Rigidbody>();
+                    var fart = obj.GetComponent<FartController>();
+
                     if (objRb != null)
                     {
                         objRb.linearVelocity = (transform.position - obj.transform.position).normalized * suctionPower;
+
+                        fart.SwitchState(new FleeState(fart));
                         if (!suckedObjects.Contains(objRb))
                         {
                             suckedObjects.Add(objRb);
                         }
                     }
 
-                    if (Vector3.Distance(transform.position, obj.transform.position) < 1f)
+                    if (Vector3.Distance(transform.position, obj.transform.position) < .5f)
                     {
+                        fart.SwitchState(new CatchState(fart));
                         suckedObjects.Remove(objRb);
                         Destroy(obj.gameObject);
                         gasManager.ChangeGasStockValue(gasNumber, true);
