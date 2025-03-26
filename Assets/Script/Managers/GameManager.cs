@@ -27,4 +27,9 @@ public class GameManager : MonoBehaviour
     {
         inputReader.DisablePlayerInputs();
     }
+    
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
 }
