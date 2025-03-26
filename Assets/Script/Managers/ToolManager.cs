@@ -10,21 +10,23 @@ public class ToolManager : MonoBehaviour
 
     private Vector3 lastPosition;
     private Vector3 lastVelocity;
+    
+    private bool canUseTool = true; 
 
     private void OnEnable()
     {
         inputReader.RightTriggerPressed += () => SwitchTool(vacuum);
         inputReader.LeftTriggerPressed += () => SwitchTool(soundMaker);
-        inputReader.ActionButtonPressed += () => activeTool?.UseTool(false);
-        inputReader.ActionButtonHeld += () => activeTool?.UseTool(true);
+        inputReader.ActionButtonPressed += () => HandleToolUsage(false);
+        inputReader.ActionButtonHeld += () => HandleToolUsage(true);
     }
 
     private void OnDisable()
     {
         inputReader.RightTriggerPressed -= () => SwitchTool(vacuum);
         inputReader.LeftTriggerPressed -= () => SwitchTool(soundMaker);
-        inputReader.ActionButtonPressed -= () => activeTool?.UseTool(false);
-        inputReader.ActionButtonHeld -= () => activeTool?.UseTool(true);
+        inputReader.ActionButtonPressed -= () => HandleToolUsage(false);
+        inputReader.ActionButtonHeld -= () => HandleToolUsage(true);
     }
 
     private void Start()
@@ -42,5 +44,21 @@ public class ToolManager : MonoBehaviour
         newTool.transform.position = activeTool.transform.position;
         newTool.gameObject.SetActive(true);
         activeTool = newTool;
+        
+        canUseTool = false;
+        Invoke(nameof(EnableToolUsage), 0.4f);
+    }
+    
+    private void EnableToolUsage()
+    {
+        canUseTool = true;
+    }
+    
+    private void HandleToolUsage(bool isHeld)
+    {
+        if (canUseTool)
+        {
+            activeTool?.UseTool(isHeld);
+        }
     }
 }

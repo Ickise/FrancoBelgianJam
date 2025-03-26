@@ -13,8 +13,8 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     private PlayerInputActions inputActions;
 
-    public bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
-    public bool LeftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
+    private bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
+    private bool LeftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
 
     private void OnEnable()
     {
@@ -56,11 +56,13 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     public void OnMakeSound(InputAction.CallbackContext context)
     {
+        if (RightTriggerIsPressed) return;
         HandleToolInput(context, LeftTriggerPressed);
     }
 
     public void OnVaccum(InputAction.CallbackContext context)
     {
+        if (LeftTriggerIsPressed) return;
         HandleToolInput(context, RightTriggerPressed);
     }
 
