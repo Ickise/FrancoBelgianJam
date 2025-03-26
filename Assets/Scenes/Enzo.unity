@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 24786637}
   - component: {fileID: 24786636}
   - component: {fileID: 24786635}
+  - component: {fileID: 24786640}
   m_Layer: 6
   m_Name: CollectacbleObject (3)
   m_TagString: Untagged
@@ -247,13 +248,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24786634}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.84, y: 0, z: -6.34}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7201552, y: 0.24719578, z: -6.594344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 392052975}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &24786640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24786634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
 --- !u!1 &63015310
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +288,7 @@ GameObject:
   - component: {fileID: 63015312}
   - component: {fileID: 63015311}
   - component: {fileID: 63015315}
+  - component: {fileID: 63015316}
   m_Layer: 6
   m_Name: CollectacbleObject
   m_TagString: Untagged
@@ -356,12 +378,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63015310}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.11984491, y: 0.24719578, z: 7.245656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 813020978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &63015315
 Rigidbody:
@@ -390,6 +412,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &63015316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63015310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
 --- !u!1 &67815697
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +445,7 @@ GameObject:
   - component: {fileID: 67815700}
   - component: {fileID: 67815699}
   - component: {fileID: 67815698}
+  - component: {fileID: 67815703}
   m_Layer: 6
   m_Name: CollectacbleObject (1)
   m_TagString: Untagged
@@ -519,13 +562,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67815697}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.26, y: 0, z: 7.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.140156, y: 0.24719578, z: 7.245656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 367903881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67815703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67815697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
 --- !u!1 &71127131
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +797,70 @@ MonoBehaviour:
   uiGas: {fileID: 1434068315}
   maxTank: 100
   maxTankOverfillRate: 1.1
+--- !u!1 &367903880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367903881}
+  m_Layer: 0
+  m_Name: Cow (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367903881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367903880}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11984491, y: -0.24719578, z: 0.25434387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 67815702}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &392052974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392052975}
+  m_Layer: 0
+  m_Name: Cow (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392052975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392052974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11984491, y: -0.24719578, z: 0.25434387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 24786639}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425865506
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +956,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
+  playerTransform: {fileID: 1031472410}
+  vacuumTransform: {fileID: 1663538279}
+--- !u!1 &582624504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582624505}
+  m_Layer: 0
+  m_Name: Cow (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582624505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582624504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11984491, y: -0.24719578, z: 0.25434387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1658716821}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &624621241
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +1035,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiScore: {fileID: 1469785619}
+--- !u!1 &813020977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813020978}
+  m_Layer: 0
+  m_Name: Cow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &813020978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813020977}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11984491, y: -0.24719578, z: 0.25434387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 63015314}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031472409
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,7 +1081,7 @@ GameObject:
   - component: {fileID: 1031472413}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1332,6 +1525,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2117067117}
+--- !u!1 &1507826776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1507826777}
+  m_Layer: 0
+  m_Name: Cow (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1507826777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507826776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11984491, y: -0.24719578, z: 0.25434387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1737256226}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587491371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1626,7 @@ GameObject:
   - component: {fileID: 1658716819}
   - component: {fileID: 1658716818}
   - component: {fileID: 1658716817}
+  - component: {fileID: 1658716822}
   m_Layer: 6
   m_Name: CollectacbleObject (2)
   m_TagString: Untagged
@@ -1517,13 +1743,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658716816}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.26, y: 0, z: -6.34}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.140156, y: 0.24719578, z: -6.594344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 582624505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658716822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658716816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
 --- !u!1 &1663538275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,10 +1894,11 @@ MonoBehaviour:
   suctionRadius: 6
   suctionAngle: 60
   suctionPower: 5
+  gasNumber: 1
+  scorePerObject: 10
   objectLayer:
     serializedVersion: 2
     m_Bits: 64
-  scorePerObject: 10
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
 --- !u!1 &1688544290
 GameObject:
@@ -1923,6 +2170,7 @@ GameObject:
   - component: {fileID: 1737256224}
   - component: {fileID: 1737256223}
   - component: {fileID: 1737256222}
+  - component: {fileID: 1737256227}
   m_Layer: 6
   m_Name: CollectacbleObject (4)
   m_TagString: Untagged
@@ -2039,13 +2287,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737256221}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 0, z: -6.34}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.219845, y: 0.24719578, z: -6.594344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1507826777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737256227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737256221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
 --- !u!1 &1750036922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,9 +2969,9 @@ SceneRoots:
   - {fileID: 2119347424}
   - {fileID: 71127134}
   - {fileID: 1031472410}
-  - {fileID: 63015314}
-  - {fileID: 67815702}
-  - {fileID: 1658716821}
-  - {fileID: 24786639}
-  - {fileID: 1737256226}
   - {fileID: 1086687937}
+  - {fileID: 813020978}
+  - {fileID: 367903881}
+  - {fileID: 582624505}
+  - {fileID: 392052975}
+  - {fileID: 1507826777}

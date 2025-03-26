@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField, Header("References")] private InputReader inputReader;
+    
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform vacuumTransform;
 
     private void Awake()
     {
@@ -31,5 +34,15 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over");
+    }
+
+    public Transform GetPlayerTransform()
+    {
+        return playerTransform;
+    }
+    
+    public Transform GetVacuumTransform()
+    {
+        return vacuumTransform;
     }
 }
