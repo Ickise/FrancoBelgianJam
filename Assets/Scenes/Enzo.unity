@@ -925,6 +925,9 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   playerRotation: {fileID: 1031472413}
   speed: 10
+  overchargeSpeed: 15
+  moveConsumption: 1
+  moveConsumptionRate: 1
 --- !u!54 &1031472412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1373,10 +1376,14 @@ MonoBehaviour:
   uiBattery: {fileID: 425865508}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   maxBattery: 100
-  moveConsumption: 1
   vacuumConsumption: 2
   makeNoiseConsumption: 2
+  overchargeConsumption: 1
   gasIntoEnergyConversion: 2
+  vacuumConsumptionRate: 1
+  makeSoundConsumptionRate: 1
+  overchargeDepletionRate: 0.3
+  actionConsumptionRate: 1
 --- !u!1 &1658716816
 GameObject:
   m_ObjectHideFlags: 0

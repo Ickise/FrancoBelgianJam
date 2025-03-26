@@ -10,19 +10,23 @@ public class BatteryManager : MonoBehaviour
     [SerializeField, Header("Settings")] private float maxBattery = 100f;
     [SerializeField] private float vacuumConsumption = 2f;
     [SerializeField] private float makeNoiseConsumption = 2f;
+    [SerializeField] private float overchargeConsumption = 1f;
     [SerializeField] private float gasIntoEnergyConversion = 2f;
     [SerializeField] private float vacuumConsumptionRate = 1f;
     [SerializeField] private float makeSoundConsumptionRate = 1f;
+    [SerializeField] private float overchargeDepletionRate = 0.3f;
+    [SerializeField] private float actionConsumptionRate = 1f;
 
     private float currentBattery;
     private float maxOvercharge;
-    private float overchargeDepletionRate = 0.3f;
     private float gasConversionRate = 0.5f;
-    private float actionConsumptionRate = 1f;
 
     private float actionTime;
+    private float overchargeTime;
 
     private GameManager gameManager;
+
+    private bool isOvercharge;
 
     private void Awake()
     {
@@ -35,18 +39,20 @@ public class BatteryManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        currentBattery = maxBattery;
+        currentBattery = 150;
         maxOvercharge = maxBattery * 1.5f;
     }
 
     private void OnEnable()
     {
-        inputReader.AnyTriggerHeld += () => ChangeEnergyValue(vacuumConsumption, false);
+        inputReader.RightTriggerEvent += () => ChangeEnergyValue(vacuumConsumption, false);
+        inputReader.LeftTriggerEvent += () => ChangeEnergyValue(makeNoiseConsumption, false);
     }
 
     private void OnDisable()
     {
-        inputReader.AnyTriggerHeld -= () => ChangeEnergyValue(vacuumConsumption, false);
+        inputReader.RightTriggerEvent -= () => ChangeEnergyValue(vacuumConsumption, false);
+        inputReader.LeftTriggerEvent -= () => ChangeEnergyValue(makeNoiseConsumption, false);
     }
 
     private void Start()
@@ -68,7 +74,7 @@ public class BatteryManager : MonoBehaviour
                 actionTime = 0f;
             }
         }
-        
+
         if (inputReader.LeftTriggerIsPressed)
         {
             actionTime += Time.deltaTime;
@@ -84,6 +90,20 @@ public class BatteryManager : MonoBehaviour
         {
             actionTime = 0f;
         }
+
+        if (!BatteryOvercharging()) return;
+
+        DefleteBatteryOnOvercharging();
+    }
+
+    private void DefleteBatteryOnOvercharging()
+    {
+        overchargeTime += Time.deltaTime;
+
+        if (overchargeTime <= overchargeDepletionRate) return;
+
+        ChangeEnergyValue(overchargeConsumption, false);
+        overchargeTime = 0f;
     }
 
     public void ChangeEnergyValue(float amount, bool isIncreasing)
@@ -108,8 +128,16 @@ public class BatteryManager : MonoBehaviour
 
     public void RechargeBattery(float gasAmount)
     {
+        if (gasAmount <= 0) return;
+
         float energyGained = gasAmount * gasIntoEnergyConversion;
         ChangeEnergyValue(energyGained, true);
+    }
+
+    public bool BatteryOvercharging()
+    {
+        isOvercharge = currentBattery >= maxBattery;
+        return isOvercharge;
     }
 
     public float GetCurrentBattery()

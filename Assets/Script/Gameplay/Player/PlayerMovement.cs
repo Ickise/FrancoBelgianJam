@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerRotation playerRotation;
 
     [SerializeField, Header("Settings")] private float speed = 3f;
+    [SerializeField] private float overchargeSpeed = 5f;
     [SerializeField] private float moveConsumption = 1f;
     [SerializeField] private float moveConsumptionRate = 1f;
 
@@ -47,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        playerRigidbody.linearVelocity = movement * speed;
+        var currentSpeed = BatteryManager.instance.BatteryOvercharging() ? overchargeSpeed : speed;
+
+        playerRigidbody.linearVelocity = movement * currentSpeed;
         playerRotation.RotatePlayer();
     }
 }
