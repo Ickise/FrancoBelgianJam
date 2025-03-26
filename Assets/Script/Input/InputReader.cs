@@ -13,7 +13,7 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     private PlayerInputActions inputActions;
 
-    private bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
+    public bool RightTriggerIsPressed => inputActions.Player.Vaccum.IsPressed();
     private bool LeftTriggerIsPressed => inputActions.Player.MakeSound.IsPressed();
 
     private void OnEnable()
