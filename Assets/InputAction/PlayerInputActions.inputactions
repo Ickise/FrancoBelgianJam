@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "AimMovement",
+                    "name": "Movement",
                     "type": "Value",
                     "id": "192afe1c-6aba-4304-ae0e-17b91354ff4b",
                     "expectedControlType": "Vector2",
@@ -85,18 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AimMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b3fe81a3-0f04-4a5b-813a-9860c86a3242",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AimMovement",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
