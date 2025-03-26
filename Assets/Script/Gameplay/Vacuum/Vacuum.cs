@@ -10,7 +10,7 @@ public class Vacuum : ToolBase
     [SerializeField] private int scorePerObject = 10;
 
     [SerializeField] private InputReader inputReader;
-    
+
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
 
     private void Update()
@@ -21,8 +21,7 @@ public class Vacuum : ToolBase
 
             foreach (Collider obj in objectsToSuck)
             {
-                Vector3 directionToObj = (obj.transform.position - transform.position).normalized;
-                if (Vector3.Angle(transform.forward, directionToObj) < suctionAngle / 2)
+                if (IsInSuctionCone(obj.transform.position))
                 {
                     Rigidbody objRb = obj.GetComponent<Rigidbody>();
                     if (objRb != null)
@@ -41,6 +40,10 @@ public class Vacuum : ToolBase
                         ScoreManager.instance.ChangeScoreValue(scorePerObject, true);
                     }
                 }
+                else
+                {
+                    StopSuction();
+                }
             }
         }
         else
@@ -49,9 +52,14 @@ public class Vacuum : ToolBase
         }
     }
 
+    private bool IsInSuctionCone(Vector3 position)
+    {
+        Vector3 directionToObj = (position - transform.position).normalized;
+        return Vector3.Angle(transform.forward, directionToObj) < suctionAngle / 2;
+    }
+
     public override void UseTool(bool isHeld)
     {
-        
     }
 
     private void StopSuction()

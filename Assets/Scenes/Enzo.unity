@@ -1633,8 +1633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e246dbb71599947aacd7323c882c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suctionRadius: 3
-  suctionAngle: 45
+  suctionRadius: 6
+  suctionAngle: 60
   suctionPower: 5
   objectLayer:
     serializedVersion: 2
