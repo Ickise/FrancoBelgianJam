@@ -732,6 +732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiGas: {fileID: 1434068315}
+  maxTank: 100
+  maxTankOverfillRate: 1.1
 --- !u!1 &425865506
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +928,7 @@ MonoBehaviour:
   playerRotation: {fileID: 1031472413}
   speed: 10
   overchargeSpeed: 15
+  overfillSpeedRate: 0.75
   moveConsumption: 1
   moveConsumptionRate: 1
 --- !u!54 &1031472412
@@ -1384,6 +1387,7 @@ MonoBehaviour:
   makeSoundConsumptionRate: 1
   overchargeDepletionRate: 0.3
   actionConsumptionRate: 1
+  overchargeRate: 1.5
 --- !u!1 &1658716816
 GameObject:
   m_ObjectHideFlags: 0

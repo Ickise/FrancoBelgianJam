@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -6,12 +7,21 @@ public class Vacuum : ToolBase
     [SerializeField, Header("Settings")] private float suctionRadius = 3f;
     [SerializeField] private float suctionAngle = 45f;
     [SerializeField] private float suctionPower = 5f;
-    [SerializeField] private LayerMask objectLayer;
+    [SerializeField] private float gasNumber = 1f;
     [SerializeField] private int scorePerObject = 10;
-
+    [SerializeField] private LayerMask objectLayer;
     [SerializeField] private InputReader inputReader;
 
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
+    
+    private GasManager gasManager;
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        gasManager = GasManager.instance;
+        scoreManager = ScoreManager.instance;
+    }
 
     private void Update()
     {
@@ -37,7 +47,8 @@ public class Vacuum : ToolBase
                     {
                         suckedObjects.Remove(objRb);
                         Destroy(obj.gameObject);
-                        ScoreManager.instance.ChangeScoreValue(scorePerObject, true);
+                        gasManager.ChangeGasStockValue(gasNumber, true);
+                        scoreManager.ChangeScoreValue(scorePerObject, true);
                     }
                 }
                 else

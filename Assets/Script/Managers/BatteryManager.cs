@@ -16,10 +16,10 @@ public class BatteryManager : MonoBehaviour
     [SerializeField] private float makeSoundConsumptionRate = 1f;
     [SerializeField] private float overchargeDepletionRate = 0.3f;
     [SerializeField] private float actionConsumptionRate = 1f;
-
+    [SerializeField] private float overchargeRate = 1.5f;
+    
     private float currentBattery;
     private float maxOvercharge;
-    private float gasConversionRate = 0.5f;
 
     private float actionTime;
     private float overchargeTime;
@@ -39,8 +39,8 @@ public class BatteryManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        currentBattery = 150;
-        maxOvercharge = maxBattery * 1.5f;
+        currentBattery = maxBattery;
+        maxOvercharge = maxBattery * overchargeRate;
     }
 
     private void OnEnable()

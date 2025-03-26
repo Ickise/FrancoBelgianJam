@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,12 +9,19 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField, Header("Settings")] private float speed = 3f;
     [SerializeField] private float overchargeSpeed = 5f;
+    [SerializeField] private float overfillSpeedRate = 0.75f;
     [SerializeField] private float moveConsumption = 1f;
     [SerializeField] private float moveConsumptionRate = 1f;
 
     private Vector3 movement;
 
     private float time;
+
+    private float overfillSpeed;
+
+    private BatteryManager batteryManager;
+
+    private GasManager gasManager;
 
     private void OnEnable()
     {
@@ -30,6 +38,13 @@ public class PlayerMovement : MonoBehaviour
         movement = new Vector3(direction.x, 0, direction.y);
     }
 
+    private void Start()
+    {
+        batteryManager = BatteryManager.instance;
+        gasManager = GasManager.instance;
+        overfillSpeed = speed * overfillSpeedRate;
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -40,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (time >= moveConsumptionRate)
             {
-                BatteryManager.instance.ChangeEnergyValue(moveConsumption, false);
+                batteryManager.ChangeEnergyValue(moveConsumption, false);
                 time = 0;
             }
         }
@@ -48,9 +63,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        var currentSpeed = BatteryManager.instance.BatteryOvercharging() ? overchargeSpeed : speed;
+        var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed : speed;
 
-        playerRigidbody.linearVelocity = movement * currentSpeed;
+        playerRigidbody.linearVelocity = gasManager.IsGasStockOverFilled()
+            ? movement * overfillSpeed
+            : movement * currentSpeed;
+
         playerRotation.RotatePlayer();
     }
 }
