@@ -5,11 +5,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Header("References")] private Rigidbody playerRigidbody;
     [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerRotation playerRotation;
-    
-    [SerializeField, Header("Settings")]
-    private float speed = 3f;
+
+    [SerializeField, Header("Settings")] private float speed = 3f;
+    [SerializeField] private float moveConsumption = 1f;
+    [SerializeField] private float moveConsumptionRate = 1f;
 
     private Vector3 movement;
+
+    private float time;
 
     private void OnEnable()
     {
@@ -29,6 +32,17 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
+        if (movement != Vector3.zero)
+        {
+            time += Time.fixedDeltaTime;
+
+            if (time >= moveConsumptionRate)
+            {
+                BatteryManager.instance.ChangeEnergyValue(moveConsumption, false);
+                time = 0;
+            }
+        }
     }
 
     private void MovePlayer()

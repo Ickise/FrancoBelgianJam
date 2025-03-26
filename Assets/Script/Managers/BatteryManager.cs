@@ -8,10 +8,11 @@ public class BatteryManager : MonoBehaviour
     [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float maxBattery = 100f;
-    [SerializeField] private float moveConsumption = 1f;
     [SerializeField] private float vacuumConsumption = 2f;
     [SerializeField] private float makeNoiseConsumption = 2f;
     [SerializeField] private float gasIntoEnergyConversion = 2f;
+    [SerializeField] private float vacuumConsumptionRate = 1f;
+    [SerializeField] private float makeSoundConsumptionRate = 1f;
 
     private float currentBattery;
     private float maxOvercharge;
@@ -56,23 +57,36 @@ public class BatteryManager : MonoBehaviour
 
     private void Update()
     {
-        if (inputReader.RightTriggerIsPressed || inputReader.LeftTriggerIsPressed)
+        // I know this is a duplicate, but it's a game jam. If I have more time, I will refacto this!
+        if (inputReader.RightTriggerIsPressed)
         {
             actionTime += Time.deltaTime;
 
-            if (actionTime >= actionConsumptionRate)
+            if (actionTime >= vacuumConsumptionRate)
+            {
+                ChangeEnergyValue(vacuumConsumption, false);
+                actionTime = 0f;
+            }
+        }
+        
+        if (inputReader.LeftTriggerIsPressed)
+        {
+            actionTime += Time.deltaTime;
+
+            if (actionTime >= makeSoundConsumptionRate)
             {
                 ChangeEnergyValue(makeNoiseConsumption, false);
                 actionTime = 0f;
             }
         }
-        else
+
+        if (!inputReader.RightTriggerIsPressed && !inputReader.LeftTriggerIsPressed)
         {
             actionTime = 0f;
         }
     }
 
-    private void ChangeEnergyValue(float amount, bool isIncreasing)
+    public void ChangeEnergyValue(float amount, bool isIncreasing)
     {
         if (isIncreasing)
         {
@@ -90,8 +104,6 @@ public class BatteryManager : MonoBehaviour
         {
             gameManager.GameOver();
         }
-
-        actionTime = 0f;
     }
 
     public void RechargeBattery(float gasAmount)
