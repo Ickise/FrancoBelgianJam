@@ -275,6 +275,7 @@ MonoBehaviour:
   fleeSpeed: 3
   catchSpeed: 5
   playerTransform: {fileID: 0}
+  distanceToBeEvil: 10
 --- !u!1 &63015310
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +433,7 @@ MonoBehaviour:
   fleeSpeed: 3
   catchSpeed: 5
   playerTransform: {fileID: 0}
+  distanceToBeEvil: 10
 --- !u!1 &67815697
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +591,7 @@ MonoBehaviour:
   fleeSpeed: 3
   catchSpeed: 5
   playerTransform: {fileID: 0}
+  distanceToBeEvil: 10
 --- !u!1 &71127131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1084,7 @@ GameObject:
   - component: {fileID: 1031472413}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1770,6 +1773,7 @@ MonoBehaviour:
   fleeSpeed: 3
   catchSpeed: 5
   playerTransform: {fileID: 0}
+  distanceToBeEvil: 10
 --- !u!1 &1663538275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2318,7 @@ MonoBehaviour:
   fleeSpeed: 3
   catchSpeed: 5
   playerTransform: {fileID: 0}
+  distanceToBeEvil: 10
 --- !u!1 &1750036922
 GameObject:
   m_ObjectHideFlags: 0
