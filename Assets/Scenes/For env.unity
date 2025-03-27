@@ -514,17 +514,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7646123812699119089, guid: a943068d9ca2080408310af853d31068, type: 3}
   m_PrefabInstance: {fileID: 333423673}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &354571890 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4668536793396692908, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
-  m_PrefabInstance: {fileID: 1003266899}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f5b6917fa16540861425ae3157cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &380873338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -789,22 +778,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7646123812699119089, guid: a943068d9ca2080408310af853d31068, type: 3}
   m_PrefabInstance: {fileID: 584687593}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &679521534 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1870953972121743875, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
-  m_PrefabInstance: {fileID: 1003266899}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &679521535 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 582117355376407459, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
-  m_PrefabInstance: {fileID: 1003266899}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e246dbb71599947aacd7323c882c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &693526117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,11 +2425,11 @@ PrefabInstance:
     - target: {fileID: 6761306181553742435, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: vacuum
       value: 
-      objectReference: {fileID: 679521535}
+      objectReference: {fileID: 0}
     - target: {fileID: 6761306181553742435, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: soundMaker
       value: 
-      objectReference: {fileID: 354571890}
+      objectReference: {fileID: 0}
     - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: playerTransform
       value: 
@@ -2464,7 +2437,7 @@ PrefabInstance:
     - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: vacuumTransform
       value: 
-      objectReference: {fileID: 679521534}
+      objectReference: {fileID: 0}
     - target: {fileID: 8635117007035889972, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: m_Name
       value: Managers
