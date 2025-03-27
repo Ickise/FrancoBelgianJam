@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1daf497901b81647962112f2491ff6c, type: 3}
+  m_Name: 00_PlayerUpgrades
+  m_EditorClassIdentifier: 
+  characterMultiplierSpeeds:
+  - 1
+  - 1.2
+  - 1.4
+  - 1.8
+  batteryCapacities:
+  - 100
+  - 150
+  - 200
+  - 300
+  batteryOverchargeCapacities:
+  - 150
+  - 175
+  - 300
+  - 450
+  gasTankCapacities:
+  - 100
+  - 125
+  - 150
+  - 200
+  gasTankOverloadCapacities:
+  - 110
+  - 137
+  - 165
+  - 220
+  gasToBatteryConversions:
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  vacuumAreaDistances:
+  - 3
+  - 4
+  - 5
+  - 6
+  vacuumAreaSmallAngles:
+  - 60
+  - 70
+  - 80
+  - 90
+  vacuumAreaBigAngles:
+  - 90
+  - 100
+  - 110
+  - 120
+  overloadSpeedPenalties:
+  - 75
+  - 80
+  - 85
+  - 90
