@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 [CreateAssetMenu(menuName = "ScriptableObjects/Sound/SoundData", order = 1)]
 public class SoundData : ScriptableObject
 {
-    [SerializeField] private float volume = 1f;
+ //   [SerializeField] private float volume = 1f;
 
     [Tooltip("À mettre faible si on veut un pitch convenable sinon, mettre 0 si on ne veut pas de pitch")]
     [SerializeField]
@@ -14,7 +14,7 @@ public class SoundData : ScriptableObject
 
     [SerializeField] private AudioClip audioToPlay;
 
-    public float Volume => volume;
+ //   public float Volume => volume;
     public AudioMixerGroup AudioMixerGroup => audioMixerGroup;
     public AudioClip AudioToPlay => audioToPlay;
 

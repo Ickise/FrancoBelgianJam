@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -78,7 +79,7 @@ public class AudioManager : MonoBehaviour
     // Cette fonction permet de configurer les paramètres de l'AudioSource (volume, pitch, etc.) en fonction des données du son.
     private SoundData SetAudioParameters(SoundData soundData, AudioSource audioSource)
     {
-        audioSource.volume = soundData.Volume;
+        //audioSource.volume = soundData.Volume;
         audioSource.pitch = soundData.GetPitch();
         audioSource.outputAudioMixerGroup = soundData.AudioMixerGroup;
         return soundData;
