@@ -1,17 +1,20 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CatchState : IFartState
 {
     private FartController fart;
+    private NavMeshAgent navMeshAgent;
 
     public CatchState(FartController fart)
     {
         this.fart = fart;
+        navMeshAgent = fart.NavMeshAgent;
     }
 
     public void EnterState()
     {
-        // Catched animation
+        // Animation de capture
     }
 
     public void UpdateState()
@@ -23,7 +26,7 @@ public class CatchState : IFartState
             return;
         }
 
-        fart.transform.position = Vector3.MoveTowards(fart.transform.position, vacuum.position, fart.GetCatchSpeed() * Time.deltaTime);
+        navMeshAgent.SetDestination(vacuum.position);
 
         if (Vector3.Distance(fart.transform.position, vacuum.position) > fart.GetDistanceToBeEvil())
         {
@@ -31,5 +34,7 @@ public class CatchState : IFartState
         }
     }
 
-    public void ExitState() { }
+    public void ExitState()
+    {
+    }
 }

@@ -1,17 +1,20 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FleeState : IFartState
 {
     private FartController fart;
+    private NavMeshAgent navMeshAgent;
 
     public FleeState(FartController fart)
     {
         this.fart = fart;
+        navMeshAgent = fart.NavMeshAgent;
     }
 
     public void EnterState()
     {
-        // Flee animation
+        // Animation de fuite
     }
 
     public void UpdateState()
@@ -24,7 +27,9 @@ public class FleeState : IFartState
         }
 
         Vector3 fleeDirection = (fart.transform.position - vacuum.position).normalized;
-        fart.transform.position += fleeDirection * fart.GetFleeSpeed() * Time.deltaTime;
+        Vector3 fleePosition = fart.transform.position + fleeDirection * fart.GetFleeSpeed();
+
+        navMeshAgent.SetDestination(fleePosition);
 
         if (Vector3.Distance(fart.transform.position, vacuum.position) > fart.GetDistanceToBeEvil())
         {

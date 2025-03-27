@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FartController : MonoBehaviour
 {
@@ -13,16 +14,14 @@ public class FartController : MonoBehaviour
     [SerializeField] private float catchSpeed = 5f;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float distanceToBeEvil = 10f;
-    
+    [SerializeField] private NavMeshAgent navMeshAgent;
     private Vector3 playerDir;
-    private Vector3 cowPosition;
 
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = GameManager.instance;
-        cowPosition = GetComponentInParent<Transform>().position;
         SwitchState(new FollowState(this));
     }
 
@@ -48,7 +47,6 @@ public class FartController : MonoBehaviour
         currentState.EnterState();
     }
 
-    public Vector3 GetCowPosition() => cowPosition;
     public Vector3 GetPlayerDirection() => playerDir;
     public Transform GetVacuumAttractiveArea() => gameManager.GetVacuumTransform();
     public Transform GetVacuumCatchArea() => gameManager.GetVacuumTransform();
@@ -62,4 +60,6 @@ public class FartController : MonoBehaviour
     public float GetDistanceToBeEvil() => distanceToBeEvil;
 
     public int GetRangeAngle() => rangeAngle;
+    
+    public NavMeshAgent NavMeshAgent => navMeshAgent;
 }
