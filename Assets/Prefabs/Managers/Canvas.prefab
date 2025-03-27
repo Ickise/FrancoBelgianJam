@@ -661,4 +661,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70157aa926f17d4b81a0aac17ae16be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyText: {fileID: 6952352845350788814}
+  batteryText: {fileID: 6952352845350788814}
