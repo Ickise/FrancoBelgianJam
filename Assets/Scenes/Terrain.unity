@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_fence_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3011990527121329653, guid: b5b50e19ce990ff44926371397f1c7f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -288,6 +292,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7346176091443521573, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932674125829825101, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -353,6 +365,10 @@ PrefabInstance:
     - target: {fileID: 5819071227955910535, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
       propertyPath: m_Name
       value: m_bush_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819071227955910535, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6596276880858565949, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -631,7 +647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1556724995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -914,6 +930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bush 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e9e3cab9d9598349b473afd4d7ab806, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1169,6 +1189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_rock_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9072874513761705949, guid: 47ea51a12c093ac4aa345d1958d9f51c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1226,6 +1250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_fence_03
       objectReference: {fileID: 0}
+    - target: {fileID: 6390318782649645036, guid: 2cd72c9365f5b33488739b9fc62da12e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1242,6 +1270,10 @@ PrefabInstance:
     - target: {fileID: 4734885573163023017, guid: 0e8ea27cc0f9ceb44b5d231dd992929d, type: 3}
       propertyPath: m_Name
       value: m_hay_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734885573163023017, guid: 0e8ea27cc0f9ceb44b5d231dd992929d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403864334532124691, guid: 0e8ea27cc0f9ceb44b5d231dd992929d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1361,6 +1393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_bush_01
       objectReference: {fileID: 0}
+    - target: {fileID: 4880897960373113255, guid: de49f400ee1830d4a97ee41ae13223ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5257880517453777693, guid: de49f400ee1830d4a97ee41ae13223ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 61.55
@@ -1458,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_vacuum
       objectReference: {fileID: 0}
+    - target: {fileID: 4323365607329237981, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1514,6 +1554,10 @@ PrefabInstance:
     - target: {fileID: 6556291627728672316, guid: 47a17f64fe009ee4d841a36dbca38acd, type: 3}
       propertyPath: m_Name
       value: m_fuelSation
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556291627728672316, guid: 47a17f64fe009ee4d841a36dbca38acd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1572,6 +1616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_fence_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3011990527121329653, guid: b5b50e19ce990ff44926371397f1c7f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1628,6 +1676,10 @@ PrefabInstance:
     - target: {fileID: 4056114266985396765, guid: 1ccbfd3ed80add74e9fba2d25a626b80, type: 3}
       propertyPath: m_Name
       value: m_hay_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056114266985396765, guid: 1ccbfd3ed80add74e9fba2d25a626b80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1686,6 +1738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_treeBark_02
       objectReference: {fileID: 0}
+    - target: {fileID: 763138103701659912, guid: 63d81af567617ad46a065f40a8d429ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1702,6 +1758,10 @@ PrefabInstance:
     - target: {fileID: 2515527908979858735, guid: 1c3d38ac38d4ca64b84d45861f5f1b90, type: 3}
       propertyPath: m_Name
       value: m_upgStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515527908979858735, guid: 1c3d38ac38d4ca64b84d45861f5f1b90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3000281233413572501, guid: 1c3d38ac38d4ca64b84d45861f5f1b90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1759,6 +1819,10 @@ PrefabInstance:
     - target: {fileID: 5819071227955910535, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
       propertyPath: m_Name
       value: m_bush_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819071227955910535, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6596276880858565949, guid: 392984cf3ffa538478a9efe486da36e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1857,6 +1921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_treeBark_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7770292439188763917, guid: c562e3d117aede5428f61e26c7ddfa48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1914,6 +1982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_rock_02
       objectReference: {fileID: 0}
+    - target: {fileID: 9072874513761705949, guid: 47ea51a12c093ac4aa345d1958d9f51c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1930,6 +2002,10 @@ PrefabInstance:
     - target: {fileID: 2702231339265564283, guid: 30f94e43c4872d248b8296e3a9427356, type: 3}
       propertyPath: m_Name
       value: m_loudSpeaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2702231339265564283, guid: 30f94e43c4872d248b8296e3a9427356, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3371948976741434561, guid: 30f94e43c4872d248b8296e3a9427356, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1988,6 +2064,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_fence_02
       objectReference: {fileID: 0}
+    - target: {fileID: 5074715552452808344, guid: 7afcac898122de14496c0144ce078258, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5559361983472063522, guid: 7afcac898122de14496c0144ce078258, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.25
@@ -2044,6 +2124,10 @@ PrefabInstance:
     - target: {fileID: 3846001266895381369, guid: ded88eba8c28ed0429223810793d4264, type: 3}
       propertyPath: m_Name
       value: m_rock_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846001266895381369, guid: ded88eba8c28ed0429223810793d4264, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4473320635907455427, guid: ded88eba8c28ed0429223810793d4264, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2141,6 +2225,10 @@ PrefabInstance:
     - target: {fileID: 7583225012827272549, guid: 002a61bb8b5bab842b40f01cdef0b149, type: 3}
       propertyPath: m_Name
       value: m_bush_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583225012827272549, guid: 002a61bb8b5bab842b40f01cdef0b149, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
