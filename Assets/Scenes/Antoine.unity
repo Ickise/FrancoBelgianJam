@@ -1770,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3361852634930318215, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.18
+      value: 14.475
       objectReference: {fileID: 0}
     - target: {fileID: 3361852634930318215, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1799,6 +1799,18 @@ PrefabInstance:
     - target: {fileID: 3361852634930318215, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3725283486222232186, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.5169811
+      objectReference: {fileID: 0}
+    - target: {fileID: 3725283486222232186, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5169811
+      objectReference: {fileID: 0}
+    - target: {fileID: 3725283486222232186, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5169811
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
