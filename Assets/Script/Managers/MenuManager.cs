@@ -67,13 +67,18 @@ public class MenuManager : MonoBehaviour
 
         Screen.fullScreen = isFullscreen;
         Screen.SetResolution(GetScreenWidthFromDropdown(), GetScreenHeightFromDropdown(), isFullscreen);
+        Screen.SetResolution(GetScreenWidthFromDropdown(), GetScreenHeightFromDropdown(), isWindowed); // à voir ça
 
         Debug.Log("Settings Saved.");
     }
 
-    public void SetVolume(float value)
+    public void SetMusicVolume(float value)
     {
         musicAudioSource.volume = musicVolumeSlider.value;
+    }
+    
+    public void SetSoundVolume(float value)
+    {
         soundAudioSource.volume = soundVolumeSlider.value;
     }
 

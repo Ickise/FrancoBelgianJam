@@ -6,6 +6,7 @@ public class AnimationManager : MonoBehaviour
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Idle = Animator.StringToHash("Idle");
 
+    // Je ne sais pas si ça sera utile, mais je le laisse ici pour le moment
     public void PlayWalkAnimation(GameObject targetObject)
     {
         Animator animator = targetObject.GetComponent<Animator>();
