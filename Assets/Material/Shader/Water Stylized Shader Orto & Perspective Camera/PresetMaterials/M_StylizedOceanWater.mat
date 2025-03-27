@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryFoamTex:
-        m_Texture: {fileID: 2800000, guid: 201c88b071ee1ab49a42d47a51409268, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7a25041c274368d469b8386203154b4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Skybox:
@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceFoamTexture:
-        m_Texture: {fileID: 2800000, guid: 201c88b071ee1ab49a42d47a51409268, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7a25041c274368d469b8386203154b4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -134,9 +134,9 @@ Material:
     - _SkyboxForce: 2.5
     - _Steps: 50
     - _SurfaceFoamDirection: 0
-    - _SurfaceFoamDistorsion: 0.38
+    - _SurfaceFoamDistorsion: 0.12
     - _SurfaceFoamSpeed: 0
-    - _SurfaceFoamTiling: 1
+    - _SurfaceFoamTiling: -0.69
     - _TileSize: 200
     - _WORLD_SPACE_UV: 1
     - _WaterAlpha: 1
@@ -152,13 +152,13 @@ Material:
     - _CaveOffset: {r: -0.45, g: 0, b: 0, a: 0}
     - _CaveScale: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _CaveSecondaryColor: {r: 0, g: 0, b: 0, a: 0}
-    - _DeepColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DeepColor: {r: 0.09265217, g: 0.2579408, b: 0.5396226, a: 1}
     - _FoamUVsOffset: {r: 1, g: 1, b: 0, a: 0}
     - _FresnelColor: {r: 2.670157, g: 2.670157, b: 2.670157, a: 0}
     - _HorizonColor: {r: 1.535963, g: 2.6743515, b: 5.5378265, a: 1}
     - _IntersectionFoamColor: {r: 0.88543844, g: 0.88543844, b: 0.88543844, a: 1}
     - _PositionRipples: {r: 0, g: 0, b: 0, a: 0}
-    - _SecondaryFoamColor: {r: 0, g: 0.002903101, b: 0.19245279, a: 0.40784314}
+    - _SecondaryFoamColor: {r: 0.3220007, g: 0.4643124, b: 0.509434, a: 0.40784314}
     - _ShallowColor: {r: 0.348232, g: 0.5783995, b: 0.632, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0.31764707}
     - _SurfaceFoamColor: {r: 1.7129308, g: 1.7129308, b: 1.7129308, a: 0.2784314}
