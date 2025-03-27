@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CowController : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class CowController : MonoBehaviour
     [SerializeField] private int minTimeRecoverFromFart = 5;
     [SerializeField] private int maxTimeRecoverFromFart = 9;
     [SerializeField] private int timeFartCreation = 2;
-
+    [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private int anticipationLevel = 1;
+    
     [SerializeField] private GameObject fartPrefab;
     
     private bool hasBeenScared = false;
@@ -64,6 +67,10 @@ public class CowController : MonoBehaviour
     
     public bool HasBeenScared() => hasBeenScared;
     public bool HasBeenFarted() => hasBeenFarted;
+    
+    public int AnticipationLevel => anticipationLevel;
+    
+    public NavMeshAgent NavMeshAgent => navMeshAgent;
 
     public void SetMoveDirection(Vector3 direction) => moveDirection = direction;
     public Vector3 GetMoveDirection() => moveDirection;
