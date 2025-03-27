@@ -8,7 +8,7 @@ public class GasManager : MonoBehaviour
 
     [SerializeField, Header("Settings")] private float maxTank = 100f;
 
-    [SerializeField] private float maxTankOverfillRate = 1.1f;
+    [SerializeField] private float maxTankOverfillRate = 1.3f;
     
     private float maxTankOverfill;
     
@@ -47,5 +47,12 @@ public class GasManager : MonoBehaviour
     public bool IsGasStockOverFilled()
     {
         return currentGasStock > maxTank;
+    }
+    
+    public void ChangeGasTankCapacities(float baseCapa, float overCapa)
+    {
+        maxTank = baseCapa;
+        maxTankOverfill = overCapa;
+        uiGas.UpdateGasUI();
     }
 }

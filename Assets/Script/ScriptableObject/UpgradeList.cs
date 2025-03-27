@@ -14,7 +14,6 @@ public class UpgradeList : ScriptableObject
     public float[] gasToBatteryConversions;
     
     public float[] vacuumAreaDistances;
-    
     public float[] vacuumAreaSmallAngles;
     public float[] vacuumAreaBigAngles;
 

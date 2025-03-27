@@ -108,30 +108,27 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case EnumUpgradeType.BatteryCapacity:
-                var capacity = uList.batteryCapacities[lPlayerUpgrades[1].index];
-                var overchargeCapacity = uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index];
+                BatteryManager.instance.ChangeBatteryCapacities(uList.batteryCapacities[lPlayerUpgrades[1].index], 
+                    uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index]);
                 break;
             
             case EnumUpgradeType.GasTankCapacity:
-                var tankCapacity = uList.gasTankCapacities[lPlayerUpgrades[2].index];
-                var overloadCapacity = uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index];
+                GasManager.instance.ChangeGasTankCapacities(uList.gasTankCapacities[lPlayerUpgrades[2].index],
+                    uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index]);
                 break;
             
             case EnumUpgradeType.GasToBatteryConversion:
                 var conversion = uList.gasToBatteryConversions[lPlayerUpgrades[3].index];
                 break;
             
-            case EnumUpgradeType.VacuumAreaDistance:
+            case EnumUpgradeType.VacuumArea:
                 var dist = uList.vacuumAreaDistances[lPlayerUpgrades[4].index];
+                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[4].index];
+                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[4].index];
                 break;
-            
-            case EnumUpgradeType.VacuumAreaAngle:
-                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[5].index];
-                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[5].index];
-                break;
-            
+
             case EnumUpgradeType.OverloadSpeedPenalty:
-                var overloadPenalty = uList.overloadSpeedPenalties[lPlayerUpgrades[6].index];
+                var overloadPenalty = uList.overloadSpeedPenalties[lPlayerUpgrades[5].index];
                 break;
             
         }
