@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GasDisolve
+  m_Name: FartGhost
   m_Shader: {fileID: -6465566751694194690, guid: 24f285a87c33ac8469ca6b3a692b88df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,6 +28,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 03c0595e255878c4581b0de294498816, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_880ceec1dbbd4b5ba44bfaf23cb71d31_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 03c0595e255878c4581b0de294498816, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_d3833291b86a425b82801d3bdd571e15_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2f812ecbc7c8ee847924daba14afaaa6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -43,10 +51,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Disolve: -1
+    - _Float: 30.7
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.32285914, g: 0.8037735, b: 0.02274817, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &335344913672490329

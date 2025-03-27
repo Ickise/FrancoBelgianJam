@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Fart
-  m_Shader: {fileID: -6465566751694194690, guid: 58ff90a42866d2142964d19e2e28a649, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 24f285a87c33ac8469ca6b3a692b88df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -64,6 +64,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_880ceec1dbbd4b5ba44bfaf23cb71d31_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 03c0595e255878c4581b0de294498816, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_d74684db9fe3490e8b83245cba05b819_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 03c0595e255878c4581b0de294498816, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -73,6 +77,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
+        m_Texture: {fileID: 2800000, guid: 2f812ecbc7c8ee847924daba14afaaa6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_d3833291b86a425b82801d3bdd571e15_Out_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: 2f812ecbc7c8ee847924daba14afaaa6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -102,7 +110,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Disolve: 1
+    - _Disolve: -1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
