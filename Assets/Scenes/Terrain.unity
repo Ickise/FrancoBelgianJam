@@ -1291,6 +1291,26 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 4360775202170762976, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360775202170762976, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: overchargeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803268799549918630, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: suctionAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803268799549918630, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: suctionRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803268799549918630, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: scorePerObject
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
