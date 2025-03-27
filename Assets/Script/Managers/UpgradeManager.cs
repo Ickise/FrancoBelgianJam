@@ -20,7 +20,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private List<PlayerUpgrades> lPlayerUpgrades;
     [SerializeField] private UpgradeList uList;
     [SerializeField] private PlayerMovement pMov;
-    
+    [SerializeField] private GameObject uiMenuUpgrade;
+     
     private void Awake()
     {
         if (instance == null)
@@ -36,7 +37,7 @@ public class UpgradeManager : MonoBehaviour
         currentPool = new List<UpgradesObjects>();
     }
 
-    public void RisePrice()
+    void RisePrice()
     {
         if (currentPriceIndex + 1 >= currentUpgradePrice.Count) return;
         
@@ -57,6 +58,15 @@ public class UpgradeManager : MonoBehaviour
     public float GetPenalty()
     {
         return scorePenalty;
+    }
+
+    public void ChangeMenuUpgradeState(bool state)
+    {
+        if (state)
+        {
+            ChooseRangeRandomUpgrade();
+        }
+        uiMenuUpgrade.SetActive(state);
     }
 
     private void ChooseRangeRandomUpgrade()
@@ -92,6 +102,8 @@ public class UpgradeManager : MonoBehaviour
             }
         }
         SetUpgrade(upgrade.upgradeType);
+        RisePrice();
+        ChangeMenuUpgradeState(true);
     }
 
     void SetUpgrade(EnumUpgradeType upgradeType)
@@ -134,10 +146,6 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ChooseRangeRandomUpgrade();
-    }
 }
 
 [Serializable]

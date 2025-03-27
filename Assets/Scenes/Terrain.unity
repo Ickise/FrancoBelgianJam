@@ -414,6 +414,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4234430840481232304, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
   m_PrefabInstance: {fileID: 670083010607045957}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &472400564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4971338314484824334, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+  m_PrefabInstance: {fileID: 1195328421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517492475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,10 +1395,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect l
       objectReference: {fileID: 0}
-    - target: {fileID: 4971338314484824334, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5790841246392666541, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
       propertyPath: m_Name
       value: Level Text l
@@ -1946,16 +1947,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2051829310}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: uiMenuUpgrade
+      value: 
+      objectReference: {fileID: 472400564}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: lFacilities.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: upgradeTexts.Array.size
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: lPoolUpgrades.Array.size
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'lFacilities.Array.data[0]'
@@ -2009,34 +2010,6 @@ PrefabInstance:
       propertyPath: 'upgradeTexts.Array.data[8]'
       value: 
       objectReference: {fileID: 927835838}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'lPoolUpgrades.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1212315914cd1994bb67f78a344ad2ac, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'lPoolUpgrades.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'lPoolUpgrades.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f2c0dd6973a536942bf6056f3c347c58, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: lPoolUpgrades.Array.data[0].uObject
-      value: 
-      objectReference: {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: lPoolUpgrades.Array.data[1].uObject
-      value: 
-      objectReference: {fileID: 11400000, guid: c6e316dd1b3f8b74283ee1693e27cfaf, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: lPoolUpgrades.Array.data[2].uObject
-      value: 
-      objectReference: {fileID: 11400000, guid: f2c0dd6973a536942bf6056f3c347c58, type: 2}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: lPoolUpgrades.Array.data[3].uObject
-      value: 
-      objectReference: {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
     - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: uiGas
       value: 
