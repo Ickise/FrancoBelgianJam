@@ -154,4 +154,11 @@ public class BatteryManager : MonoBehaviour
     {
         return maxBattery;
     }
+
+    public void ChangeBatteryCapacities(float baseCapa, float overCapa)
+    {
+        maxBattery = baseCapa;
+        maxOvercharge = overCapa;
+        uiBattery.UpdateEnergyUI();
+    }
 }
