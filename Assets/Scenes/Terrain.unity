@@ -2225,7 +2225,7 @@ PrefabInstance:
       objectReference: {fileID: 845848962}
     - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: maxTank
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4786510334916589660, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: poolCows.Array.size

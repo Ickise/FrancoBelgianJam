@@ -177,7 +177,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        GasManager.instance.ChangeGasStockValue(1000, true);
+        //GasManager.instance.ChangeGasStockValue(1000, true);
     }
 }
 
