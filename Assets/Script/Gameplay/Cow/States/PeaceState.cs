@@ -11,6 +11,11 @@ public class PeaceState : ICowState
         SetRandomDestination();
     }
 
+    public void EnterState(CowController cow, Vector3 dangerSource)
+    {
+        
+    }
+
     public void UpdateState()
     {
         if (Vector3.Distance(cow.transform.position, targetPosition) > 0.1f)

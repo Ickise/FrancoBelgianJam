@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8915058111540222648
+--- !u!1 &8870741894626221957
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7646123812699119089}
-  - component: {fileID: 8800274650257447629}
-  - component: {fileID: 3388140304367939107}
-  - component: {fileID: 2814063580637763572}
-  - component: {fileID: 3869277332504889819}
-  - component: {fileID: 5404758390099914174}
-  m_Layer: 7
-  m_Name: P_Cow
+  - component: {fileID: 3050927352618842256}
+  - component: {fileID: 7080205510013188508}
+  - component: {fileID: 850817450888386279}
+  - component: {fileID: 6179161187516124385}
+  - component: {fileID: 8780041159596464600}
+  - component: {fileID: 3229061483465068467}
+  m_Layer: 6
+  m_Name: FartPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7646123812699119089
+--- !u!4 &3050927352618842256
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8800274650257447629
+--- !u!33 &7080205510013188508
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3388140304367939107
+--- !u!23 &850817450888386279
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,13 +89,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2814063580637763572
+--- !u!135 &6179161187516124385
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,13 +110,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3869277332504889819
+--- !u!54 &8780041159596464600
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -135,30 +135,26 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5404758390099914174
+--- !u!114 &3229061483465068467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915058111540222648}
+  m_GameObject: {fileID: 8870741894626221957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b924d40c89cd5545a9e820623b90bbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d7d0a6173ade5141a7f69317f431f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeStatic: 3
-  maxTimeStatic: 5
-  minDistance: 1
-  maxDistance: 3
-  speedPeace: 3
-  afraidDistance: 3
-  speedAfraid: 5
-  fartDistance: 9
-  speedFart: 9
-  minTimeRecoverFromFart: 5
-  maxTimeRecoverFromFart: 9
-  timeFartCreation: 2
-  fartPrefab: {fileID: 8870741894626221957, guid: bedade3a213c96d45bde901708ddbf44, type: 3}
+  speedFollowCow: 3
+  timeFollowCow: 3
+  rangeAngle: 45
+  evilSpeed: 3
+  timeToDisappear: 5
+  fleeSpeed: 3
+  catchSpeed: 5
+  playerTransform: {fileID: 0}
+  distanceToBeEvil: 10

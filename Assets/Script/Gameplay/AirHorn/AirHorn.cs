@@ -92,13 +92,17 @@ public class AirHorn : ToolBase
                 CowController cow = obj.GetComponent<CowController>();
                 if (cow != null)
                 {
-                    if (isBigDisturb)
+                    if (isBigDisturb && !cow.HasBeenFarted())
                     {
-                        cow.SwitchState(new FartState());
+                        cow.SwitchState(new FartState(), transform.position);
+                        cow.SetFarted(true);
                     }
-                    else
+                    else if (!isBigDisturb && !cow.HasBeenScared())
                     {
-                        cow.SwitchState(new AfraidState());
+                        {
+                            cow.SwitchState(new AfraidState(), transform.position);
+                            cow.SetScared(true);
+                        }
                     }
                 }
             }
@@ -113,6 +117,5 @@ public class AirHorn : ToolBase
 
     public override void UseTool(bool isHeld)
     {
-        
     }
 }
