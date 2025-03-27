@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class AirHorn : ToolBase
 {
-    [SerializeField, Header("References")] private GameObject littleDisturbPrefab;
-    [SerializeField] private GameObject bigDisturbPrefab;
+    [SerializeField, Header("References")] private GameObject littleDisturb;
+    [SerializeField] private GameObject bigDisturb;
 
     [SerializeField] private Animator animator;
-
     [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
     [SerializeField] private float littleDisturbAreaRange = 60f;
-    [SerializeField] private float littleDisturbAreaDistance = 3f;
     [SerializeField] private float bigDisturbAreaRange = 90f;
-    [SerializeField] private float bigDisturbAreaDistance = 5f;
     [SerializeField] private float bigDisturbAreaTimeLife = 2f;
     [SerializeField] private float radius = 3f;
 
     [SerializeField] private LayerMask objectLayer;
 
     private float holdTime = 0f;
-    private GameObject currentDisturbArea;
     private float currentAreaRange;
     private bool isBigDisturb = false;
 
@@ -31,7 +27,7 @@ public class AirHorn : ToolBase
             holdTime += Time.deltaTime;
             animator.SetTrigger("Scaring");
 
-            if (currentDisturbArea == null)
+            if (!littleDisturb.activeSelf && !bigDisturb.activeSelf)
             {
                 StartDisturb();
             }
@@ -47,7 +43,7 @@ public class AirHorn : ToolBase
             StopDisturb();
         }
 
-        if (currentDisturbArea != null)
+        if (littleDisturb.activeSelf || bigDisturb.activeSelf)
         {
             DetectObjectsInCone();
         }
@@ -57,38 +53,30 @@ public class AirHorn : ToolBase
     {
         isBigDisturb = false;
         currentAreaRange = littleDisturbAreaRange;
-        currentDisturbArea = Instantiate(littleDisturbPrefab, transform.position, Quaternion.identity);
+        littleDisturb.SetActive(true);
+        bigDisturb.SetActive(false);
     }
 
     private void TransformToBigDisturb()
     {
-        if (currentDisturbArea != null)
-        {
-            Destroy(currentDisturbArea);
-        }
-
         isBigDisturb = true;
         currentAreaRange = bigDisturbAreaRange;
-        currentDisturbArea = Instantiate(bigDisturbPrefab, transform.position, Quaternion.identity);
+        littleDisturb.SetActive(false);
+        bigDisturb.SetActive(true);
 
-        Destroy(currentDisturbArea, bigDisturbAreaTimeLife);
+        //nvoke(nameof(StopDisturb), bigDisturbAreaTimeLife);
     }
 
     private void StopDisturb()
     {
-        if (!isBigDisturb && currentDisturbArea != null)
-        {
-            Destroy(currentDisturbArea);
-        }
-
-        currentDisturbArea = null;
+        littleDisturb.SetActive(false);
+        bigDisturb.SetActive(false);
         holdTime = 0f;
     }
 
     private void DetectObjectsInCone()
     {
         Vector3 direction = transform.forward;
-
         int numberOfRays = 30;
         float coneAngle = currentAreaRange / 2f;
 
@@ -98,9 +86,7 @@ public class AirHorn : ToolBase
             Vector3 rayDirection = Quaternion.Euler(0, angleOffset, 0) * direction;
 
             Ray ray = new Ray(transform.position, rayDirection);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, radius, objectLayer))
+            if (Physics.Raycast(ray, out RaycastHit hit, radius, objectLayer))
             {
                 CowController cow = hit.collider.GetComponent<CowController>();
                 if (cow != null)

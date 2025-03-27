@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class Vacuum : ToolBase
 {
     [SerializeField, Header("References")] private Animator animator;
-
+    [SerializeField] private GameObject vacuumEffect;
+    
     [SerializeField, Header("Settings")] private float suctionRadius = 3f;
     [SerializeField] private float suctionAngle = 45f;
     [SerializeField] private float suctionPower = 5f;
@@ -12,7 +13,7 @@ public class Vacuum : ToolBase
     [SerializeField] private int scorePerObject = 10;
     [SerializeField] private LayerMask objectLayer;
     [SerializeField] private InputReader inputReader;
-
+    
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
 
     private GasManager gasManager;
@@ -29,11 +30,13 @@ public class Vacuum : ToolBase
         if (inputReader.RightTriggerIsPressed)
         {
             animator.SetTrigger("Sucking");
+            vacuumEffect.SetActive(true);
             DetectObjectsInCone();
         }
         else
         {
             animator.SetTrigger("Default");
+            vacuumEffect.SetActive(false);
             StopSuction();
         }
     }

@@ -5,11 +5,9 @@ public class UIGas : MonoBehaviour
 {
     [SerializeField, Header("References")] private TextMeshProUGUI gasText;
    
-    private GasManager gasManager;
-
+    [SerializeField] private GasManager gasManager;
     private void Start()
     {
-        gasManager = GasManager.instance;
         UpdateGasUI();
     }
    
