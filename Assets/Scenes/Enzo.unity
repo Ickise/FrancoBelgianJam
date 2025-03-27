@@ -264,6 +264,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70157aa926f17d4b81a0aac17ae16be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1003205127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+  m_PrefabInstance: {fileID: 3023439323081483892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b2ab1f82fd63d488d449c4d9bff442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1031472410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1135932350101798846, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
@@ -1025,6 +1036,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1979970258016712916, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: _batteryManager
+      value: 
+      objectReference: {fileID: 1003205127}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

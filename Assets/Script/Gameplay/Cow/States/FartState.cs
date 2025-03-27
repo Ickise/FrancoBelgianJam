@@ -9,22 +9,17 @@ public class FartState : ICowState
 
     public void EnterState(CowController cow)
     {
+        
+    }
+
+    public void EnterState(CowController cow, Vector3 dangerSource)
+    {
         Debug.Log("Farting");
         this.cow = cow;
         escapeDirection = -cow.GetMoveDirection();
         remainingDistance = cow.GetFartDistance();
         cow.SetFarting(true);
         cow.StartCoroutine(GenerateFarts());
-    }
-
-    public void EnterState(CowController cow, Vector3 dangerSource)
-    {
-        
-    }
-
-    public void EnterState(CowController cow, Vector3? dangerSource = null)
-    {
-        
     }
 
     public void UpdateState()

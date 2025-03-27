@@ -1,20 +1,20 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class UIBattery : MonoBehaviour
 {
-   [SerializeField, Header("References")] private TextMeshProUGUI energyText;
-   
-   private BatteryManager _batteryManager;
+    [SerializeField, Header("References")] private TextMeshProUGUI batteryText;
 
-   private void Start()
-   {
-      _batteryManager = BatteryManager.instance;
-      UpdateEnergyUI();
-   }
-   
-   public void UpdateEnergyUI()
-   {
-      energyText.text = $"Energy: {_batteryManager.GetCurrentBattery()} / {_batteryManager.GetMaxBattery()}";
-   }
+    [SerializeField] private BatteryManager _batteryManager;
+
+    private void Start()
+    {
+        UpdateEnergyUI();
+    }
+
+    public void UpdateEnergyUI()
+    {
+        batteryText.text = $"Energy: {_batteryManager.GetCurrentBattery()} / {_batteryManager.GetMaxBattery()}";
+    }
 }
