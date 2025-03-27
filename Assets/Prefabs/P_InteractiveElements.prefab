@@ -567,6 +567,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_VictoryTank
       objectReference: {fileID: 0}
+    - target: {fileID: 4958820184342097055, guid: 1e786e2b59725a041ac594f98a0757a0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 70b920b8b79ca674490436dca08d3fb7, type: 2}
+    - target: {fileID: 4958820184342097055, guid: 1e786e2b59725a041ac594f98a0757a0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5171496547179962866, guid: 70b920b8b79ca674490436dca08d3fb7, type: 2}
+    - target: {fileID: 4958820184342097055, guid: 1e786e2b59725a041ac594f98a0757a0, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7797044450366653852, guid: 1e786e2b59725a041ac594f98a0757a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.81
