@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 1b86dca604bde714194d1eff81163270
-  - enabled: 0
-    path: Assets/Scenes/Enzo.unity
-    guid: d1ca27cf4869cb84183e8cffb92c535e
-  - enabled: 0
-    path: Assets/Scenes/For env.unity
-    guid: 06a5743acd280374ba93b94fcf3ccf32
   - enabled: 1
     path: Assets/Scenes/Terrain.unity
     guid: f08a0dca35b2c0b49ae72bb42a76887d

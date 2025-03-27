@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerRotation playerRotation;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject smokeEffect;
     
     [SerializeField, Header("Settings")] private float speed = 3f;
     [SerializeField] private float overchargeSpeed = 5f;
@@ -76,10 +77,12 @@ public class PlayerMovement : MonoBehaviour
         if (movement != Vector3.zero)
         {
             animator.SetTrigger("IsWalking");
+            smokeEffect.SetActive(true);
         }
         else
         {
             animator.SetTrigger("Idle");
+            smokeEffect.SetActive(false);
         }
         
         playerRotation.RotatePlayer();
