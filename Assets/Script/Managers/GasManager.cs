@@ -46,6 +46,6 @@ public class GasManager : MonoBehaviour
     
     public bool IsGasStockOverFilled()
     {
-        return currentGasStock >= maxTank;
+        return currentGasStock > maxTank;
     }
 }

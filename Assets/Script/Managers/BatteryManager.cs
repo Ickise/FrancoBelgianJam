@@ -141,7 +141,7 @@ public class BatteryManager : MonoBehaviour
 
     public bool BatteryOvercharging()
     {
-        isOvercharge = currentBattery >= maxBattery;
+        isOvercharge = currentBattery > maxBattery;
         return isOvercharge;
     }
 
