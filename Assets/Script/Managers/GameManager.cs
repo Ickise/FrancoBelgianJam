@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlayMusic(4, true);
+        AudioManager.instance.PlayMusic(3, true);
     }
 
     public void GameOver()
