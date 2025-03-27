@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
             var min = (int)(_playTime / 60);
             var sec = (int)(_playTime % 60);
-            victoryTextTime.text = $"{min} minutes and {sec} seconds";
+            victoryTextTime.text = $"{min} minutes and {sec} seconds.";
         }
     }
 
