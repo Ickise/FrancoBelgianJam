@@ -11,7 +11,6 @@ public class AirHorn : ToolBase
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
     [SerializeField] private float littleDisturbAreaRange = 60f;
     [SerializeField] private float bigDisturbAreaRange = 90f;
-    [SerializeField] private float bigDisturbAreaTimeLife = 2f;
     [SerializeField] private float radius = 3f;
 
     [SerializeField] private LayerMask objectLayer;

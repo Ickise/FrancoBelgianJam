@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform vacuumTransform;
 
+    [SerializeField] private float gasToDepositToWin = 700;
+    [SerializeField, Header("References")] private GameObject victoryScreen;
+    [SerializeField, Header("References")] private TextMeshProUGUI victoryTextTime;
+    [SerializeField, Header("References")] private GameObject defeatScreen;
+    [SerializeField, Header("References")] private GameObject inGameScreen;
+
+    private float _playTime;
+    
     private void Awake()
     {
         if (instance == null)
@@ -21,6 +31,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        _playTime += Time.deltaTime;
+    }
+
+    void ResetTimer()
+    {
+        _playTime = 0;
+    }
+
     private void OnEnable()
     {
         inputReader.EnablePlayerInputs();
@@ -30,10 +50,36 @@ public class GameManager : MonoBehaviour
     {
         inputReader.DisablePlayerInputs();
     }
-    
+
+    private void Start()
+    {
+        AudioManager.instance.PlayMusic(3, true);
+    }
+
     public void GameOver()
     {
-        //Debug.Log("Game Over");
+        Time.timeScale = 0;
+        inGameScreen.SetActive(false);
+        defeatScreen.SetActive(true);
+    }
+    
+    public void Victory(float currentGas)
+    {
+        if (currentGas >= gasToDepositToWin)
+        {
+            Time.timeScale = 0;
+            inGameScreen.SetActive(false);
+            victoryScreen.SetActive(true);
+
+            var min = (int)(_playTime / 60);
+            var sec = (int)(_playTime % 60);
+            victoryTextTime.text = $"{min} minutes and {sec} seconds.";
+        }
+    }
+
+    public float GetGasThreshold()
+    {
+        return gasToDepositToWin;
     }
 
     public Transform GetPlayerTransform()
