@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetInputValue(Vector2 direction)
     {
-        movement = new Vector3(direction.x, 0, direction.y);
+        movement = new Vector3(direction.x, 0, direction.y).normalized;
     }
 
     private void Start()
@@ -64,10 +64,12 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed : speed;
+        Vector3 velocity = playerRigidbody.linearVelocity;
 
-        playerRigidbody.linearVelocity = gasManager.IsGasStockOverFilled()
-            ? movement * overfillSpeed
-            : movement * currentSpeed;
+        velocity.x = movement.x * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
+        velocity.z = movement.z * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
+
+        playerRigidbody.linearVelocity = velocity;
 
         playerRotation.RotatePlayer();
     }
