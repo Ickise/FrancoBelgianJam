@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class BatteryManager : MonoBehaviour
@@ -6,7 +5,8 @@ public class BatteryManager : MonoBehaviour
     public static BatteryManager instance;
 
     [SerializeField, Header("References")] private UIBattery uiBattery;
-    [SerializeField, Header("References")] private GameObject overchargedText; 
+    [SerializeField] private GameObject overchargedText; 
+    [SerializeField] private GameObject overchargedEffect; 
     
     [SerializeField] private InputReader inputReader;
 
@@ -142,6 +142,7 @@ public class BatteryManager : MonoBehaviour
     public bool BatteryOvercharging()
     {
         isOvercharge = currentBattery > maxBattery;
+        overchargedEffect.SetActive(isOvercharge);
         return isOvercharge;
     }
 
