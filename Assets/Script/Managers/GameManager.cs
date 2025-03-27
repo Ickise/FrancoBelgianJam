@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Header("References")] private GameObject victoryScreen;
     [SerializeField, Header("References")] private TextMeshProUGUI victoryTextTime;
     [SerializeField, Header("References")] private GameObject defeatScreen;
+    [SerializeField, Header("References")] private TextMeshProUGUI defeatScore;
     [SerializeField, Header("References")] private GameObject inGameScreen;
 
     private float _playTime;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         inGameScreen.SetActive(false);
         defeatScreen.SetActive(true);
+        defeatScore.text = $"Score: {ScoreManager.instance.GetScore()}";
     }
     
     public void Victory(float currentGas)
