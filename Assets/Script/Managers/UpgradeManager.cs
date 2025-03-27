@@ -66,8 +66,14 @@ public class UpgradeManager : MonoBehaviour
         if (state)
         {
             ChooseRangeRandomUpgrade();
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
         uiMenuUpgrade.SetActive(state);
+        
     }
 
     private void ChooseRangeRandomUpgrade()
@@ -177,7 +183,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        GasManager.instance.ChangeGasStockValue(1000, true);
+        //GasManager.instance.ChangeGasStockValue(1000, true);
     }
 }
 

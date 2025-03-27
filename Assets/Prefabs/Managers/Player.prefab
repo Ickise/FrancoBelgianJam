@@ -113,7 +113,7 @@ MonoBehaviour:
   animator: {fileID: 6377122874894697385}
   smokeEffect: {fileID: 4570386576789966076}
   speed: 6
-  overchargeSpeed: 7.5
+  overchargeSpeed: 5
   overfillSpeedRate: 0.75
   moveConsumption: 1
   moveConsumptionRate: 1
@@ -294,8 +294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6377122874894697385}
   vacuumEffect: {fileID: 477189405610139088}
-  suctionRadius: 6
-  suctionAngle: 60
+  suctionRadius: 2
+  suctionAngle: 30
   suctionPower: 5
   gasNumber: 1
   scorePerObject: 10
@@ -685,7 +685,6 @@ MonoBehaviour:
   holdThreshold: 2
   littleDisturbAreaRange: 60
   bigDisturbAreaRange: 90
-  bigDisturbAreaTimeLife: 2
   radius: 3
   objectLayer:
     serializedVersion: 2
