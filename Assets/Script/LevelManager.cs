@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 
             case 1:
             m_intermediateLevelSwitch = m_positionLevel.ElementAt(m_levelSwitch);
-            m_character.transform.position = m_intermediateLevelSwitch.transform.position;
+            //m_character.transform.position = m_intermediateLevelSwitch.transform.position;
             _camera.transform.position = m_intermediateLevelSwitch.transform.position;
                 break;
 
