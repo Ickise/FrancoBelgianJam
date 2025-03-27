@@ -1,24 +1,30 @@
 using UnityEngine;
-using System.Collections;
+using UnityEngine.AI;
 
 public class FollowState : IFartState
 {
     private FartController fart;
+    private NavMeshAgent navMeshAgent;
     private float stateTimer;
+    private CowController cowController;
 
     public FollowState(FartController fart)
     {
         this.fart = fart;
+        navMeshAgent = fart.NavMeshAgent;
+        cowController = this.fart.GetComponentInParent<CowController>();
     }
 
     public void EnterState()
     {
         stateTimer = fart.GetTimeFollowCow();
-        fart.StartCoroutine(FollowCow());
+        navMeshAgent.speed = fart.GetSpeedFollowCow();
     }
 
     public void UpdateState()
     {
+        FollowCow();
+
         stateTimer -= Time.deltaTime;
 
         if (stateTimer <= 0)
@@ -29,17 +35,11 @@ public class FollowState : IFartState
 
     public void ExitState()
     {
-        fart.StopAllCoroutines();
     }
 
-    private IEnumerator FollowCow()
+    private void FollowCow()
     {
-        Vector3 cowPos = fart.GetCowPosition();
-        while (stateTimer > 0)
-        {
-            fart.transform.position =
-                Vector3.MoveTowards(fart.transform.position, cowPos, fart.GetSpeedFollowCow() * Time.deltaTime);
-            yield return null;
-        }
+        Vector3 cowPos = cowController.transform.position;
+        navMeshAgent.SetDestination(cowPos);
     }
 }
