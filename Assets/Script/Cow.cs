@@ -22,8 +22,6 @@ public class Cow : MonoBehaviour
     [SerializeField] private float m_speedAfraid = 5f;
     [SerializeField] private int m_fartDistance = 9;
     [SerializeField] private float m_speedFart = 9f;
-    [SerializeField] private int m_minTimerecoverFromfart = 5;
-    [SerializeField] private int m_maxTimeRecoverFromFart = 9;
     [SerializeField] private float m_timeFartCreation = 2;
 
     [SerializeField] private GameObject _character;

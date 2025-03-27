@@ -18,7 +18,6 @@ public class BatteryManager : MonoBehaviour
     [SerializeField] private float vacuumConsumptionRate = 1f;
     [SerializeField] private float makeSoundConsumptionRate = 1f;
     [SerializeField] private float overchargeDepletionRate = 0.3f;
-    [SerializeField] private float actionConsumptionRate = 1f;
     [SerializeField] private float overchargeRate = 1.5f;
     
     private float currentBattery;

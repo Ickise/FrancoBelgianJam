@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c7ad370728b72e4ca5b7a97299308ae, type: 3}
-  m_Name: BigDisturbSoundData
+  m_Name: CowMooSoundData 9
   m_EditorClassIdentifier: 
   pitchVariation: 0.2
   audioMixerGroup: {fileID: 24300002, guid: b629d0a900b65d342998bef736b22310, type: 2}
-  audioToPlay: {fileID: 8300000, guid: 84ba443b177b1164b925699c00c20cbe, type: 3}
+  audioToPlay: {fileID: 8300000, guid: fd640f9b7c2093a478e864cc5f060050, type: 3}
