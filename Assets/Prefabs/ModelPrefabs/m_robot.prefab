@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.255
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -5909537404111727551, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: bb3c9fd3eda2d25439d818f0c984aad7, type: 2}
+      objectReference: {fileID: 2100000, guid: f4773f7e1b8e0514ba7900c5158fbe33, type: 2}
     - target: {fileID: 919132149155446097, guid: cb13be28952d3c447b7549d2799f12f7, type: 3}
       propertyPath: m_Name
       value: m_robot
