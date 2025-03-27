@@ -8,6 +8,7 @@ public class SpawningCowsManager : MonoBehaviour
     [SerializeField] private List<CowsArea> spawnCowsAreas;
     
     [SerializeField] private List<Transform> poolCows;
+    [SerializeField] private GameObject cowPrefab;
     [SerializeField] private List<GameObject> specialCows;
     
     private void Start()
@@ -23,15 +24,26 @@ public class SpawningCowsManager : MonoBehaviour
             
             for (int i = 0; i < number; i++)
             {
-                //Pool a Cow rather than instantiate it
-                var cowToSet = poolCows[0];
-                cowToSet.position = GetRandomPointInsideCollider(area.spawnArea, false);
-                cowToSet.rotation = Quaternion.Euler(GetRandomRotation());
+                if (poolCows.Count > 0) //Pool a Cow rather than instantiate it
+                {
+                    var cowToSet = poolCows[0];
+                    cowToSet.position = GetRandomPointInsideCollider(area.spawnArea, false);
+                    cowToSet.rotation = Quaternion.Euler(GetRandomRotation());
                 
-                cowToSet.parent = transform;
+                    cowToSet.parent = transform;
                 
-                poolCows.RemoveAt(0);
-                cowToSet.gameObject.SetActive(true);
+                    poolCows.RemoveAt(0);
+                    cowToSet.gameObject.SetActive(true);
+                }
+                else //Instantiate one if pool is empty
+                {
+                    var cowClone = Instantiate(
+                        cowPrefab,
+                        GetRandomPointInsideCollider(area.spawnArea, false),
+                        Quaternion.identity);
+                    
+                    cowClone.transform.parent = transform;
+                }
             }
 
             if (area.numberOfSpecialCows.Length > 0)
