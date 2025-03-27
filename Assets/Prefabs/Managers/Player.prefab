@@ -111,7 +111,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   playerRotation: {fileID: 2126884183709999043}
   animator: {fileID: 6377122874894697385}
-  smokeEffect: {fileID: 4570386576789966076}
+  smokeEffect: {fileID: 0}
   speed: 10
   overchargeSpeed: 15
   overfillSpeedRate: 0.75
@@ -367,11 +367,6 @@ PrefabInstance:
 --- !u!4 &321372357931211652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361852634930318215, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
-  m_PrefabInstance: {fileID: 3085543384281321475}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4570386576789966076 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1567053917574044927, guid: baaf5c376b8b27d4e9fe1888d6343611, type: 3}
   m_PrefabInstance: {fileID: 3085543384281321475}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4584552007985662551

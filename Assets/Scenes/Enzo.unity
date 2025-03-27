@@ -1375,10 +1375,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3804018067042141103, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 4360775202170762976, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: smokeEffect
       value: 
