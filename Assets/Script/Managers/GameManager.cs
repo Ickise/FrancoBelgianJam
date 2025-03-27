@@ -1,6 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,17 +8,19 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField, Header("References")] private InputReader inputReader;
-    
+
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform vacuumTransform;
 
     [SerializeField] private float gasToDepositToWin = 700;
     [SerializeField, Header("References")] private GameObject victoryScreen;
-    [SerializeField, Header("References")] private TextMeshProUGUI victoryTextTime;
-    [SerializeField, Header("References")] private GameObject defeatScreen;
-    [SerializeField, Header("References")] private TextMeshProUGUI defeatScore;
-    [SerializeField, Header("References")] private GameObject inGameScreen;
-
+    [SerializeField] private TextMeshProUGUI victoryTextTime;
+    [SerializeField] private GameObject defeatScreen;
+    [SerializeField] private TextMeshProUGUI defeatScore;
+    [SerializeField] private GameObject inGameScreen;
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject firstVictoryButton;
+    [SerializeField] private GameObject firstDefeatButton;
     private float _playTime;
 
     private void Awake()
@@ -63,9 +65,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         inGameScreen.SetActive(false);
         defeatScreen.SetActive(true);
+        eventSystem.SetSelectedGameObject(firstDefeatButton);
         defeatScore.text = $"Score: {ScoreManager.instance.GetScore()}";
     }
-    
+
     public void Victory(float currentGas)
     {
         if (currentGas >= gasToDepositToWin)
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             inGameScreen.SetActive(false);
             victoryScreen.SetActive(true);
-
+            eventSystem.SetSelectedGameObject(firstVictoryButton);
             var min = (int)(_playTime / 60);
             var sec = (int)(_playTime % 60);
             victoryTextTime.text = $"{min} minutes and {sec} seconds.";
@@ -94,9 +97,15 @@ public class GameManager : MonoBehaviour
     {
         return playerTransform;
     }
-    
+
     public Transform GetVacuumTransform()
     {
         return vacuumTransform;
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 }

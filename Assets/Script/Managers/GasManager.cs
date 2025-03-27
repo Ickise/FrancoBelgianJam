@@ -14,7 +14,7 @@ public class GasManager : MonoBehaviour
     
     private GameManager gameManager;
 
-    private float currentGasStock = 0;
+    private float currentGasStock = 1500;
 
     private void Awake()
     {

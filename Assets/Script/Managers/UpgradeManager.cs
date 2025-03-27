@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
@@ -22,7 +23,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private PlayerMovement pMov;
     [SerializeField] private GameObject uiMenuUpgrade;
     [SerializeField] private UpgradesObjects emptyUpgrade;
-     
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject firstButton;
     private void Awake()
     {
         if (instance == null)
@@ -73,7 +75,7 @@ public class UpgradeManager : MonoBehaviour
             Time.timeScale = 1;
         }
         uiMenuUpgrade.SetActive(state);
-        
+        eventSystem.SetSelectedGameObject(firstButton);
     }
 
     private void ChooseRangeRandomUpgrade()
