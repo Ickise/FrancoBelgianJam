@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 1b86dca604bde714194d1eff81163270
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Enzo.unity
     guid: d1ca27cf4869cb84183e8cffb92c535e
+  - enabled: 1
+    path: Assets/Scenes/For env.unity
+    guid: 06a5743acd280374ba93b94fcf3ccf32
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5a5b37794ed78034f81898133de75652, type: 3}
   m_UseUCBPForAssetBundles: 0
