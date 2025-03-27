@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 4284950186165979045}
   - component: {fileID: 4243659948781980380}
   - component: {fileID: 1827628037572868871}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
