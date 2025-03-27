@@ -272,11 +272,10 @@ MonoBehaviour:
     index: 0
   - type: 5
     index: 0
-  - type: 6
-    index: 0
   uList: {fileID: 11400000, guid: f287806b02fe3f148bc6ce70b2df77da, type: 2}
   pMov: {fileID: 0}
   uiMenuUpgrade: {fileID: 0}
+  emptyUpgrade: {fileID: 11400000, guid: 3ab891e1637d4a943937f4b49ee0c148, type: 2}
 --- !u!1 &7412821599674000206
 GameObject:
   m_ObjectHideFlags: 0
