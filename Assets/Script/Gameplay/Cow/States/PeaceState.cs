@@ -24,7 +24,8 @@ public class PeaceState : ICowState
     {
         animator.SetTrigger("Walk");
 
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if (navMeshAgent.isOnNavMesh && !navMeshAgent.pathPending &&
+            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             SetRandomDestination();
         }
@@ -40,10 +41,20 @@ public class PeaceState : ICowState
         randomDirection += cow.transform.position;
 
         NavMeshHit hit;
-        
-        if (NavMesh.SamplePosition(randomDirection, out hit, cow.GetMaxDistance(), NavMesh.AllAreas))
+
+        if (!navMeshAgent.isOnNavMesh)
         {
-            navMeshAgent.SetDestination(hit.position);
+            if (NavMesh.SamplePosition(cow.transform.position, out hit, 1f, NavMesh.AllAreas))
+            {
+                navMeshAgent.Warp(hit.position);
+            }
+        }
+        else
+        {
+            if (NavMesh.SamplePosition(randomDirection, out hit, 1f, NavMesh.AllAreas))
+            {
+                navMeshAgent.SetDestination(hit.position);
+            }
         }
     }
 }

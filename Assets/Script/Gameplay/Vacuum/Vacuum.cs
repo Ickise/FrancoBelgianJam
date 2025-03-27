@@ -5,27 +5,32 @@ public class Vacuum : ToolBase
 {
     [SerializeField, Header("References")] private Animator animator;
     [SerializeField] private GameObject vacuumEffect;
-    
-    [SerializeField, Header("Settings")] private float suctionRadius = 3f;
-    [SerializeField] private float suctionAngle = 45f;
+    [SerializeField] private ParticleSystem suctionParticles;
+
+    [SerializeField, Header("Settings")] private float suctionRadius = 0.2f;
+    [SerializeField] private float suctionAngle = 150f;
+    [SerializeField] private float suctionLength = 2f;
     [SerializeField] private float suctionPower = 5f;
     [SerializeField] private float gasNumber = 1f;
     [SerializeField] private int scorePerObject = 10;
     [SerializeField] private LayerMask objectLayer;
     [SerializeField] private InputReader inputReader;
-    
+
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
 
     private GasManager gasManager;
     private ScoreManager scoreManager;
-    private float _angleEffect;
+    private ParticleSystem.ShapeModule shapeModule;
 
     private void Start()
     {
         gasManager = GasManager.instance;
         scoreManager = ScoreManager.instance;
-        _angleEffect = vacuumEffect.GetComponent<ParticleSystem>().shape.angle;
-        _angleEffect = suctionAngle; //change this value to upgrade the angle
+
+        if (suctionParticles != null)
+        {
+            shapeModule = suctionParticles.shape;
+        }
     }
 
     private void Update()
@@ -34,6 +39,7 @@ public class Vacuum : ToolBase
         {
             animator.SetTrigger("Sucking");
             vacuumEffect.SetActive(true);
+            UpdateParticleSystem();
             DetectObjectsInCone();
         }
         else
@@ -44,13 +50,27 @@ public class Vacuum : ToolBase
         }
     }
 
+    private void UpdateParticleSystem()
+    {
+        if (suctionParticles != null)
+        {
+            shapeModule.angle = suctionAngle;
+            shapeModule.radius = suctionRadius;
+            shapeModule.scale = new Vector3(1, 1, suctionLength);
+        }
+    }
+
     private void DetectObjectsInCone()
     {
-        Collider[] objectsToSuck = Physics.OverlapSphere(transform.position, suctionRadius, objectLayer);
+        Vector3 coneStart = transform.position;
+        Vector3 coneDirection = Quaternion.Euler(0, 90, 0) * transform.forward; // Ici pour mettre le cône dans le bon sens
+        Vector3 coneEnd = coneStart + coneDirection * suctionLength;
+
+        Collider[] objectsToSuck = Physics.OverlapCapsule(coneStart, coneEnd, suctionRadius, objectLayer);
 
         foreach (Collider obj in objectsToSuck)
         {
-            if (IsInSuctionCone(obj.transform.position))
+            if (IsInSuctionCone(obj.transform.position, coneDirection))
             {
                 Rigidbody objRb = obj.GetComponent<Rigidbody>();
                 var fart = obj.GetComponent<FartController>();
@@ -82,13 +102,11 @@ public class Vacuum : ToolBase
         }
     }
 
-    private bool IsInSuctionCone(Vector3 position)
+    private bool IsInSuctionCone(Vector3 position, Vector3 coneDirection)
     {
         Vector3 directionToObj = (position - transform.position).normalized;
-
-        float angle = Vector3.Angle(transform.forward, directionToObj);
-
-        return angle < _angleEffect / 2f;
+        float angle = Vector3.Angle(coneDirection, directionToObj);
+        return angle < suctionAngle / 2f;
     }
 
     public override void UseTool(bool isHeld)
@@ -106,5 +124,28 @@ public class Vacuum : ToolBase
         }
 
         suckedObjects.Clear();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+
+        Gizmos.color = Color.green;
+
+        Vector3 coneStart = transform.position;
+        Vector3 coneDirection = Quaternion.Euler(0, 90, 0) * transform.forward;
+        Vector3 coneEnd = coneStart + coneDirection * suctionLength;
+
+        Gizmos.DrawWireSphere(coneStart, suctionRadius);
+        Gizmos.DrawWireSphere(coneEnd, suctionRadius);
+
+        float stepAngle = suctionAngle / 5f;
+
+        for (float angle = -suctionAngle / 2f; angle <= suctionAngle / 2f; angle += stepAngle)
+        {
+            Vector3 dir = Quaternion.Euler(0, angle, 0) * coneDirection;
+            Vector3 end = coneStart + dir * suctionLength;
+            Gizmos.DrawLine(coneStart, end);
+        }
     }
 }

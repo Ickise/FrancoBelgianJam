@@ -222,19 +222,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3509569310478586215, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.46112865
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3509569310478586215, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.4611288
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3509569310478586215, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.53605986
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3509569310478586215, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.53606015
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3509569310478586215, guid: 847c63639c7f5fa44893881d7ec644ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -294,8 +294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6377122874894697385}
   vacuumEffect: {fileID: 477189405610139088}
+  suctionParticles: {fileID: 0}
   suctionRadius: 2
-  suctionAngle: 30
+  suctionAngle: 150
+  suctionLength: 2
   suctionPower: 5
   gasNumber: 1
   scorePerObject: 10
@@ -447,6 +449,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3db78e71a2ee9994cb85e692b1781f57, type: 3}
+--- !u!198 &637516498320361327 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3983275687948324152, guid: 3db78e71a2ee9994cb85e692b1781f57, type: 3}
+  m_PrefabInstance: {fileID: 4584552007985662551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &790839956840764388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3847825615875463603, guid: 3db78e71a2ee9994cb85e692b1781f57, type: 3}
@@ -680,12 +687,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleDisturb: {fileID: 790839956840764388}
   bigDisturb: {fileID: 6014612501033555263}
+  littleDisturbParticles: {fileID: 637516498320361327}
+  bigDisturbParticles: {fileID: 6917693948752884837}
   animator: {fileID: 6377122874894697385}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   holdThreshold: 2
   littleDisturbAreaRange: 60
   bigDisturbAreaRange: 90
-  radius: 3
+  coneRadius: 0.2
+  coneLength: 2
+  coneAngle: 30
   objectLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -853,5 +864,10 @@ Transform:
 --- !u!1 &6014612501033555263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2372090001430830270, guid: d4252016bd1f0cc4e8db42dcaca9794f, type: 3}
+  m_PrefabInstance: {fileID: 8328116109302614401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6917693948752884837 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1410748754704219620, guid: d4252016bd1f0cc4e8db42dcaca9794f, type: 3}
   m_PrefabInstance: {fileID: 8328116109302614401}
   m_PrefabAsset: {fileID: 0}
