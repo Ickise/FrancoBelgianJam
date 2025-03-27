@@ -83,13 +83,22 @@ public class AirHorn : ToolBase
 
     private void DetectObjectsInCone()
     {
-        Collider[] objects = Physics.OverlapSphere(transform.position, radius, objectLayer);
+        Vector3 direction = transform.forward;
 
-        foreach (Collider obj in objects)
+        int numberOfRays = 30;
+        float coneAngle = currentAreaRange / 2f;
+
+        for (int i = 0; i < numberOfRays; i++)
         {
-            if (IsInCone(obj.transform.position))
+            float angleOffset = Random.Range(-coneAngle, coneAngle);
+            Vector3 rayDirection = Quaternion.Euler(0, angleOffset, 0) * direction;
+
+            Ray ray = new Ray(transform.position, rayDirection);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, radius, objectLayer))
             {
-                CowController cow = obj.GetComponent<CowController>();
+                CowController cow = hit.collider.GetComponent<CowController>();
                 if (cow != null)
                 {
                     if (isBigDisturb && !cow.HasBeenFarted())
@@ -99,22 +108,14 @@ public class AirHorn : ToolBase
                     }
                     else if (!isBigDisturb && !cow.HasBeenScared())
                     {
-                        {
-                            cow.SwitchState(new AfraidState(), transform.position);
-                            cow.SetScared(true);
-                        }
+                        cow.SwitchState(new AfraidState(), transform.position);
+                        cow.SetScared(true);
                     }
                 }
             }
         }
     }
-
-    private bool IsInCone(Vector3 position)
-    {
-        Vector3 directionToObj = (position - transform.position).normalized;
-        return Vector3.Angle(transform.forward, directionToObj) < currentAreaRange / 2;
-    }
-
+    
     public override void UseTool(bool isHeld)
     {
     }
