@@ -70,7 +70,7 @@ public class CowController : MonoBehaviour
     public void SpawnFart()
     {
         Vector3 spawnPosition = transform.position - transform.forward * 2f;
-        Instantiate(fartPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(fartPrefab, spawnPosition, Quaternion.identity, transform);
     }
     
     public void ResetScaredState()
