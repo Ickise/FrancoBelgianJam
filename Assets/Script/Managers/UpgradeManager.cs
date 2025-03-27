@@ -21,6 +21,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private UpgradeList uList;
     [SerializeField] private PlayerMovement pMov;
     [SerializeField] private GameObject uiMenuUpgrade;
+    [SerializeField] private UpgradesObjects emptyUpgrade;
      
     private void Awake()
     {
@@ -80,12 +81,15 @@ public class UpgradeManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            var index = Random.Range(0, newList.Count);
-            currentPool.Add(newList[index]); 
-            newList.RemoveAt(index);
             if (newList.Count == 0)
             {
-                break;
+                currentPool.Add(emptyUpgrade);
+            }
+            else
+            {
+                var index = Random.Range(0, newList.Count);
+                currentPool.Add(newList[index]); 
+                newList.RemoveAt(index);
             }
         }
 
@@ -110,17 +114,23 @@ public class UpgradeManager : MonoBehaviour
             }
         }
         SetUpgrade(upgrade.upgradeType);
-        RisePrice();
-        ChangeMenuUpgradeState(false);
     }
 
     void SetUpgrade(EnumUpgradeType upgradeType)
     {
+        if (upgradeType == EnumUpgradeType.None)
+        {
+            return;
+        }
+        
         if (lPlayerUpgrades[(int)upgradeType].index > 3)
         {
             Debug.Log("non");
             return;
         }
+        
+        RisePrice();
+        ChangeMenuUpgradeState(false);
         switch (upgradeType)
         {
             case EnumUpgradeType.CharacterSpeed:

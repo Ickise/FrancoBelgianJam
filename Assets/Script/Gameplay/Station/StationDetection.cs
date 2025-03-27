@@ -10,7 +10,7 @@ public class StationDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        Debug.Log("try recharge");
+        //Debug.Log("try recharge");
 
         if (GasManager.instance.GetGasStock() >= gasQuantity)
         {
@@ -19,7 +19,7 @@ public class StationDetection : MonoBehaviour
         }
         else
         {
-            Debug.Log("No recharge");
+            //Debug.Log("No recharge");
         }
     }
 
