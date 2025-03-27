@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GasDisolve
-  m_Shader: {fileID: -6465566751694194690, guid: 24f285a87c33ac8469ca6b3a692b88df, type: 3}
+  m_Name: scna
+  m_Shader: {fileID: -6465566751694194690, guid: 03700e427c31db44aa1941f3e536def3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_0d4ee9d870cd45cb8fa9ad9796aa0d43_Texture_1_Texture2D:
+    - _SampleTexture2DLOD_da9445b9971246e49ecbd381ed677574_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 03c0595e255878c4581b0de294498816, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -42,14 +42,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Disolve: -1
+    - _DepthInterac: 0.46
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _intensity: 1
     m_Colors:
-    - _Color: {r: 0.32285914, g: 0.8037735, b: 0.02274817, a: 0}
+    - _Color: {r: 4.2870936, g: 4.2870936, b: 4.2870936, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &335344913672490329
+--- !u!114 &5948392494431672644
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
