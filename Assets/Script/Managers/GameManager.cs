@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Header("References")] private GameObject inGameScreen;
 
     private float _playTime;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -70,6 +71,11 @@ public class GameManager : MonoBehaviour
             var sec = (int)(_playTime % 60);
             victoryTextTime.text = $"{min} minutes and {sec} seconds.";
         }
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public float GetGasThreshold()
