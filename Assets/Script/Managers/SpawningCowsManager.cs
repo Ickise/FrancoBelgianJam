@@ -14,6 +14,7 @@ public class SpawningCowsManager : MonoBehaviour
     private void Start()
     {
         PoolCows();
+        GasManager.instance.ChangeGasStockValue(100, true);
     }
 
     public void PoolCows()
