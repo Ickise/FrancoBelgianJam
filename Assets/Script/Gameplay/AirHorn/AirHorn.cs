@@ -5,19 +5,32 @@ public class AirHorn : ToolBase
     [SerializeField, Header("References")] private GameObject littleDisturb;
     [SerializeField] private GameObject bigDisturb;
 
+    [SerializeField] private ParticleSystem littleDisturbParticles;
+    [SerializeField] private ParticleSystem bigDisturbParticles;
+
     [SerializeField] private Animator animator;
     [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
     [SerializeField] private float littleDisturbAreaRange = 60f;
     [SerializeField] private float bigDisturbAreaRange = 90f;
-    [SerializeField] private float radius = 3f;
-
+    [SerializeField] private float radius = 150f;
+    [SerializeField] private float coneLength = 3f;   
     [SerializeField] private LayerMask objectLayer;
 
     private float holdTime = 0f;
-    private float currentAreaRange;
     private bool isBigDisturb = false;
+    private ParticleSystem.ShapeModule littleShape;
+    private ParticleSystem.ShapeModule bigShape;
+
+    private void Start()
+    {
+        if (littleDisturbParticles != null)
+            littleShape = littleDisturbParticles.shape;
+
+        if (bigDisturbParticles != null)
+            bigShape = bigDisturbParticles.shape;
+    }
 
     private void Update()
     {
@@ -51,19 +64,17 @@ public class AirHorn : ToolBase
     private void StartDisturb()
     {
         isBigDisturb = false;
-        currentAreaRange = littleDisturbAreaRange;
         littleDisturb.SetActive(true);
         bigDisturb.SetActive(false);
+        UpdateParticleSystem();
     }
 
     private void TransformToBigDisturb()
     {
         isBigDisturb = true;
-        currentAreaRange = bigDisturbAreaRange;
         littleDisturb.SetActive(false);
         bigDisturb.SetActive(true);
-
-        //nvoke(nameof(StopDisturb), bigDisturbAreaTimeLife);
+        UpdateParticleSystem();
     }
 
     private void StopDisturb()
@@ -75,37 +86,45 @@ public class AirHorn : ToolBase
 
     private void DetectObjectsInCone()
     {
-        Vector3 direction = transform.forward;
-        int numberOfRays = 30;
-        float coneAngle = currentAreaRange / 2f;
+        Vector3 coneStart = transform.position;
+        Vector3 coneDirection = Quaternion.Euler(0, 180, 0) * transform.forward; // Correction
+        Vector3 coneEnd = coneStart + coneDirection * coneLength;
+        Collider[] objectsInCone = Physics.OverlapCapsule(coneStart, coneEnd, radius, objectLayer);
 
-        for (int i = 0; i < numberOfRays; i++)
+        foreach (Collider obj in objectsInCone)
         {
-            float angleOffset = Random.Range(-coneAngle, coneAngle);
-            Vector3 rayDirection = Quaternion.Euler(0, angleOffset, 0) * direction;
-
-            Ray ray = new Ray(transform.position, rayDirection);
-            if (Physics.Raycast(ray, out RaycastHit hit, radius, objectLayer))
+            CowController cow = obj.GetComponent<CowController>();
+            if (cow != null)
             {
-                CowController cow = hit.collider.GetComponent<CowController>();
-                if (cow != null)
+                if (isBigDisturb && !cow.HasBeenFarted())
                 {
-                    if (isBigDisturb && !cow.HasBeenFarted())
-                    {
-                        cow.SwitchState(new FartState(), transform.position);
-                        cow.SetFarted(true);
-                    }
-                    else if (!isBigDisturb && !cow.HasBeenScared())
-                    {
-                        cow.SwitchState(new AfraidState(), transform.position);
-                        cow.SetScared(true);
-                    }
+                    cow.SwitchState(new FartState(), transform.position);
+                    cow.SetFarted(true);
+                }
+                else if (!isBigDisturb && !cow.HasBeenScared())
+                {
+                    cow.SwitchState(new AfraidState(), transform.position);
+                    cow.SetScared(true);
                 }
             }
         }
     }
 
-    public override void UseTool(bool isHeld)
+    private void UpdateParticleSystem()
     {
+        if (isBigDisturb && bigDisturbParticles != null)
+        {
+            bigShape.angle = 0f;
+            bigShape.scale = new Vector3(1, 1, coneLength);
+        }
+        else if (!isBigDisturb && littleDisturbParticles != null)
+        {
+            littleShape.angle = 0f;
+            littleShape.scale = new Vector3(1, 1, coneLength);
+        }
     }
+
+    public override void UseTool(bool isHeld) { }
+
 }
+

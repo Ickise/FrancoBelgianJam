@@ -125,27 +125,4 @@ public class Vacuum : ToolBase
 
         suckedObjects.Clear();
     }
-
-    private void OnDrawGizmos()
-    {
-        if (!Application.isPlaying) return;
-
-        Gizmos.color = Color.green;
-
-        Vector3 coneStart = transform.position;
-        Vector3 coneDirection = Quaternion.Euler(0, 90, 0) * transform.forward;
-        Vector3 coneEnd = coneStart + coneDirection * suctionLength;
-
-        Gizmos.DrawWireSphere(coneStart, suctionRadius);
-        Gizmos.DrawWireSphere(coneEnd, suctionRadius);
-
-        float stepAngle = suctionAngle / 5f;
-
-        for (float angle = -suctionAngle / 2f; angle <= suctionAngle / 2f; angle += stepAngle)
-        {
-            Vector3 dir = Quaternion.Euler(0, angle, 0) * coneDirection;
-            Vector3 end = coneStart + dir * suctionLength;
-            Gizmos.DrawLine(coneStart, end);
-        }
-    }
 }

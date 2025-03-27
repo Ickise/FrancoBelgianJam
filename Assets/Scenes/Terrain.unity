@@ -1330,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2754914665611217287, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: radius
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 3471554330332372730, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.5
@@ -1352,7 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4280285421392249920, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7803268799549918630, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: spawnSphere
