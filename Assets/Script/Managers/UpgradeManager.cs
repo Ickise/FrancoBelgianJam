@@ -21,6 +21,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private UpgradeList uList;
     [SerializeField] private PlayerMovement pMov;
     [SerializeField] private GameObject uiMenuUpgrade;
+    [SerializeField] private UpgradesObjects emptyUpgrade;
      
     private void Awake()
     {
@@ -80,9 +81,16 @@ public class UpgradeManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            var index = Random.Range(0, newList.Count);
-            currentPool.Add(newList[index]); 
-            newList.RemoveAt(index);
+            if (newList.Count == 0)
+            {
+                currentPool.Add(emptyUpgrade);
+            }
+            else
+            {
+                var index = Random.Range(0, newList.Count);
+                currentPool.Add(newList[index]); 
+                newList.RemoveAt(index);
+            }
         }
 
         for (int i = 0; i < currentPool.Count; i++)
@@ -106,17 +114,23 @@ public class UpgradeManager : MonoBehaviour
             }
         }
         SetUpgrade(upgrade.upgradeType);
-        RisePrice();
-        ChangeMenuUpgradeState(false);
     }
 
     void SetUpgrade(EnumUpgradeType upgradeType)
     {
+        if (upgradeType == EnumUpgradeType.None)
+        {
+            return;
+        }
+        
         if (lPlayerUpgrades[(int)upgradeType].index > 3)
         {
             Debug.Log("non");
             return;
         }
+        
+        RisePrice();
+        ChangeMenuUpgradeState(false);
         switch (upgradeType)
         {
             case EnumUpgradeType.CharacterSpeed:
@@ -146,10 +160,25 @@ public class UpgradeManager : MonoBehaviour
             case EnumUpgradeType.OverloadSpeedPenalty:
                 pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[lPlayerUpgrades[5].index]);
                 break;
-            
+        }
+
+        if (lPlayerUpgrades[(int)upgradeType].index == 3)
+        {
+            foreach (var upgrade in lPoolUpgrades)
+            {
+                if (upgrade.upgradeType == upgradeType)
+                {
+                    lPoolUpgrades.Remove(upgrade);
+                    break;
+                }
+            }
         }
     }
 
+    private void Start()
+    {
+        //GasManager.instance.ChangeGasStockValue(1000, true);
+    }
 }
 
 [Serializable]

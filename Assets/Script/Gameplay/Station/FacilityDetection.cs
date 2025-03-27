@@ -12,7 +12,7 @@ public class FacilityDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        Debug.Log("try upgrade");
+        //Debug.Log("try upgrade");
         
         if (GasManager.instance.GetGasStock() >= _gasQuantity)
         {
@@ -26,7 +26,7 @@ public class FacilityDetection : MonoBehaviour
         }
         else
         {
-            Debug.Log("No upgrade");
+            //Debug.Log("No upgrade");
         }
     }
 

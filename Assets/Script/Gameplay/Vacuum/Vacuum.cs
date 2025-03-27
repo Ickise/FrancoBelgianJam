@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine.VFX;
 
 public class Vacuum : ToolBase
 {
@@ -18,11 +20,15 @@ public class Vacuum : ToolBase
 
     private GasManager gasManager;
     private ScoreManager scoreManager;
+    //private var _angleEffect;
 
     private void Start()
     {
         gasManager = GasManager.instance;
         scoreManager = ScoreManager.instance;
+        var _angleEffect = vacuumEffect.GetComponent<ParticleSystem>().shape;
+        _angleEffect.angle = suctionAngle; //change this value to upgrade the angle
+        _angleEffect.length = suctionRadius;
     }
 
     private void Update()

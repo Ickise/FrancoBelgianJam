@@ -112,8 +112,8 @@ MonoBehaviour:
   playerRotation: {fileID: 2126884183709999043}
   animator: {fileID: 6377122874894697385}
   smokeEffect: {fileID: 4570386576789966076}
-  speed: 10
-  overchargeSpeed: 15
+  speed: 6
+  overchargeSpeed: 7.5
   overfillSpeedRate: 0.75
   moveConsumption: 1
   moveConsumptionRate: 1
