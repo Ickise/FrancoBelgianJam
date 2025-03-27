@@ -54,14 +54,10 @@ public class AirHorn : ToolBase
         isBigDisturb = false;
         currentAreaRange = littleDisturbAreaRange;
         currentDisturbArea = Instantiate(littleDisturbPrefab, transform.position, Quaternion.identity);
-
-        Debug.Log("LittleDisturb commencé !");
     }
 
     private void TransformToBigDisturb()
     {
-        Debug.Log("Transformation en BigDisturb !");
-
         if (currentDisturbArea != null)
         {
             Destroy(currentDisturbArea);
@@ -78,7 +74,6 @@ public class AirHorn : ToolBase
     {
         if (!isBigDisturb && currentDisturbArea != null)
         {
-            Debug.Log("LittleDisturb arrêté !");
             Destroy(currentDisturbArea);
         }
 
@@ -94,7 +89,18 @@ public class AirHorn : ToolBase
         {
             if (IsInCone(obj.transform.position))
             {
-                Debug.Log($"{obj.name} détecté !");
+                CowController cow = obj.GetComponent<CowController>();
+                if (cow != null)
+                {
+                    if (isBigDisturb)
+                    {
+                        cow.SwitchState(new FartState());
+                    }
+                    else
+                    {
+                        cow.SwitchState(new AfraidState());
+                    }
+                }
             }
         }
     }
