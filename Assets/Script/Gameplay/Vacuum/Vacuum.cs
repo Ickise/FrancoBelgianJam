@@ -26,40 +26,7 @@ public class Vacuum : ToolBase
     {
         if (inputReader.RightTriggerIsPressed)
         {
-            Collider[] objectsToSuck = Physics.OverlapSphere(transform.position, suctionRadius, objectLayer);
-
-            foreach (Collider obj in objectsToSuck)
-            {
-                if (IsInSuctionCone(obj.transform.position))
-                {
-                    Rigidbody objRb = obj.GetComponent<Rigidbody>();
-                    var fart = obj.GetComponent<FartController>();
-
-                    if (objRb != null)
-                    {
-                        objRb.linearVelocity = (transform.position - obj.transform.position).normalized * suctionPower;
-
-                        fart.SwitchState(new FleeState(fart));
-                        if (!suckedObjects.Contains(objRb))
-                        {
-                            suckedObjects.Add(objRb);
-                        }
-                    }
-
-                    if (Vector3.Distance(transform.position, obj.transform.position) < .5f)
-                    {
-                        fart.SwitchState(new CatchState(fart));
-                        suckedObjects.Remove(objRb);
-                        Destroy(obj.gameObject);
-                        gasManager.ChangeGasStockValue(gasNumber, true);
-                        scoreManager.ChangeScoreValue(scorePerObject, true);
-                    }
-                }
-                else
-                {
-                    StopSuction();
-                }
-            }
+            DetectObjectsInCone();
         }
         else
         {
@@ -67,10 +34,51 @@ public class Vacuum : ToolBase
         }
     }
 
+    private void DetectObjectsInCone()
+    {
+        Collider[] objectsToSuck = Physics.OverlapSphere(transform.position, suctionRadius, objectLayer);
+
+        foreach (Collider obj in objectsToSuck)
+        {
+            if (IsInSuctionCone(obj.transform.position))
+            {
+                Rigidbody objRb = obj.GetComponent<Rigidbody>();
+                var fart = obj.GetComponent<FartController>();
+
+                if (objRb != null)
+                {
+                    objRb.linearVelocity = (transform.position - obj.transform.position).normalized * suctionPower;
+
+                    if (fart != null)
+                    {
+                        fart.SwitchState(new FleeState(fart));
+
+                        if (!suckedObjects.Contains(objRb))
+                        {
+                            suckedObjects.Add(objRb);
+                        }
+                    }
+                }
+
+                if (Vector3.Distance(transform.position, obj.transform.position) < 1f)
+                {
+                    fart.SwitchState(new CatchState(fart));
+                    suckedObjects.Remove(objRb);
+                    Destroy(obj.gameObject);
+                    gasManager.ChangeGasStockValue(gasNumber, true);
+                    scoreManager.ChangeScoreValue(scorePerObject, true);
+                }
+            }
+        }
+    }
+
     private bool IsInSuctionCone(Vector3 position)
     {
         Vector3 directionToObj = (position - transform.position).normalized;
-        return Vector3.Angle(transform.forward, directionToObj) < suctionAngle / 2;
+
+        float angle = Vector3.Angle(transform.forward, directionToObj);
+
+        return angle < suctionAngle / 2f;
     }
 
     public override void UseTool(bool isHeld)
