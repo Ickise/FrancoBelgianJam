@@ -56,7 +56,6 @@ MonoBehaviour:
   vacuumConsumptionRate: 1
   makeSoundConsumptionRate: 1
   overchargeDepletionRate: 0.3
-  actionConsumptionRate: 1
   overchargeRate: 1.5
 --- !u!1 &1500454231906701335
 GameObject:
@@ -258,7 +257,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2c0dd6973a536942bf6056f3c347c58, type: 2}
   - {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
   - {fileID: 11400000, guid: 1212315914cd1994bb67f78a344ad2ac, type: 2}
-  - {fileID: 11400000, guid: 47b54e74e895aa244869f35281af73d1, type: 2}
   lPlayerUpgrades:
   - type: 0
     index: 0
@@ -323,6 +321,11 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   playerTransform: {fileID: 0}
   vacuumTransform: {fileID: 0}
+  gasToDepositToWin: 700
+  victoryScreen: {fileID: 0}
+  victoryTextTime: {fileID: 0}
+  defeatScreen: {fileID: 0}
+  inGameScreen: {fileID: 0}
 --- !u!1 &7835834639749991366
 GameObject:
   m_ObjectHideFlags: 0
