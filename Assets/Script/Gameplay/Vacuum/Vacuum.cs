@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine.VFX;
 
 public class Vacuum : ToolBase
 {
@@ -90,7 +88,7 @@ public class Vacuum : ToolBase
 
         float angle = Vector3.Angle(transform.forward, directionToObj);
 
-        return angle < suctionAngle / 2f;
+        return angle < _angleEffect / 2f;
     }
 
     public override void UseTool(bool isHeld)

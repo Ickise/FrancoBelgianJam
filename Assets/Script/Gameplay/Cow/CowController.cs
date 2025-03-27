@@ -21,6 +21,8 @@ public class CowController : MonoBehaviour
 
     [SerializeField] private Animator cowAnimator;
     
+    private AudioManager audioManager;
+    
     private bool hasBeenScared = false;
     private bool hasBeenFarted = false;
     
@@ -30,6 +32,7 @@ public class CowController : MonoBehaviour
     private void Start()
     {
         SwitchState(new PeaceState());
+        audioManager = AudioManager.instance;
     }
 
     private void Update()

@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
     {
         inputReader.DisablePlayerInputs();
     }
-    
+
+    private void Start()
+    {
+        AudioManager.instance.PlayMusic(4, true);
+    }
+
     public void GameOver()
     {
         //Debug.Log("Game Over");
