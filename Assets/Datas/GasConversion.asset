@@ -15,5 +15,6 @@ MonoBehaviour:
   upgradeType: 3
   upgradeTexts:
   - Convert more efficent
-  - convert
-  - Lvel 1
+  - Give methane to the battery station engineer, he will give you better prices!
+    Decrease the cost of the battery.
+  - placeholder lvl x -> y

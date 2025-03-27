@@ -258,6 +258,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2c0dd6973a536942bf6056f3c347c58, type: 2}
   - {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
   - {fileID: 11400000, guid: 1212315914cd1994bb67f78a344ad2ac, type: 2}
+  - {fileID: 11400000, guid: 47b54e74e895aa244869f35281af73d1, type: 2}
   lPlayerUpgrades:
   - type: 0
     index: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
     index: 0
   uList: {fileID: 11400000, guid: f287806b02fe3f148bc6ce70b2df77da, type: 2}
   pMov: {fileID: 0}
+  uiMenuUpgrade: {fileID: 0}
 --- !u!1 &7412821599674000206
 GameObject:
   m_ObjectHideFlags: 0

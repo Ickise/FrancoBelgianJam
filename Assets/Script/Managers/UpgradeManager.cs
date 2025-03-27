@@ -72,8 +72,12 @@ public class UpgradeManager : MonoBehaviour
     private void ChooseRangeRandomUpgrade()
     {
         currentPool.Clear();
-        var newList = lPoolUpgrades;
-        
+        var newList = new List<UpgradesObjects>();
+        foreach (var upgrades in lPoolUpgrades)
+        {
+            newList.Add(upgrades);
+        }
+
         for (int i = 0; i < 3; i++)
         {
             var index = Random.Range(0, newList.Count);
@@ -83,7 +87,7 @@ public class UpgradeManager : MonoBehaviour
 
         for (int i = 0; i < currentPool.Count; i++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 2; j++)
             {
                 upgradeTexts[i*3 + j].text = currentPool[i].upgradeTexts[j];
             }
@@ -103,7 +107,7 @@ public class UpgradeManager : MonoBehaviour
         }
         SetUpgrade(upgrade.upgradeType);
         RisePrice();
-        ChangeMenuUpgradeState(true);
+        ChangeMenuUpgradeState(false);
     }
 
     void SetUpgrade(EnumUpgradeType upgradeType)

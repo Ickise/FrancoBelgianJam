@@ -15,5 +15,6 @@ MonoBehaviour:
   upgradeType: 2
   upgradeTexts:
   - Tank Gas
-  - Gas Up
-  - Level g
+  - 'Give methane to your creator, he will upgrade your gas tank! Increase gas tank
+    capacity. '
+  - placeholder lvl x -> y

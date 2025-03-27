@@ -15,5 +15,6 @@ MonoBehaviour:
   upgradeType: 1
   upgradeTexts:
   - Battery Up
-  - Battery extends
-  - Level b
+  - Give methane to your creator, he will upgrade your battery! Increase the battery
+    capacity.
+  - placeholder lvl x -> y

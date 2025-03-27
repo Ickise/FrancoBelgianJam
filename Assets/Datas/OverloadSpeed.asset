@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeType: 5
   upgradeTexts:
-  - Penalyt
-  - speed up whe nloaded
-  - levle 5
+  - 'Speed when Overloaded '
+  - 'Thanks to the methane, manage the weight your body! Lose less speed when overloaded '
+  - placeholder lvl x -> y
