@@ -5,6 +5,8 @@ public class AirHorn : ToolBase
     [SerializeField, Header("References")] private GameObject littleDisturbPrefab;
     [SerializeField] private GameObject bigDisturbPrefab;
 
+    [SerializeField] private Animator animator;
+
     [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
@@ -27,6 +29,7 @@ public class AirHorn : ToolBase
         if (inputReader.LeftTriggerIsPressed)
         {
             holdTime += Time.deltaTime;
+            animator.SetTrigger("Scaring");
 
             if (currentDisturbArea == null)
             {
@@ -40,6 +43,7 @@ public class AirHorn : ToolBase
         }
         else
         {
+            animator.SetTrigger("Default");
             StopDisturb();
         }
 
@@ -115,7 +119,7 @@ public class AirHorn : ToolBase
             }
         }
     }
-    
+
     public override void UseTool(bool isHeld)
     {
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class Vacuum : ToolBase
 {
+    [SerializeField, Header("References")] private Animator animator;
+
     [SerializeField, Header("Settings")] private float suctionRadius = 3f;
     [SerializeField] private float suctionAngle = 45f;
     [SerializeField] private float suctionPower = 5f;
@@ -26,10 +28,12 @@ public class Vacuum : ToolBase
     {
         if (inputReader.RightTriggerIsPressed)
         {
+            animator.SetTrigger("Sucking");
             DetectObjectsInCone();
         }
         else
         {
+            animator.SetTrigger("Default");
             StopSuction();
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,7 +5,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Header("References")] private Rigidbody playerRigidbody;
     [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerRotation playerRotation;
-
+    [SerializeField] private Animator animator;
+    
     [SerializeField, Header("Settings")] private float speed = 3f;
     [SerializeField] private float overchargeSpeed = 5f;
     [SerializeField] private float overfillSpeedRate = 0.75f;
@@ -70,7 +70,16 @@ public class PlayerMovement : MonoBehaviour
         velocity.z = movement.z * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
 
         playerRigidbody.linearVelocity = velocity;
-
+        
+        if (movement != Vector3.zero)
+        {
+            animator.SetTrigger("IsWalking");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+        
         playerRotation.RotatePlayer();
     }
 }
