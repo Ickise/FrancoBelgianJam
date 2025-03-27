@@ -15,7 +15,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private List<FacilityDetection> lFacilities;
 
     [SerializeField] private List<TextMeshProUGUI> upgradeTexts;
-    [SerializeField] private List<Upgrades> lPoolUpgrades;
+    [SerializeField] private List<UpgradesObjects> lPoolUpgrades;
     private List<UpgradesObjects> currentPool;
     [SerializeField] private List<PlayerUpgrades> lPlayerUpgrades;
     [SerializeField] private UpgradeList uList;
@@ -67,7 +67,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             var index = Random.Range(0, newList.Count);
-            currentPool.Add(newList[index].uObject); 
+            currentPool.Add(newList[index]); 
             newList.RemoveAt(index);
         }
 
@@ -118,7 +118,7 @@ public class UpgradeManager : MonoBehaviour
                 break;
             
             case EnumUpgradeType.GasToBatteryConversion:
-                var conversion = uList.gasToBatteryConversions[lPlayerUpgrades[3].index];
+                BatteryManager.instance.ChangeConversion(uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
                 break;
             
             case EnumUpgradeType.VacuumArea:
@@ -128,7 +128,7 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case EnumUpgradeType.OverloadSpeedPenalty:
-                var overloadPenalty = uList.overloadSpeedPenalties[lPlayerUpgrades[5].index];
+                pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[lPlayerUpgrades[5].index]);
                 break;
             
         }
@@ -138,13 +138,6 @@ public class UpgradeManager : MonoBehaviour
     {
         ChooseRangeRandomUpgrade();
     }
-}
-
-[Serializable]
-public class Upgrades
-{
-    public UpgradesObjects uObject;
-    public int uIndex;
 }
 
 [Serializable]
