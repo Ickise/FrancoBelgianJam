@@ -18,15 +18,14 @@ public class Vacuum : ToolBase
 
     private GasManager gasManager;
     private ScoreManager scoreManager;
-    //private var _angleEffect;
+    private float _angleEffect;
 
     private void Start()
     {
         gasManager = GasManager.instance;
         scoreManager = ScoreManager.instance;
-        var _angleEffect = vacuumEffect.GetComponent<ParticleSystem>().shape;
-        _angleEffect.angle = suctionAngle; //change this value to upgrade the angle
-        _angleEffect.length = suctionRadius;
+        _angleEffect = vacuumEffect.GetComponent<ParticleSystem>().shape.angle;
+        _angleEffect = suctionAngle; //change this value to upgrade the angle
     }
 
     private void Update()
