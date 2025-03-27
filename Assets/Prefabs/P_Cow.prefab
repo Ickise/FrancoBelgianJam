@@ -163,6 +163,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 6564299633212367500}
   anticipationLevel: 1
   fartPrefab: {fileID: 8870741894626221957, guid: bedade3a213c96d45bde901708ddbf44, type: 3}
+  cowAnimator: {fileID: 8361135328378576804}
 --- !u!195 &6564299633212367500
 NavMeshAgent:
   m_ObjectHideFlags: 0

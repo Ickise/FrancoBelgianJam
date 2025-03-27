@@ -18,6 +18,8 @@ public class CowController : MonoBehaviour
     [SerializeField] private int anticipationLevel = 1;
     
     [SerializeField] private GameObject fartPrefab;
+
+    [SerializeField] private Animator cowAnimator;
     
     private bool hasBeenScared = false;
     private bool hasBeenFarted = false;
@@ -64,6 +66,8 @@ public class CowController : MonoBehaviour
     public int AnticipationLevel => anticipationLevel;
     
     public NavMeshAgent NavMeshAgent => navMeshAgent;
+    
+    public Animator Animator => cowAnimator;
 
     public void SetFarting(bool value) => isFarting = value;
     

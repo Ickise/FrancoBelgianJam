@@ -6,6 +6,7 @@ public class AfraidState : ICowState
     private CowController cow;
     private NavMeshAgent navMeshAgent;
     private Vector3 escapeDirection;
+    private Animator animator;
 
     public void EnterState(CowController cow)
     {
@@ -15,7 +16,7 @@ public class AfraidState : ICowState
     {
         this.cow = cow;
         navMeshAgent = cow.NavMeshAgent;
-
+        animator = cow.Animator;
         escapeDirection = (cow.transform.position - dangerSource).normalized;
         escapeDirection.y = 0;
 
@@ -33,6 +34,8 @@ public class AfraidState : ICowState
 
     public void UpdateState()
     {
+        animator.SetTrigger("WalkAfraid");
+        
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             cow.SwitchState(new PeaceState());
@@ -41,6 +44,7 @@ public class AfraidState : ICowState
 
     public void ExitState()
     {
+        animator.SetTrigger("Walk");
         cow.ResetScaredState();
     }
 }

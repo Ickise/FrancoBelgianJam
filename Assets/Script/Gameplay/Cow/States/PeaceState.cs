@@ -5,12 +5,14 @@ public class PeaceState : ICowState
 {
     private CowController cow;
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
 
     public void EnterState(CowController cow)
     {
         this.cow = cow;
         navMeshAgent = cow.NavMeshAgent;
         navMeshAgent.speed = cow.GetSpeedPeace();
+        animator = cow.Animator;
         SetRandomDestination();
     }
 
@@ -20,6 +22,8 @@ public class PeaceState : ICowState
 
     public void UpdateState()
     {
+        animator.SetTrigger("Walk");
+
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             SetRandomDestination();
