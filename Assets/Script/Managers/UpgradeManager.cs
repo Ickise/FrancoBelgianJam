@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -12,6 +14,13 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private float scorePenalty = 0.2f;
     [SerializeField] private List<FacilityDetection> lFacilities;
 
+    [SerializeField] private List<TextMeshProUGUI> upgradeTexts;
+    [SerializeField] private List<Upgrades> lPoolUpgrades;
+    private List<UpgradesObjects> currentPool;
+    [SerializeField] private List<PlayerUpgrades> lPlayerUpgrades;
+    [SerializeField] private UpgradeList uList;
+    [SerializeField] private PlayerMovement pMov;
+    
     private void Awake()
     {
         if (instance == null)
@@ -24,7 +33,7 @@ public class UpgradeManager : MonoBehaviour
         }
 
         currentPriceIndex = 0;
-        
+        currentPool = new List<UpgradesObjects>();
     }
 
     public void RisePrice()
@@ -49,4 +58,101 @@ public class UpgradeManager : MonoBehaviour
     {
         return scorePenalty;
     }
+
+    private void ChooseRangeRandomUpgrade()
+    {
+        currentPool.Clear();
+        var newList = lPoolUpgrades;
+        
+        for (int i = 0; i < 3; i++)
+        {
+            var index = Random.Range(0, newList.Count);
+            currentPool.Add(newList[index].uObject); 
+            newList.RemoveAt(index);
+        }
+
+        for (int i = 0; i < currentPool.Count; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                upgradeTexts[i*3 + j].text = currentPool[i].upgradeTexts[j];
+            }
+        }
+    }
+
+    public void ChooseUpgrade(int position)
+    {
+        var upgrade = currentPool[position];
+        foreach (var currentUpgrade in lPlayerUpgrades)
+        {
+            if (currentUpgrade.type == upgrade.upgradeType)
+            {
+                currentUpgrade.index++;
+                break;
+            }
+        }
+        SetUpgrade(upgrade.upgradeType);
+    }
+
+    void SetUpgrade(EnumUpgradeType upgradeType)
+    {
+        if (lPlayerUpgrades[(int)upgradeType].index > 3)
+        {
+            Debug.Log("non");
+            return;
+        }
+        switch (upgradeType)
+        {
+            case EnumUpgradeType.CharacterSpeed:
+                pMov.ChangeSpeedMultiplier(uList.characterMultiplierSpeeds[lPlayerUpgrades[0].index]);
+                break;
+
+            case EnumUpgradeType.BatteryCapacity:
+                var capacity = uList.batteryCapacities[lPlayerUpgrades[1].index];
+                var overchargeCapacity = uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index];
+                break;
+            
+            case EnumUpgradeType.GasTankCapacity:
+                var tankCapacity = uList.gasTankCapacities[lPlayerUpgrades[2].index];
+                var overloadCapacity = uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index];
+                break;
+            
+            case EnumUpgradeType.GasToBatteryConversion:
+                var conversion = uList.gasToBatteryConversions[lPlayerUpgrades[3].index];
+                break;
+            
+            case EnumUpgradeType.VacuumAreaDistance:
+                var dist = uList.vacuumAreaDistances[lPlayerUpgrades[4].index];
+                break;
+            
+            case EnumUpgradeType.VacuumAreaAngle:
+                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[5].index];
+                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[5].index];
+                break;
+            
+            case EnumUpgradeType.OverloadSpeedPenalty:
+                var overloadPenalty = uList.overloadSpeedPenalties[lPlayerUpgrades[6].index];
+                break;
+            
+        }
+    }
+
+    private void Start()
+    {
+        ChooseRangeRandomUpgrade();
+    }
+}
+
+[Serializable]
+public class Upgrades
+{
+    public UpgradesObjects uObject;
+    public int uIndex;
+}
+
+[Serializable]
+public class PlayerUpgrades
+{
+    public EnumUpgradeType type;
+    public int index;
 }

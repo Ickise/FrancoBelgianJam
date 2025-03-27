@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBattery: {fileID: 0}
+  overchargedText: {fileID: 0}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   maxBattery: 100
   vacuumConsumption: 2
@@ -249,6 +250,24 @@ MonoBehaviour:
   currentPriceIndex: 0
   scorePenalty: 0.2
   lFacilities: []
+  upgradeTexts: []
+  lPoolUpgrades: []
+  lPlayerUpgrades:
+  - type: 0
+    index: 0
+  - type: 1
+    index: 0
+  - type: 2
+    index: 0
+  - type: 3
+    index: 0
+  - type: 4
+    index: 0
+  - type: 5
+    index: 0
+  - type: 6
+    index: 0
+  uList: {fileID: 11400000, guid: f287806b02fe3f148bc6ce70b2df77da, type: 2}
 --- !u!1 &7412821599674000206
 GameObject:
   m_ObjectHideFlags: 0

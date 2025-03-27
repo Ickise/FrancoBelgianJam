@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     private GasManager gasManager;
 
+    private float _speedMultiplier = 1;
+
     private void OnEnable()
     {
         inputReader.MovementEvent += GetInputValue;
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed : speed;
+        var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed*_speedMultiplier : speed*_speedMultiplier;
         Vector3 velocity = playerRigidbody.linearVelocity;
 
         velocity.x = movement.x * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
@@ -81,5 +83,11 @@ public class PlayerMovement : MonoBehaviour
         }
         
         playerRotation.RotatePlayer();
+    }
+
+    public void ChangeSpeedMultiplier(float value)
+    {
+        _speedMultiplier = value;
+        Debug.Log(value);
     }
 }
