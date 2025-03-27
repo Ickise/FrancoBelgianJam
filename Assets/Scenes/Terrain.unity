@@ -886,14 +886,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7346176091443521573, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932674125829825101, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1595,6 +1587,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+--- !u!1 &1195328422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5428938745074828342, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+  m_PrefabInstance: {fileID: 1195328421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1195328423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5373576663996083120, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+  m_PrefabInstance: {fileID: 1195328421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1218573971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3475453389854979581, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
@@ -1604,6 +1606,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5474082366940558448, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
   m_PrefabInstance: {fileID: 670083010607045957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1253568324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8625888872849383813, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+  m_PrefabInstance: {fileID: 1195328421}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &1278437717 stripped
 BoxCollider:
@@ -2132,10 +2139,6 @@ PrefabInstance:
       propertyPath: uiGas
       value: 
       objectReference: {fileID: 845848962}
-    - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: maxTank
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 4786510334916589660, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: poolCows.Array.size
       value: 25
@@ -2408,6 +2411,18 @@ PrefabInstance:
       propertyPath: soundMaker
       value: 
       objectReference: {fileID: 1305807288}
+    - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: defeatScreen
+      value: 
+      objectReference: {fileID: 1195328422}
+    - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: inGameScreen
+      value: 
+      objectReference: {fileID: 1253568324}
+    - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: victoryScreen
+      value: 
+      objectReference: {fileID: 1195328423}
     - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: playerTransform
       value: 
