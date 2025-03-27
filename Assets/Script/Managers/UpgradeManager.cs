@@ -83,6 +83,10 @@ public class UpgradeManager : MonoBehaviour
             var index = Random.Range(0, newList.Count);
             currentPool.Add(newList[index]); 
             newList.RemoveAt(index);
+            if (newList.Count == 0)
+            {
+                break;
+            }
         }
 
         for (int i = 0; i < currentPool.Count; i++)
@@ -146,10 +150,25 @@ public class UpgradeManager : MonoBehaviour
             case EnumUpgradeType.OverloadSpeedPenalty:
                 pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[lPlayerUpgrades[5].index]);
                 break;
-            
+        }
+
+        if (lPlayerUpgrades[(int)upgradeType].index == 3)
+        {
+            foreach (var upgrade in lPoolUpgrades)
+            {
+                if (upgrade.upgradeType == upgradeType)
+                {
+                    lPoolUpgrades.Remove(upgrade);
+                    break;
+                }
+            }
         }
     }
 
+    private void Start()
+    {
+        //GasManager.instance.ChangeGasStockValue(1000, true);
+    }
 }
 
 [Serializable]
