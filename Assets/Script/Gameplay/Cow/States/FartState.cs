@@ -9,11 +9,22 @@ public class FartState : ICowState
 
     public void EnterState(CowController cow)
     {
+        Debug.Log("Farting");
         this.cow = cow;
         escapeDirection = -cow.GetMoveDirection();
         remainingDistance = cow.GetFartDistance();
         cow.SetFarting(true);
         cow.StartCoroutine(GenerateFarts());
+    }
+
+    public void EnterState(CowController cow, Vector3 dangerSource)
+    {
+        
+    }
+
+    public void EnterState(CowController cow, Vector3? dangerSource = null)
+    {
+        
     }
 
     public void UpdateState()
@@ -48,6 +59,7 @@ public class FartState : ICowState
     private IEnumerator RecoverBeforePeace()
     {
         yield return new WaitForSeconds(Random.Range(cow.GetMinTimeRecoverFromFart(), cow.GetMaxTimeRecoverFromFart()));
+        cow.ResetFartState();
         cow.SwitchState(new PeaceState());
     }
 }

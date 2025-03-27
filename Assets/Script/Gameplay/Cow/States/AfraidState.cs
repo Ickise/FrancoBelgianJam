@@ -8,8 +8,13 @@ public class AfraidState : ICowState
 
     public void EnterState(CowController cow)
     {
+    }
+
+    public void EnterState(CowController cow, Vector3 dangerSource)
+    {
+        Debug.Log("Afraid");
         this.cow = cow;
-        escapeDirection = -cow.GetMoveDirection();
+        escapeDirection = (cow.transform.position - dangerSource).normalized;
         remainingDistance = cow.GetAfraidDistance();
     }
 
@@ -23,6 +28,7 @@ public class AfraidState : ICowState
         }
         else
         {
+            cow.ResetScaredState();
             cow.SwitchState(new PeaceState());
         }
     }
