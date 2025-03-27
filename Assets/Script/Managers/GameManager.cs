@@ -50,7 +50,12 @@ public class GameManager : MonoBehaviour
     {
         inputReader.DisablePlayerInputs();
     }
-    
+
+    private void Start()
+    {
+        AudioManager.instance.PlayMusic(3, true);
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0;

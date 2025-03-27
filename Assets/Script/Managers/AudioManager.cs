@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource playOnceAudioSource;
 
     [SerializeField] private List<SoundData> soundDataList;
-
+    [SerializeField] private List<SoundData> cowMooSoundDataList;
     private void Awake()
     {
         Initialize();
@@ -44,13 +44,13 @@ public class AudioManager : MonoBehaviour
     // Cette fonction permet de jouer un son aléatoire parmi ceux disponibles dans la liste. 
     public void PlayRandomSound()
     {
-        if (soundDataList.Count == 0)
+        if (cowMooSoundDataList.Count == 0)
         {
             Debug.LogWarning("SoundData list is empty");
             return;
         }
 
-        int randomIndex = Random.Range(0, soundDataList.Count);
+        int randomIndex = Random.Range(0, cowMooSoundDataList.Count);
         PlaySound(randomIndex);
     }
 
