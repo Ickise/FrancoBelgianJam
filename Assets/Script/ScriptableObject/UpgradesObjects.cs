@@ -15,7 +15,6 @@ public enum EnumUpgradeType
     BatteryCapacity = 1,
     GasTankCapacity = 2,
     GasToBatteryConversion = 3,
-    VacuumAreaDistance = 4,
-    VacuumAreaAngle = 5,
-    OverloadSpeedPenalty = 6,
+    VacuumArea = 4,
+    OverloadSpeedPenalty = 5,
 }

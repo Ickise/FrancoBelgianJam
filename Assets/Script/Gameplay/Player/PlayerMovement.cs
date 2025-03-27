@@ -69,8 +69,8 @@ public class PlayerMovement : MonoBehaviour
         var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed*_speedMultiplier : speed*_speedMultiplier;
         Vector3 velocity = playerRigidbody.linearVelocity;
 
-        velocity.x = movement.x * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
-        velocity.z = movement.z * (gasManager.IsGasStockOverFilled() ? overfillSpeed : currentSpeed);
+        velocity.x = movement.x * (gasManager.IsGasStockOverFilled() ? overfillSpeed*_speedMultiplier : currentSpeed);
+        velocity.z = movement.z * (gasManager.IsGasStockOverFilled() ? overfillSpeed*_speedMultiplier : currentSpeed);
 
         playerRigidbody.linearVelocity = velocity;
         
@@ -91,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeSpeedMultiplier(float value)
     {
         _speedMultiplier = value;
-        Debug.Log(value);
+    }
+    
+    public void ChangeOverfillSpeed(float value)
+    {
+        overfillSpeedRate = value;
+        overfillSpeed = speed * overfillSpeedRate;
     }
 }

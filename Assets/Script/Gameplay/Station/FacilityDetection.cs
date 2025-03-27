@@ -21,8 +21,8 @@ public class FacilityDetection : MonoBehaviour
             _scoreMultiplier = Mathf.Clamp(_scoreMultiplier, 0.2f,2f);
             
             GasManager.instance.ChangeGasStockValue(_gasQuantity, false);
-            
-            UpgradeManager.instance.RisePrice();
+
+            UpgradeManager.instance.ChangeMenuUpgradeState(true);
         }
         else
         {

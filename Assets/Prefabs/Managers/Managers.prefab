@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiBattery: {fileID: 0}
   overchargedText: {fileID: 0}
+  overchargedEffect: {fileID: 0}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   maxBattery: 100
   vacuumConsumption: 2
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiGas: {fileID: 0}
   maxTank: 100
-  maxTankOverfillRate: 1.1
+  maxTankOverfillRate: 1.3
 --- !u!1 &5922885391512394875
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +252,12 @@ MonoBehaviour:
   scorePenalty: 0.2
   lFacilities: []
   upgradeTexts: []
-  lPoolUpgrades: []
+  lPoolUpgrades:
+  - {fileID: 11400000, guid: c6e316dd1b3f8b74283ee1693e27cfaf, type: 2}
+  - {fileID: 11400000, guid: 6b1f07fd6dabacb4fb7b205cf27a6583, type: 2}
+  - {fileID: 11400000, guid: f2c0dd6973a536942bf6056f3c347c58, type: 2}
+  - {fileID: 11400000, guid: ebde6d0c08a788d4a99f84f04766c80e, type: 2}
+  - {fileID: 11400000, guid: 1212315914cd1994bb67f78a344ad2ac, type: 2}
   lPlayerUpgrades:
   - type: 0
     index: 0
@@ -268,6 +274,7 @@ MonoBehaviour:
   - type: 6
     index: 0
   uList: {fileID: 11400000, guid: f287806b02fe3f148bc6ce70b2df77da, type: 2}
+  pMov: {fileID: 0}
 --- !u!1 &7412821599674000206
 GameObject:
   m_ObjectHideFlags: 0

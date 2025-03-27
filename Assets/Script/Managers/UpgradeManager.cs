@@ -15,12 +15,13 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private List<FacilityDetection> lFacilities;
 
     [SerializeField] private List<TextMeshProUGUI> upgradeTexts;
-    [SerializeField] private List<Upgrades> lPoolUpgrades;
+    [SerializeField] private List<UpgradesObjects> lPoolUpgrades;
     private List<UpgradesObjects> currentPool;
     [SerializeField] private List<PlayerUpgrades> lPlayerUpgrades;
     [SerializeField] private UpgradeList uList;
     [SerializeField] private PlayerMovement pMov;
-    
+    [SerializeField] private GameObject uiMenuUpgrade;
+     
     private void Awake()
     {
         if (instance == null)
@@ -36,7 +37,7 @@ public class UpgradeManager : MonoBehaviour
         currentPool = new List<UpgradesObjects>();
     }
 
-    public void RisePrice()
+    void RisePrice()
     {
         if (currentPriceIndex + 1 >= currentUpgradePrice.Count) return;
         
@@ -59,6 +60,15 @@ public class UpgradeManager : MonoBehaviour
         return scorePenalty;
     }
 
+    public void ChangeMenuUpgradeState(bool state)
+    {
+        if (state)
+        {
+            ChooseRangeRandomUpgrade();
+        }
+        uiMenuUpgrade.SetActive(state);
+    }
+
     private void ChooseRangeRandomUpgrade()
     {
         currentPool.Clear();
@@ -67,7 +77,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             var index = Random.Range(0, newList.Count);
-            currentPool.Add(newList[index].uObject); 
+            currentPool.Add(newList[index]); 
             newList.RemoveAt(index);
         }
 
@@ -92,6 +102,8 @@ public class UpgradeManager : MonoBehaviour
             }
         }
         SetUpgrade(upgrade.upgradeType);
+        RisePrice();
+        ChangeMenuUpgradeState(true);
     }
 
     void SetUpgrade(EnumUpgradeType upgradeType)
@@ -108,46 +120,32 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case EnumUpgradeType.BatteryCapacity:
-                var capacity = uList.batteryCapacities[lPlayerUpgrades[1].index];
-                var overchargeCapacity = uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index];
+                BatteryManager.instance.ChangeBatteryCapacities(uList.batteryCapacities[lPlayerUpgrades[1].index], 
+                    uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index]);
                 break;
             
             case EnumUpgradeType.GasTankCapacity:
-                var tankCapacity = uList.gasTankCapacities[lPlayerUpgrades[2].index];
-                var overloadCapacity = uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index];
+                GasManager.instance.ChangeGasTankCapacities(uList.gasTankCapacities[lPlayerUpgrades[2].index],
+                    uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index]);
                 break;
             
             case EnumUpgradeType.GasToBatteryConversion:
-                var conversion = uList.gasToBatteryConversions[lPlayerUpgrades[3].index];
+                BatteryManager.instance.ChangeConversion(uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
                 break;
             
-            case EnumUpgradeType.VacuumAreaDistance:
+            case EnumUpgradeType.VacuumArea:
                 var dist = uList.vacuumAreaDistances[lPlayerUpgrades[4].index];
+                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[4].index];
+                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[4].index];
                 break;
-            
-            case EnumUpgradeType.VacuumAreaAngle:
-                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[5].index];
-                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[5].index];
-                break;
-            
+
             case EnumUpgradeType.OverloadSpeedPenalty:
-                var overloadPenalty = uList.overloadSpeedPenalties[lPlayerUpgrades[6].index];
+                pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[lPlayerUpgrades[5].index]);
                 break;
             
         }
     }
 
-    private void Start()
-    {
-        ChooseRangeRandomUpgrade();
-    }
-}
-
-[Serializable]
-public class Upgrades
-{
-    public UpgradesObjects uObject;
-    public int uIndex;
 }
 
 [Serializable]
