@@ -2643,6 +2643,14 @@ PrefabInstance:
       propertyPath: overchargedEffect
       value: 
       objectReference: {fileID: 866497914}
+    - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: vacuumConsumption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: makeNoiseConsumption
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5500774562125171620, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: uiScore
       value: 
