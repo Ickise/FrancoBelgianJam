@@ -12,10 +12,8 @@ public class AirHorn : ToolBase
     [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
-    [SerializeField] private float littleDisturbAreaRange = 60f;
-    [SerializeField] private float bigDisturbAreaRange = 90f;
-    [SerializeField] private float radius = 150f;
-    [SerializeField] private float coneLength = 3f;   
+    [SerializeField] private float radius = 2f;
+    [SerializeField] private float coneLength = 3f;
     [SerializeField] private LayerMask objectLayer;
 
     private float holdTime = 0f;
@@ -66,7 +64,6 @@ public class AirHorn : ToolBase
         isBigDisturb = false;
         littleDisturb.SetActive(true);
         bigDisturb.SetActive(false);
-        UpdateParticleSystem();
     }
 
     private void TransformToBigDisturb()
@@ -74,7 +71,6 @@ public class AirHorn : ToolBase
         isBigDisturb = true;
         littleDisturb.SetActive(false);
         bigDisturb.SetActive(true);
-        UpdateParticleSystem();
     }
 
     private void StopDisturb()
@@ -87,7 +83,7 @@ public class AirHorn : ToolBase
     private void DetectObjectsInCone()
     {
         Vector3 coneStart = transform.position;
-        Vector3 coneDirection = Quaternion.Euler(0, 180, 0) * transform.forward; // Correction
+        Vector3 coneDirection = Quaternion.Euler(90, 0, 0) * transform.forward;
         Vector3 coneEnd = coneStart + coneDirection * coneLength;
         Collider[] objectsInCone = Physics.OverlapCapsule(coneStart, coneEnd, radius, objectLayer);
 
@@ -110,21 +106,7 @@ public class AirHorn : ToolBase
         }
     }
 
-    private void UpdateParticleSystem()
+    public override void UseTool(bool isHeld)
     {
-        if (isBigDisturb && bigDisturbParticles != null)
-        {
-            bigShape.angle = 0f;
-            bigShape.scale = new Vector3(1, 1, coneLength);
-        }
-        else if (!isBigDisturb && littleDisturbParticles != null)
-        {
-            littleShape.angle = 0f;
-            littleShape.scale = new Vector3(1, 1, coneLength);
-        }
     }
-
-    public override void UseTool(bool isHeld) { }
-
 }
-

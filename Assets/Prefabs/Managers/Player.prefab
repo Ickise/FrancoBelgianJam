@@ -692,11 +692,8 @@ MonoBehaviour:
   animator: {fileID: 6377122874894697385}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   holdThreshold: 2
-  littleDisturbAreaRange: 60
-  bigDisturbAreaRange: 90
-  coneRadius: 0.2
-  coneLength: 2
-  coneAngle: 30
+  radius: 2
+  coneLength: 3
   objectLayer:
     serializedVersion: 2
     m_Bits: 128

@@ -39,7 +39,7 @@ public class Vacuum : ToolBase
         {
             animator.SetTrigger("Sucking");
             vacuumEffect.SetActive(true);
-            UpdateParticleSystem();
+            //UpdateParticleSystem();
             DetectObjectsInCone();
         }
         else
@@ -63,7 +63,8 @@ public class Vacuum : ToolBase
     private void DetectObjectsInCone()
     {
         Vector3 coneStart = transform.position;
-        Vector3 coneDirection = Quaternion.Euler(0, 90, 0) * transform.forward; // Ici pour mettre le cône dans le bon sens
+        Vector3 coneDirection =
+            Quaternion.Euler(0, 90, 0) * transform.forward; // Ici pour mettre le cône dans le bon sens
         Vector3 coneEnd = coneStart + coneDirection * suctionLength;
 
         Collider[] objectsToSuck = Physics.OverlapCapsule(coneStart, coneEnd, suctionRadius, objectLayer);
@@ -125,7 +126,7 @@ public class Vacuum : ToolBase
 
         suckedObjects.Clear();
     }
-    
+
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;

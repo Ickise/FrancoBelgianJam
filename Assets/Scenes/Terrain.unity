@@ -1332,7 +1332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754914665611217287, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: radius
-      value: 150
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754914665611217287, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: coneLength
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3471554330332372730, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: m_LocalRotation.w
