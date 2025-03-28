@@ -8,6 +8,7 @@ public class FartState : ICowState
     private NavMeshAgent navMeshAgent;
     private Vector3 escapeDirection;
     private Animator animator;
+    private bool isFarting = false;
 
     public void EnterState(CowController cow)
     {
@@ -23,7 +24,6 @@ public class FartState : ICowState
 
         cow.SetFarting(true);
         cow.SetFarted(true);
-        cow.SpawnFart();
 
         escapeDirection = -(dangerSource - cow.transform.position).normalized;
         escapeDirection.y = 0;
@@ -36,6 +36,8 @@ public class FartState : ICowState
         {
             navMeshAgent.SetDestination(hit.position);
         }
+
+        cow.StartCoroutine(FartRoutine());
     }
 
     public void UpdateState()
@@ -55,6 +57,19 @@ public class FartState : ICowState
         cow.SetFarting(false);
         cow.ResetFartState();
         cow.StopAllCoroutines();
+    }
+
+    private IEnumerator FartRoutine()
+    {
+        isFarting = true;
+
+        while (isFarting)
+        {
+            cow.SpawnFart();
+
+            float waitTime = Random.Range(1f, 3f);
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 
     private IEnumerator RecoverBeforePeace()
