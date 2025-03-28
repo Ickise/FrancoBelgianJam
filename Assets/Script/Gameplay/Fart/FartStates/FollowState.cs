@@ -7,12 +7,14 @@ public class FollowState : IFartState
     private NavMeshAgent navMeshAgent;
     private float stateTimer;
     private CowController cowController;
+    private Animator animator;
 
     public FollowState(FartController fart)
     {
         this.fart = fart;
         navMeshAgent = fart.NavMeshAgent;
         cowController = this.fart.GetComponentInParent<CowController>();
+        animator = fart.Animator;
     }
 
     public void EnterState()
@@ -24,6 +26,7 @@ public class FollowState : IFartState
     public void UpdateState()
     {
         FollowCow();
+        animator.SetTrigger("Run");
 
         stateTimer -= Time.deltaTime;
 

@@ -5,21 +5,24 @@ public class FleeState : IFartState
 {
     private FartController fart;
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
 
     public FleeState(FartController fart)
     {
         this.fart = fart;
         navMeshAgent = fart.NavMeshAgent;
+        animator = fart.Animator;
     }
 
     public void EnterState()
     {
-        // Animation de fuite
     }
 
     public void UpdateState()
     {
         Transform vacuum = fart.GetVacuumAttractiveArea();
+        animator.SetTrigger("Run");
+
         if (vacuum == null)
         {
             fart.SwitchState(new EvilState(fart));

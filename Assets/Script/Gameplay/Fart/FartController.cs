@@ -15,6 +15,8 @@ public class FartController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float distanceToBeEvil = 10f;
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private Animator fartAnimator;
+
     private Vector3 playerDir;
 
     private GameManager gameManager;
@@ -51,6 +53,8 @@ public class FartController : MonoBehaviour
     public Transform GetVacuumAttractiveArea() => gameManager.GetVacuumTransform();
     public Transform GetVacuumCatchArea() => gameManager.GetVacuumTransform();
 
+    public Animator Animator => fartAnimator;
+    
     public float GetSpeedFollowCow() => speedFollowCow;
     public float GetTimeFollowCow() => timeFollowCow;
     public float GetEvilSpeed() => evilSpeed;
