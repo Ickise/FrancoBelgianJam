@@ -18,9 +18,9 @@ MonoBehaviour:
   - 1.4
   - 1.8
   batteryCapacities:
-  - 100
   - 150
   - 200
+  - 250
   - 300
   batteryOverchargeCapacities:
   - 150
