@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BatteryManager : MonoBehaviour
 {
-    [SerializeField, Header("References")] private UIBattery uiBattery;
+    [FormerlySerializedAs("uiBattery")] [SerializeField, Header("References")] private BatteryUI batteryUI;
     [SerializeField] private GameObject overchargedText; 
     [SerializeField] private GameObject overchargedEffect; 
     
@@ -49,7 +50,7 @@ public class BatteryManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
-        uiBattery.UpdateEnergyUI();
+        batteryUI.UpdateEnergyUI();
     }
 
     private void Update()
@@ -111,7 +112,7 @@ public class BatteryManager : MonoBehaviour
         }
 
         currentBattery = Mathf.Clamp(currentBattery, 0, maxOvercharge);
-        uiBattery.UpdateEnergyUI();
+        batteryUI.UpdateEnergyUI();
 
         if (currentBattery <= 0)
         {
@@ -148,7 +149,7 @@ public class BatteryManager : MonoBehaviour
     {
         maxBattery = baseCapa;
         maxOvercharge = overCapa;
-        uiBattery.UpdateEnergyUI();
+        batteryUI.UpdateEnergyUI();
     }
 
     public void ChangeConversion(float value)

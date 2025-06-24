@@ -7,15 +7,23 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField, Header("References")] private InputReader inputReader;
-    [SerializeField] private GasManager gasManagerRef;
+    [Header("Other Script References")] [SerializeField]
+    private GasManager gasManagerRef;
+
     [SerializeField] private BatteryManager batteryManagerRef;
 
+    [Header("Data References")] [SerializeField]
+    private InputReader inputReader;
+
+    [Header("Player References")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform vacuumTransform;
 
+    [Header("Game Settings")]
     [SerializeField] private float gasToDepositToWin = 250;
-    [SerializeField, Header("References")] private GameObject victoryScreen;
+    
+    [Header("UI References")]
+    [SerializeField] private GameObject victoryScreen;
     [SerializeField] private TextMeshProUGUI victoryTextTime;
     [SerializeField] private GameObject defeatScreen;
     [SerializeField] private TextMeshProUGUI defeatScore;
@@ -23,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject firstVictoryButton;
     [SerializeField] private GameObject firstDefeatButton;
+   
     private float _playTime;
 
     public GasManager GasManagerRef => gasManagerRef;

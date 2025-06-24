@@ -9,7 +9,6 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     public event Action RightTriggerEvent = delegate { };
     public event Action LeftTriggerEvent = delegate { };
-    public event Action AnyTriggerHeld = delegate { };
 
     private PlayerInputActions inputActions;
 
@@ -35,7 +34,6 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
         if (!context.performed) return;
 
         heldAction.Invoke();
-        AnyTriggerHeld.Invoke();
     }
 
     public void OnMakeSound(InputAction.CallbackContext context)
