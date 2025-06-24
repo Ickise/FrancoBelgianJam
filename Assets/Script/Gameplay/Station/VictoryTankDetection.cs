@@ -33,9 +33,7 @@ public class VictoryTankDetection : MonoBehaviour
     void Deposit()
     {
         victoryTankText.text = $"Deposit {currentGas} / {GameManager.instance.GetGasThreshold()} Gas to supply the city and win";
-        GameManager.instance.Victory(currentGas);
+        UIManager.instance.ShowEndGameCanvas();
     }
-    
-    
 }
 

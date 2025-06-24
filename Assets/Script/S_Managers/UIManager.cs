@@ -10,10 +10,12 @@ public class UIManager : MonoBehaviour
     [Header("Canvas References")] [SerializeField]
     private GameObject inGameCanvas;
     [SerializeField] private GameObject upgradeCanvas;
+    [SerializeField] private GameObject endGameCanvas;
     
     [Header("Other Script References")] [SerializeField]
     private GasUI gasUI;
     [SerializeField] private BatteryUI batteryUI;
+    [SerializeField] private EndGameUI endGameUI;
     
     private void Awake()
     {
@@ -62,6 +64,17 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    public void ShowEndGameCanvas()
+    {
+        SetActiveCanvas(endGameCanvas);
+
+        if (!endGameCanvas.activeSelf) return;
+        
+        MouseManager.EnableCursor();
+        inputReader.DisablePlayerInputs();
+        Time.timeScale = 0f;
+    }
+    
     private void SetActiveCanvas(GameObject activeCanvas)
     {
         DisableCanvas();
@@ -77,5 +90,6 @@ public class UIManager : MonoBehaviour
     {
         inGameCanvas.SetActive(false);
         upgradeCanvas.SetActive(false);
+        endGameCanvas.SetActive(false);
     }
 }

@@ -116,7 +116,7 @@ public class BatteryManager : MonoBehaviour
 
         if (currentBattery <= 0)
         {
-            gameManager.GameOver();
+            UIManager.instance.ShowEndGameCanvas();
         }
     }
 
