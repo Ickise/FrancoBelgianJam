@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,9 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerRotation playerRotation;
 
     [Header("Data References")] [SerializeField]
-    private InputReader inputReader;
-
-    [SerializeField] private PlayerData playerData;
+    private PlayerData playerData;
 
     [Header("Player Component References")] [SerializeField]
     private Animator animator;
@@ -23,9 +22,15 @@ public class PlayerMovement : MonoBehaviour
     private float time;
 
     private BatteryManager batteryManager;
+    private InputReader inputReader;
     private GasManager gasManager;
 
     private Vector3 velocity;
+
+    private void Awake()
+    {
+        inputReader = GameManager.instance?.InputReader;
+    }
 
     private void Start()
     {
