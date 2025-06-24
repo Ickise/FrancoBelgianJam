@@ -14,13 +14,13 @@ public class FacilityDetection : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         //Debug.Log("try upgrade");
         
-        if (GasManager.instance.GetGasStock() >= _gasQuantity)
+        if (GameManager.instance.GasManagerRef.GetGasStock() >= _gasQuantity)
         {
             ScoreManager.instance.ChangeScoreValue((int)(_scoreToGain * _scoreMultiplier), true);
             _scoreMultiplier -= _scoreMultiplier * UpgradeManager.instance.GetPenalty();
             _scoreMultiplier = Mathf.Clamp(_scoreMultiplier, 0.2f,2f);
             
-            GasManager.instance.ChangeGasStockValue(_gasQuantity, false);
+            GameManager.instance.GasManagerRef.ChangeGasStockValue(_gasQuantity, false);
 
             UpgradeManager.instance.ChangeMenuUpgradeState(true);
         }

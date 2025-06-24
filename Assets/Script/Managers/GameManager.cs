@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField, Header("References")] private InputReader inputReader;
+    [SerializeField] private GasManager gasManagerRef;
+    [SerializeField] private BatteryManager batteryManagerRef;
 
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform vacuumTransform;
 
-    [SerializeField] private float gasToDepositToWin = 700;
+    [SerializeField] private float gasToDepositToWin = 250;
     [SerializeField, Header("References")] private GameObject victoryScreen;
     [SerializeField] private TextMeshProUGUI victoryTextTime;
     [SerializeField] private GameObject defeatScreen;
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject firstVictoryButton;
     [SerializeField] private GameObject firstDefeatButton;
     private float _playTime;
+
+    public GasManager GasManagerRef => gasManagerRef;
+    public BatteryManager BatteryManagerRef => batteryManagerRef;
 
     private void Awake()
     {

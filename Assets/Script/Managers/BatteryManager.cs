@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class BatteryManager : MonoBehaviour
 {
-    public static BatteryManager instance;
-
     [SerializeField, Header("References")] private UIBattery uiBattery;
     [SerializeField] private GameObject overchargedText; 
     [SerializeField] private GameObject overchargedEffect; 
@@ -32,15 +30,6 @@ public class BatteryManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         currentBattery = maxBattery;
         maxOvercharge = maxBattery * overchargeRate;
     }

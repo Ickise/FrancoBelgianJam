@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class GasManager : MonoBehaviour
 {
-    public static GasManager instance;
-
     [SerializeField, Header("References")] private UIGas uiGas;
 
     [SerializeField, Header("Settings")] private float maxTank = 100f;
@@ -18,15 +16,6 @@ public class GasManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
         maxTankOverfill = maxTank * maxTankOverfillRate;
     }
 

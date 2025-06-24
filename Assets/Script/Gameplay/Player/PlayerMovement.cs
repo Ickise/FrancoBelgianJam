@@ -2,19 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField, Header("References")] private Rigidbody playerRigidbody;
-    [SerializeField] private InputReader inputReader;
+    [SerializeField, Header("References")] private InputReader inputReader;
+    [SerializeField] private CharacterController cont;
     [SerializeField] private PlayerRotation playerRotation;
+    [SerializeField] private PlayerData playerData;
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject smokeEffect;
-    
-    [SerializeField, Header("Settings")] private float speed = 3f;
-    [SerializeField] private float overchargeSpeed = 5f;
-    [SerializeField] private float overfillSpeedRate = 0.75f;
-    [SerializeField] private float moveConsumption = 1f;
-    [SerializeField] private float moveConsumptionRate = 1f;
+    [SerializeField] private ParticleSystem smokeEffect;
 
-    private Vector3 movement;
+    private Vector3 velocity;
 
     private float time;
 
@@ -24,78 +19,111 @@ public class PlayerMovement : MonoBehaviour
 
     private GasManager gasManager;
 
-    private float _speedMultiplier = 1;
-
-    private void OnEnable()
-    {
-        inputReader.MovementEvent += GetInputValue;
-    }
-
-    private void OnDisable()
-    {
-        inputReader.MovementEvent -= GetInputValue;
-    }
-
-    private void GetInputValue(Vector2 direction)
-    {
-        movement = new Vector3(direction.x, 0, direction.y).normalized;
-    }
+    private float speedMultiplier = 1;
 
     private void Start()
     {
-        batteryManager = BatteryManager.instance;
-        gasManager = GasManager.instance;
-        overfillSpeed = speed * overfillSpeedRate;
+        batteryManager = GameManager.instance?.BatteryManagerRef;
+        gasManager = GameManager.instance?.GasManagerRef;
+        overfillSpeed = playerData.speed * playerData.overfillSpeedRate;
+
+        smokeEffect.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
-
-        if (movement != Vector3.zero)
-        {
-            time += Time.fixedDeltaTime;
-
-            if (time >= moveConsumptionRate)
-            {
-                batteryManager.ChangeEnergyValue(moveConsumption, false);
-                time = 0;
-            }
-        }
+        HandleMovement();
+        ApplyCustomGravity();
     }
 
-    private void MovePlayer()
+    private void ApplyCustomGravity()
     {
-        var currentSpeed = batteryManager.BatteryOvercharging() ? overchargeSpeed*_speedMultiplier : speed*_speedMultiplier;
-        Vector3 velocity = playerRigidbody.linearVelocity;
+        velocity.y = -2f;
 
-        velocity.x = movement.x * (gasManager.IsGasStockOverFilled() ? overfillSpeed*_speedMultiplier : currentSpeed);
-        velocity.z = movement.z * (gasManager.IsGasStockOverFilled() ? overfillSpeed*_speedMultiplier : currentSpeed);
+        cont.Move(velocity * Time.deltaTime);
+    }
 
-        playerRigidbody.linearVelocity = velocity;
-        
-        if (movement != Vector3.zero)
+    private void HandleMovement()
+    {
+        Vector2 inputDirection = inputReader.Move;
+
+        var currentSpeed = GetCurrentSpeed();
+
+        Vector3 move = CalculateMovement(inputDirection, currentSpeed);
+
+        HandleAnimationAndEffects(move);
+
+        playerRotation.RotatePlayer();
+
+        cont.Move(move * (playerData.speed * Time.deltaTime));
+
+        HandleEnergyConsumption(move);
+    }
+
+    private float GetCurrentSpeed()
+    {
+        return batteryManager.BatteryOvercharging()
+            ? playerData.overchargeSpeed * speedMultiplier
+            : playerData.speed * speedMultiplier;
+    }
+
+    private Vector3 CalculateMovement(Vector2 inputDirection, float currentSpeed)
+    {
+        var isGasOverfilled = gasManager.IsGasStockOverFilled();
+        var effectiveSpeed = isGasOverfilled ? overfillSpeed * speedMultiplier : currentSpeed;
+
+        var move = transform.forward * inputDirection.y + transform.right * inputDirection.x;
+        move.x = inputDirection.x * effectiveSpeed;
+        move.z = inputDirection.y * effectiveSpeed;
+        move.y = velocity.y;
+
+        return move.normalized;
+    }
+
+    private void HandleAnimationAndEffects(Vector3 move)
+    {
+        if (move.x != 0 || move.z != 0)
         {
             animator.SetTrigger("IsWalking");
-            smokeEffect.SetActive(true);
+
+            smokeEffect.gameObject.SetActive(true);
+            
+            smokeEffect.Play();
+            // WalkAudioFeedback();
         }
         else
         {
             animator.SetTrigger("Idle");
-            smokeEffect.SetActive(false);
+            
+            smokeEffect.Stop();
+
+            if (smokeEffect.isStopped)
+            {
+                smokeEffect.gameObject.SetActive(false);
+            }
         }
-        
-        playerRotation.RotatePlayer();
+    }
+
+    private void HandleEnergyConsumption(Vector3 move)
+    {
+        if (move == Vector3.zero) return;
+
+        time += Time.fixedDeltaTime;
+
+        if (!(time >= playerData.moveConsumptionRate)) return;
+
+        batteryManager.ChangeEnergyValue(playerData.moveConsumption, false);
+        time = 0;
     }
 
     public void ChangeSpeedMultiplier(float value)
     {
-        _speedMultiplier = value;
+        speedMultiplier = value;
     }
-    
+
     public void ChangeOverfillSpeed(float value)
     {
-        overfillSpeedRate = value;
-        overfillSpeed = speed * overfillSpeedRate;
+        playerData.overfillSpeedRate = value;
+        overfillSpeed = playerData.speed * playerData.overfillSpeedRate;
     }
 }

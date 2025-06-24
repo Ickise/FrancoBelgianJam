@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
+[CreateAssetMenu(fileName = "InputReader", menuName = "ScriptableObjects/InputReader")]
 public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
+    public Vector2 Move => inputActions.Player.Movement.ReadValue<Vector2>();
+
     public event Action RightTriggerEvent = delegate { };
     public event Action LeftTriggerEvent = delegate { };
-    public event Action<Vector2> MovementEvent = delegate { };
     public event Action AnyTriggerHeld = delegate { };
 
     private PlayerInputActions inputActions;
@@ -17,15 +18,17 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     private void OnEnable()
     {
-        if (inputActions == null)
-        {
-            inputActions = new PlayerInputActions();
-            inputActions.Player.SetCallbacks(this);
-        }
+        if (inputActions != null) return;
+        
+        inputActions = new PlayerInputActions();
+        inputActions.Player.SetCallbacks(this);
     }
 
     public void EnablePlayerInputs() => inputActions.Enable();
     public void DisablePlayerInputs() => inputActions.Disable();
+
+    public void EnablePlayerMovement() => inputActions.Player.Enable();
+    public void DisablePlayerMovement() => inputActions.Player.Disable();
 
     private void HandleTriggerInput(InputAction.CallbackContext context, Action heldAction)
     {
@@ -49,6 +52,6 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        MovementEvent.Invoke(context.performed ? inputActions.Player.Movement.ReadValue<Vector2>() : Vector2.zero);
+        //Noop
     }
 }

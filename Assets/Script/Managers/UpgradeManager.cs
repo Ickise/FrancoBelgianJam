@@ -146,17 +146,17 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case EnumUpgradeType.BatteryCapacity:
-                BatteryManager.instance.ChangeBatteryCapacities(uList.batteryCapacities[lPlayerUpgrades[1].index], 
+                GameManager.instance?.BatteryManagerRef.ChangeBatteryCapacities(uList.batteryCapacities[lPlayerUpgrades[1].index], 
                     uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index]);
                 break;
             
             case EnumUpgradeType.GasTankCapacity:
-                GasManager.instance.ChangeGasTankCapacities(uList.gasTankCapacities[lPlayerUpgrades[2].index],
+                GameManager.instance.GasManagerRef.ChangeGasTankCapacities(uList.gasTankCapacities[lPlayerUpgrades[2].index],
                     uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index]);
                 break;
             
             case EnumUpgradeType.GasToBatteryConversion:
-                BatteryManager.instance.ChangeConversion(uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
+                GameManager.instance?.BatteryManagerRef.ChangeConversion(uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
                 break;
             
             case EnumUpgradeType.VacuumArea:

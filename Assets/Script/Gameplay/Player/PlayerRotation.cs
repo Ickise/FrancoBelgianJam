@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
@@ -6,21 +7,16 @@ public class PlayerRotation : MonoBehaviour
 
     private Quaternion playerRotation;
 
-    private void OnEnable()
+    private void Update()
     {
-        inputReader.MovementEvent += GetInputValue;
+        GetInputValue();
     }
 
-    private void OnDisable()
+    private void GetInputValue()
     {
-        inputReader.MovementEvent -= GetInputValue;
-    }
-
-    private void GetInputValue(Vector2 direction)
-    {
-        if (direction != Vector2.zero)
+        if (inputReader.Move != Vector2.zero)
         {
-            float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(inputReader.Move.x, inputReader.Move.y) * Mathf.Rad2Deg;
             playerRotation = Quaternion.Euler(0f, angle, 0f);
         }
     }

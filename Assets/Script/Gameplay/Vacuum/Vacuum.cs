@@ -24,7 +24,7 @@ public class Vacuum : ToolBase
 
     private void Start()
     {
-        gasManager = GasManager.instance;
+        gasManager = GameManager.instance.GasManagerRef;
         scoreManager = ScoreManager.instance;
 
         if (suctionParticles != null)

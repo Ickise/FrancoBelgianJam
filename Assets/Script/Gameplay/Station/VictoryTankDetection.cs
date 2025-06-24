@@ -12,15 +12,15 @@ public class VictoryTankDetection : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         //Debug.Log("try deposit");
 
-        if (GasManager.instance.GetGasStock() >= gasDeposit)
+        if (GameManager.instance.GasManagerRef.GetGasStock() >= gasDeposit)
         {
             currentGas += gasDeposit;
-            GasManager.instance.ChangeGasStockValue(gasDeposit, false);
+            GameManager.instance.GasManagerRef.ChangeGasStockValue(gasDeposit, false);
         }
         else
         {
-            currentGas += GasManager.instance.GetGasStock();
-            GasManager.instance.ChangeGasStockValue(GasManager.instance.GetGasStock(), false);
+            currentGas += GameManager.instance.GasManagerRef.GetGasStock();
+            GameManager.instance.GasManagerRef.ChangeGasStockValue(GameManager.instance.GasManagerRef.GetGasStock(), false);
         }
         Deposit();
     }

@@ -12,10 +12,10 @@ public class StationDetection : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         //Debug.Log("try recharge");
 
-        if (GasManager.instance.GetGasStock() >= gasQuantity)
+        if (GameManager.instance.GasManagerRef.GetGasStock() >= gasQuantity)
         {
-            BatteryManager.instance.RechargeBattery(gasQuantity);
-            GasManager.instance.ChangeGasStockValue(gasQuantity, false);
+            GameManager.instance?.BatteryManagerRef.RechargeBattery(gasQuantity);
+            GameManager.instance?.GasManagerRef.ChangeGasStockValue(gasQuantity, false);
         }
         else
         {
