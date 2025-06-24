@@ -1,13 +1,8 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BatteryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject overchargedText; 
-    [SerializeField] private GameObject overchargedEffect; 
-    
-    [SerializeField] private InputReader inputReader;
-
     [SerializeField, Header("Settings")] private float maxBattery = 100f;
     [SerializeField] private float vacuumConsumption = 2f;
     [SerializeField] private float makeNoiseConsumption = 2f;
@@ -26,8 +21,14 @@ public class BatteryManager : MonoBehaviour
 
     private bool isOvercharge;
 
+    private InputReader inputReader;
+    private BatteryUI batteryUI;
+
     private void Awake()
     {
+        inputReader = GameManager.instance.InputReader;
+        batteryUI = UIManager.instance.BatteryUI;
+        
         currentBattery = maxBattery;
         maxOvercharge = maxBattery * overchargeRate;
     }
@@ -74,8 +75,8 @@ public class BatteryManager : MonoBehaviour
             actionTime = 0f;
         }
         
-        overchargedText.SetActive(BatteryOvercharging());
-        
+        batteryUI.EnableOverchargeUI(BatteryOvercharging()); 
+
         if (!BatteryOvercharging()) return;
         
         DefleteBatteryOnOvercharging();
@@ -103,7 +104,7 @@ public class BatteryManager : MonoBehaviour
         }
 
         currentBattery = Mathf.Clamp(currentBattery, 0, maxOvercharge);
-        UIManager.instance.BatteryUI.UpdateEnergyUI();
+        batteryUI.UpdateEnergyUI();
 
         if (currentBattery <= 0)
         {
@@ -122,7 +123,7 @@ public class BatteryManager : MonoBehaviour
     public bool BatteryOvercharging()
     {
         isOvercharge = currentBattery > maxBattery;
-        overchargedEffect.SetActive(isOvercharge);
+        batteryUI.EnableOverchargeUI(isOvercharge); 
         return isOvercharge;
     }
 
@@ -140,7 +141,7 @@ public class BatteryManager : MonoBehaviour
     {
         maxBattery = baseCapa;
         maxOvercharge = overCapa;
-        UIManager.instance.BatteryUI.UpdateEnergyUI();
+        batteryUI.UpdateEnergyUI();
     }
 
     public void ChangeConversion(float value)

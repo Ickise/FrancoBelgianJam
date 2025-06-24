@@ -2,12 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class EndGameUI : MonoBehaviour
 {
-    [SerializeField] private float gasToDepositToWin = 250;
-
-    [SerializeField] private TextMeshProUGUI endGameText;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI adaptativeText;
+    [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Button mainMenuButton;
 
@@ -18,18 +19,26 @@ public class EndGameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EndGameUIScreen(GameManager.instance.GasManagerRef.GetGasStock());
+        EndGameUIScreen();
     }
 
-    public void EndGameUIScreen(float currentGas)
+    private void EndGameUIScreen()
     {
-        if (!(currentGas >= gasToDepositToWin)) return;
-
         var playTime = GameManager.instance.GetPlayTime();
-        
+
+        var winCondition = GameManager.instance.GasManagerRef.GetGasStock() >= GameManager.instance.GetGasThreshold();
+
         eventSystem.SetSelectedGameObject(mainMenuButton.gameObject);
         var min = (int)(playTime / 60);
         var sec = (int)(playTime % 60);
-        endGameText.text = $"Score: {ScoreManager.instance.GetScore()} in {min} minutes and {sec} seconds.";
+        timerText.text = $"Score: {ScoreManager.instance.GetScore()} in {min} minutes and {sec} seconds.";
+
+        titleText.text = winCondition
+            ? "Victory"
+            : "Defeat";
+
+        adaptativeText.text = winCondition
+            ? "You supplied the city with enough gas to win!"
+            : "You failed to supply the city with enough gas, try again!";
     }
 }

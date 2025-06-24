@@ -5,8 +5,19 @@ public class BatteryUI : MonoBehaviour
 {
     [SerializeField, Header("UI References")]
     private TextMeshProUGUI batteryText;
+    [SerializeField] private TextMeshProUGUI overchargeText;
+    
+    [SerializeField] private GameObject overchargeGameObject;
 
     [SerializeField] private GameObject[] batteryImages;
+
+    public void InitializeBatteryUI()
+    {
+        UpdateEnergyUI();
+        
+        overchargeGameObject.SetActive(false);
+        overchargeText.gameObject.SetActive(true);
+    }
 
     public void UpdateEnergyUI()
     {
@@ -25,5 +36,10 @@ public class BatteryUI : MonoBehaviour
         {
             batteryImages[i].SetActive(i < activeBatteryCount);
         }
+    }
+
+    public void EnableOverchargeUI(bool enable)
+    {
+        overchargeGameObject.SetActive(enable);
     }
 }

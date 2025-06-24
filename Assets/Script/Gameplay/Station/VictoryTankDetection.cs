@@ -4,8 +4,9 @@ using UnityEngine;
 public class VictoryTankDetection : MonoBehaviour
 {
     [SerializeField] private float gasDeposit = 50;
-    [SerializeField] private float currentGas;
     [SerializeField] private TextMeshProUGUI victoryTankText;
+
+    [SerializeField] private float currentGas;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,8 +21,10 @@ public class VictoryTankDetection : MonoBehaviour
         else
         {
             currentGas += GameManager.instance.GasManagerRef.GetGasStock();
-            GameManager.instance.GasManagerRef.ChangeGasStockValue(GameManager.instance.GasManagerRef.GetGasStock(), false);
+            GameManager.instance.GasManagerRef.ChangeGasStockValue(GameManager.instance.GasManagerRef.GetGasStock(),
+                false);
         }
+
         Deposit();
     }
 
@@ -32,8 +35,12 @@ public class VictoryTankDetection : MonoBehaviour
 
     void Deposit()
     {
-        victoryTankText.text = $"Deposit {currentGas} / {GameManager.instance.GetGasThreshold()} Gas to supply the city and win";
-        UIManager.instance.ShowEndGameCanvas();
+        victoryTankText.text =
+            $"Deposit {currentGas} / {GameManager.instance.GetGasThreshold()} Gas to supply the city and win";
+
+        if (currentGas >= GameManager.instance.GetGasThreshold())
+        {
+            UIManager.instance.ShowEndGameCanvas();
+        }
     }
 }
-

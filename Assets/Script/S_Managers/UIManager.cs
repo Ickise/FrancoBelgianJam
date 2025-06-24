@@ -31,12 +31,17 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        gasUI.UpdateGasUI();
+        batteryUI.InitializeBatteryUI();
+        
+        ShowInGameCanvas();
     }
 
     private void Start()
     {
         gasUI.UpdateGasUI();
-        batteryUI.UpdateEnergyUI();
+        batteryUI.InitializeBatteryUI();
         
         ShowInGameCanvas();
     }

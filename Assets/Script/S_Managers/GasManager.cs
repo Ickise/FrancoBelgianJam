@@ -8,8 +8,6 @@ public class GasManager : MonoBehaviour
 
     private float maxTankOverfill;
 
-    private GameManager gameManager;
-
     private float currentGasStock = 0;
 
     private void Awake()

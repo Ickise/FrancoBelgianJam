@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -15,17 +13,20 @@ public class GameManager : MonoBehaviour
     [Header("Data References")] [SerializeField]
     private InputReader inputReader;
 
-    [Header("Player References")]
-    [SerializeField] private Transform playerTransform;
+    [Header("Player References")] [SerializeField]
+    private Transform playerTransform;
+
     [SerializeField] private Transform vacuumTransform;
 
-    [Header("Game Settings")]
-    [SerializeField] private float gasToDepositToWin = 250;
-   
+    [Header("Game Settings")] [SerializeField]
+    private float gasToDepositToWin = 250;
+
     private float playTime;
 
     public GasManager GasManagerRef => gasManagerRef;
     public BatteryManager BatteryManagerRef => batteryManagerRef;
+
+    public InputReader InputReader => inputReader;
 
     private void Awake()
     {
@@ -37,13 +38,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        inputReader.EnablePlayerInputs();
     }
 
     private void Update()
     {
         playTime += Time.deltaTime;
     }
-    
+
     public float GetPlayTime()
     {
         return playTime;
