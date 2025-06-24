@@ -17,6 +17,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BatteryUI batteryUI;
     [SerializeField] private EndGameUI endGameUI;
     
+    public GasUI GasUI => gasUI;
+    public BatteryUI BatteryUI => batteryUI;
+    public EndGameUI EndGameUI => endGameUI;
+    
     private void Awake()
     {
         if (instance == null)

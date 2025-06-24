@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class GasManager : MonoBehaviour
 {
-    [SerializeField, Header("References")] private GasUI gasUI;
-
     [SerializeField, Header("Settings")] private float maxTank = 100f;
 
     [SerializeField] private float maxTankOverfillRate = 1.3f;
@@ -30,7 +28,7 @@ public class GasManager : MonoBehaviour
 
         currentGasStock = Mathf.Clamp(currentGasStock, 0, maxTankOverfill);
 
-        gasUI.UpdateGasUI();
+        UIManager.instance.GasUI.UpdateGasUI();
     }
 
     public bool IsGasStockOverFilled()
@@ -42,6 +40,6 @@ public class GasManager : MonoBehaviour
     {
         maxTank = baseCapa;
         maxTankOverfill = overCapa;
-        gasUI.UpdateGasUI();
+        UIManager.instance.GasUI.UpdateGasUI();
     }
 }
