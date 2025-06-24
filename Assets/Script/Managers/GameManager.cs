@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlayMusic(3, true);
+        AudioManager.instance.Play("MainTheme");
     }
 
     public void GameOver()

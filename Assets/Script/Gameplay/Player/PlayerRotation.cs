@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
-    [SerializeField, Header("References")] private InputReader inputReader;
+    [SerializeField, Header("Data References")] private InputReader inputReader;
 
     private Quaternion playerRotation;
 
@@ -14,11 +13,10 @@ public class PlayerRotation : MonoBehaviour
 
     private void GetInputValue()
     {
-        if (inputReader.Move != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(inputReader.Move.x, inputReader.Move.y) * Mathf.Rad2Deg;
-            playerRotation = Quaternion.Euler(0f, angle, 0f);
-        }
+        if (inputReader.Move == Vector2.zero) return;
+        
+        float angle = Mathf.Atan2(inputReader.Move.x, inputReader.Move.y) * Mathf.Rad2Deg;
+        playerRotation = Quaternion.Euler(0f, angle, 0f);
     }
 
     public void RotatePlayer()

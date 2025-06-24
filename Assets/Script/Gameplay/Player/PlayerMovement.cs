@@ -2,26 +2,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField, Header("References")] private InputReader inputReader;
-    [SerializeField] private CharacterController cont;
-    [SerializeField] private PlayerRotation playerRotation;
+    [Header("Other Script References")] [SerializeField]
+    private PlayerRotation playerRotation;
+
+    [Header("Data References")] [SerializeField]
+    private InputReader inputReader;
+
     [SerializeField] private PlayerData playerData;
-    [SerializeField] private Animator animator;
-    [SerializeField] private ParticleSystem smokeEffect;
+
+    [Header("Player Component References")] [SerializeField]
+    private Animator animator;
+
+    [SerializeField] private CharacterController cont;
+
+    [Header("Player Effect References")] [SerializeField]
+    private ParticleSystem smokeEffect;
+
+    private float speedMultiplier = 1;
+    private float overfillSpeed;
+    private float time;
+
+    private BatteryManager batteryManager;
+    private GasManager gasManager;
 
     private Vector3 velocity;
 
-    private float time;
-
-    private float overfillSpeed;
-
-    private BatteryManager batteryManager;
-
-    private GasManager gasManager;
-
-    private float speedMultiplier = 1;
-
     private void Start()
+    {
+        InitializePlayer();
+    }
+
+    private void InitializePlayer()
     {
         batteryManager = GameManager.instance?.BatteryManagerRef;
         gasManager = GameManager.instance?.GasManagerRef;
@@ -87,14 +98,17 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("IsWalking");
 
             smokeEffect.gameObject.SetActive(true);
-            
-            smokeEffect.Play();
+
+            if (!smokeEffect.isPlaying)
+            {
+                smokeEffect.Play();
+            }
             // WalkAudioFeedback();
         }
         else
         {
             animator.SetTrigger("Idle");
-            
+
             smokeEffect.Stop();
 
             if (smokeEffect.isStopped)

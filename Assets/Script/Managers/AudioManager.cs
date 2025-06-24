@@ -1,87 +1,78 @@
-using System.Collections.Generic;
 using UnityEngine;
+
+using System;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    
+    public Sound[] sounds;
+    
+    public float globalVolume;
+    
+    [SerializeField] bool debug;
 
-    [SerializeField, Header("References")] private AudioSource mainAudioSource;
-    [SerializeField] private AudioSource playOnceAudioSource;
-
-    [SerializeField] private List<SoundData> soundDataList;
-    [SerializeField] private List<SoundData> cowMooSoundDataList;
     private void Awake()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
         if (instance == null)
-        {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    // Cette fonction permet de jouer un son à partir de l'index dans la liste des sons.
-    public void PlaySound(int index)
-    {
-        if (index < 0 || index >= soundDataList.Count)
-        {
-            Debug.LogWarning("Invalid SoundData index");
             return;
         }
-
-        SoundData data = soundDataList[index];
-        playOnceAudioSource.PlayOneShot(SetAudioParameters(data, playOnceAudioSource).AudioToPlay);
-    }
-
-    // Cette fonction permet de jouer un son aléatoire parmi ceux disponibles dans la liste. 
-    public void PlayRandomSound()
-    {
-        if (cowMooSoundDataList.Count == 0)
+        
+        foreach (Sound sound in sounds)
         {
-            Debug.LogWarning("SoundData list is empty");
-            return;
-        }
-
-        int randomIndex = Random.Range(0, cowMooSoundDataList.Count);
-        PlaySound(randomIndex);
-    }
-
-    // Cette fonction permet de jouer une musique en utilisant un index spécifique, avec la possibilité de boucler.
-    public void PlayMusic(int index, bool isLoop = false)
-    {
-        if (index < 0 || index >= soundDataList.Count)
-        {
-            Debug.LogWarning("Invalid SoundData index");
-            return;
-        }
-
-        SoundData data = soundDataList[index];
-        if (mainAudioSource.isPlaying && mainAudioSource.clip == data.AudioToPlay)
-            return;
-
-        mainAudioSource.clip = SetAudioParameters(data, mainAudioSource).AudioToPlay;
-        mainAudioSource.Play();
-
-        if (isLoop)
-        {
-            mainAudioSource.loop = true;
+            if (sound.source != null)
+                sound.source.loop = sound.loop;
         }
     }
 
-    // Cette fonction permet de configurer les paramètres de l'AudioSource (volume, pitch, etc.) en fonction des données du son.
-    private SoundData SetAudioParameters(SoundData soundData, AudioSource audioSource)
+    public void Play(string name)
     {
-        //audioSource.volume = soundData.Volume;
-        audioSource.pitch = soundData.GetPitch();
-        audioSource.outputAudioMixerGroup = soundData.AudioMixerGroup;
-        return soundData;
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null|| s.source==null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        if(debug)
+            Debug.Log("Playing "+name);
+
+        if (s.humanize)
+        {
+            s.source.volume = Random.Range(globalVolume - (globalVolume * 0.5f), globalVolume);
+            s.source.pitch = Random.Range(0.95f, 1.05f);
+        }
+        else
+        {
+            s.source.volume = (s.source.volume * globalVolume);
+        }
+        s.source.Play();
     }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null|| s.source==null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.Stop();
+    }
+}
+
+[Serializable]
+public class Sound
+{
+    public string name;
+
+    public bool loop;
+
+    public bool humanize = true;
+    
+    public AudioSource source;
 }
