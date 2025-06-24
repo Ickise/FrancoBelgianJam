@@ -10,16 +10,11 @@ public class StationDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        //Debug.Log("try recharge");
 
         if (GameManager.instance.GasManagerRef.GetGasStock() >= gasQuantity)
         {
             GameManager.instance?.BatteryManagerRef.RechargeBattery(gasQuantity);
             GameManager.instance?.GasManagerRef.ChangeGasStockValue(gasQuantity, false);
-        }
-        else
-        {
-            //Debug.Log("No recharge");
         }
     }
 
