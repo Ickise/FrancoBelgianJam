@@ -44,6 +44,7 @@ public class EvilState : IFartState
 
         if (time >= timeToDisappear)
         {
+            AudioManager.instance.PlaySFX("FartDisappearance");
             Object.Destroy(fart.gameObject);
         }
     }

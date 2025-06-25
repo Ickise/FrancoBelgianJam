@@ -47,11 +47,13 @@ public class AirHorn : ToolBase
             if (!littleDisturb.activeSelf && !bigDisturb.activeSelf)
             {
                 StartDisturb();
+                AudioManager.instance.PlaySFX("LittleDisturbArea");
             }
 
             if (!isBigDisturb && holdTime >= holdThreshold)
             {
                 TransformToBigDisturb();
+                AudioManager.instance.PlaySFX("BigDisturbArea");
             }
         }
         else
@@ -85,6 +87,7 @@ public class AirHorn : ToolBase
         littleDisturb.SetActive(false);
         bigDisturb.SetActive(false);
         holdTime = 0f;
+        AudioManager.instance.Stop("LittleDisturbArea");
     }
 
     private void DetectObjectsInCone()

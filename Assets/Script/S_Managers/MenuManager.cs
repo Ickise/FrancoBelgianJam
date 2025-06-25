@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         InitializeSettings();
+        AudioManager.instance.Play("M_MainTheme");
     }
 
     public void StartGame()

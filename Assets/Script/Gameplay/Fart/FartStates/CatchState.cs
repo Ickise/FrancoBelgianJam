@@ -14,6 +14,7 @@ public class CatchState : IFartState
 
     public void EnterState()
     {
+        AudioManager.instance.PlaySFX("FartDisappearance");
         // Animation de capture
     }
 

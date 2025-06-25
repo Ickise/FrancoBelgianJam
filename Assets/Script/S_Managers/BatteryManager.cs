@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BatteryManager : MonoBehaviour
@@ -126,8 +125,9 @@ public class BatteryManager : MonoBehaviour
     {
         if (gasAmount <= 0) return;
 
-        float energyGained = gasAmount * gasIntoEnergyConversion;
+        var energyGained = gasAmount * gasIntoEnergyConversion;
         ChangeEnergyValue(energyGained, true);
+        AudioManager.instance.PlaySFX("ReloadBattery");
     }
 
     public bool BatteryOvercharging()
