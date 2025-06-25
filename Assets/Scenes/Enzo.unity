@@ -1642,6 +1642,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 823448455320657712, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 868566486893512724, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
       propertyPath: scoreManager
       value: 
@@ -1649,6 +1653,10 @@ PrefabInstance:
     - target: {fileID: 891594368309381790, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
       propertyPath: m_Name
       value: AllCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129276184509688789, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1642600422850715470, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1688,6 +1696,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1642600422850715470, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814438283117789111, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2195955107046942178, guid: ba113a37f323906429c5e79ca0039b57, type: 3}

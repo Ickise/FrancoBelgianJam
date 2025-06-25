@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -14,13 +15,18 @@ public class Vacuum : ToolBase
     [SerializeField] private float gasNumber = 1f;
     [SerializeField] private int scorePerObject = 10;
     [SerializeField] private LayerMask objectLayer;
-    [SerializeField] private InputReader inputReader;
 
     private List<Rigidbody> suckedObjects = new List<Rigidbody>();
 
     private GasManager gasManager;
     private ScoreManager scoreManager;
     private ParticleSystem.ShapeModule shapeModule;
+    private InputReader inputReader;
+
+    private void Awake()
+    {
+        inputReader = GameManager.instance.InputReader;
+    }
 
     private void Start()
     {

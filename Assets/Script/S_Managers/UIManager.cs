@@ -1,26 +1,29 @@
+using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    
+
     [Header("Data References")] [SerializeField]
     private InputReader inputReader;
-    
+
     [Header("Canvas References")] [SerializeField]
     private GameObject inGameCanvas;
+
     [SerializeField] private GameObject upgradeCanvas;
     [SerializeField] private GameObject endGameCanvas;
-    
+
     [Header("Other Script References")] [SerializeField]
     private GasUI gasUI;
+
     [SerializeField] private BatteryUI batteryUI;
     [SerializeField] private EndGameUI endGameUI;
-    
+
     public GasUI GasUI => gasUI;
     public BatteryUI BatteryUI => batteryUI;
     public EndGameUI EndGameUI => endGameUI;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -31,19 +34,14 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        gasUI.UpdateGasUI();
-        batteryUI.InitializeBatteryUI();
-        
-        ShowInGameCanvas();
     }
 
     private void Start()
     {
+        ShowInGameCanvas();
+
         gasUI.UpdateGasUI();
         batteryUI.InitializeBatteryUI();
-        
-        ShowInGameCanvas();
     }
 
     private void ShowInGameCanvas()
@@ -72,24 +70,24 @@ public class UIManager : MonoBehaviour
             ShowInGameCanvas();
         }
     }
-    
+
     public void ShowEndGameCanvas()
     {
         SetActiveCanvas(endGameCanvas);
 
         if (!endGameCanvas.activeSelf) return;
-        
+
         MouseManager.EnableCursor();
         inputReader.DisablePlayerInputs();
         Time.timeScale = 0f;
     }
-    
+
     private void SetActiveCanvas(GameObject activeCanvas)
     {
         DisableCanvas();
         activeCanvas.SetActive(true);
     }
-   
+
     private void ToggleCanvas(GameObject canvas)
     {
         canvas.SetActive(!canvas.activeSelf);

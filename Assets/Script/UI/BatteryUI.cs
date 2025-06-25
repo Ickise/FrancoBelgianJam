@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -5,16 +6,17 @@ public class BatteryUI : MonoBehaviour
 {
     [SerializeField, Header("UI References")]
     private TextMeshProUGUI batteryText;
+
     [SerializeField] private TextMeshProUGUI overchargeText;
-    
+
     [SerializeField] private GameObject overchargeGameObject;
 
-    [SerializeField] private GameObject[] batteryImages;
+    [SerializeField] private List<GameObject> batteryImages;
 
     public void InitializeBatteryUI()
     {
         UpdateEnergyUI();
-        
+
         overchargeGameObject.SetActive(false);
         overchargeText.gameObject.SetActive(true);
     }
@@ -28,13 +30,21 @@ public class BatteryUI : MonoBehaviour
 
     private void UpdateBatteryDisplay(float currentBattery)
     {
-        var batteryValue = GameManager.instance.BatteryManagerRef.GetMaxBattery() / batteryImages.Length;
-        
+        var batteryValue = GameManager.instance.BatteryManagerRef.GetMaxBattery() / batteryImages.Count;
+
         var activeBatteryCount = Mathf.FloorToInt(currentBattery / batteryValue);
-        
-        for (var i = 0; i < batteryImages.Length; i++)
+
+        for (var i = 0; i < batteryImages.Count; i++)
         {
-            batteryImages[i].SetActive(i < activeBatteryCount);
+            if (batteryImages[i] != null)
+            {
+                batteryImages[i].SetActive(i < activeBatteryCount);
+
+            }
+            else
+            {
+                Debug.LogWarning($"Battery image at index {i} is missing or destroyed.");
+            }
         }
     }
 

@@ -92,4 +92,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
+    
+    public void TryAgain()
+    {
+        Time.timeScale = 1;
+        var currentScene = SceneManager.GetActiveScene();
+        
+        SceneManager.LoadScene(currentScene.name);
+    }
 }

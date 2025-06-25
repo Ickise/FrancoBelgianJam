@@ -32,6 +32,7 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(gameSceneName); 
+        
     }
 
     public void OpenSettings()

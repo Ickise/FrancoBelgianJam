@@ -19,7 +19,6 @@ public class CowController : MonoBehaviour
     [SerializeField] private int fartDistance = 9;
     [SerializeField] private int minTimeRecoverFromFart = 5;
     [SerializeField] private int maxTimeRecoverFromFart = 9;
-    [SerializeField] private int timeFartCreation = 2;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private int anticipationLevel = 1;
     [SerializeField] private bool debugGizmos = false;

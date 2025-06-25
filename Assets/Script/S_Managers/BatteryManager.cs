@@ -12,7 +12,7 @@ public class BatteryManager : MonoBehaviour
     [SerializeField] private float makeSoundConsumptionRate = 1f;
     [SerializeField] private float overchargeDepletionRate = 0.3f;
     [SerializeField] private float overchargeRate = 1.5f;
-    
+
     private float currentBattery;
     private float maxOvercharge;
 
@@ -26,23 +26,23 @@ public class BatteryManager : MonoBehaviour
 
     private void Awake()
     {
-        inputReader = GameManager.instance.InputReader;
-        batteryUI = UIManager.instance.BatteryUI;
-        
         currentBattery = maxBattery;
         maxOvercharge = maxBattery * overchargeRate;
+        
+        inputReader = GameManager.instance.InputReader;
+        batteryUI = UIManager.instance.BatteryUI;
     }
 
     private void OnEnable()
     {
-        inputReader.RightTriggerEvent += () => ChangeEnergyValue(vacuumConsumption, false);
-        inputReader.LeftTriggerEvent += () => ChangeEnergyValue(makeNoiseConsumption, false);
+        inputReader.RightTriggerEvent += HandleRightTrigger;
+        inputReader.LeftTriggerEvent += HandleLeftTrigger;
     }
 
     private void OnDisable()
     {
-        inputReader.RightTriggerEvent -= () => ChangeEnergyValue(vacuumConsumption, false);
-        inputReader.LeftTriggerEvent -= () => ChangeEnergyValue(makeNoiseConsumption, false);
+        inputReader.RightTriggerEvent -= HandleRightTrigger;
+        inputReader.LeftTriggerEvent -= HandleLeftTrigger;
     }
 
     private void Update()
@@ -74,11 +74,11 @@ public class BatteryManager : MonoBehaviour
         {
             actionTime = 0f;
         }
-        
-        batteryUI.EnableOverchargeUI(BatteryOvercharging()); 
+
+        batteryUI.EnableOverchargeUI(BatteryOvercharging());
 
         if (!BatteryOvercharging()) return;
-        
+
         DefleteBatteryOnOvercharging();
     }
 
@@ -90,6 +90,16 @@ public class BatteryManager : MonoBehaviour
 
         ChangeEnergyValue(overchargeConsumption, false);
         overchargeTime = 0f;
+    }
+    
+    private void HandleRightTrigger()
+    {
+        ChangeEnergyValue(vacuumConsumption, false);
+    }
+
+    private void HandleLeftTrigger()
+    {
+        ChangeEnergyValue(makeNoiseConsumption, false);
     }
 
     public void ChangeEnergyValue(float amount, bool isIncreasing)
@@ -123,18 +133,8 @@ public class BatteryManager : MonoBehaviour
     public bool BatteryOvercharging()
     {
         isOvercharge = currentBattery > maxBattery;
-        batteryUI.EnableOverchargeUI(isOvercharge); 
+        batteryUI.EnableOverchargeUI(isOvercharge);
         return isOvercharge;
-    }
-
-    public float GetCurrentBattery()
-    {
-        return currentBattery;
-    }
-
-    public float GetMaxBattery()
-    {
-        return maxBattery;
     }
 
     public void ChangeBatteryCapacities(float baseCapa, float overCapa)
@@ -148,4 +148,7 @@ public class BatteryManager : MonoBehaviour
     {
         gasIntoEnergyConversion = value;
     }
+    
+    public float GetCurrentBattery() => currentBattery;
+    public float GetMaxBattery() => maxBattery;
 }

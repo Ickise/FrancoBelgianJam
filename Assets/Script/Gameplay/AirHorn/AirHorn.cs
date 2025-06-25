@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AirHorn : ToolBase
@@ -9,7 +10,6 @@ public class AirHorn : ToolBase
     [SerializeField] private ParticleSystem bigDisturbParticles;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private InputReader inputReader;
 
     [SerializeField, Header("Settings")] private float holdThreshold = 3f;
     [SerializeField] private float radius = 2f;
@@ -20,6 +20,13 @@ public class AirHorn : ToolBase
     private bool isBigDisturb = false;
     private ParticleSystem.ShapeModule littleShape;
     private ParticleSystem.ShapeModule bigShape;
+    
+    private InputReader inputReader;
+
+    private void Awake()
+    {
+        inputReader = GameManager.instance.InputReader;
+    }
 
     private void Start()
     {
