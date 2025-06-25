@@ -57,7 +57,7 @@ public class PeaceState : ICowState
 
     private void SetRandomDestination()
     {
-        for (int attempts = 0; attempts < 10; attempts++)
+        for (var attempts = 0; attempts < 10; attempts++)
         {
             Vector3 randomDirection =
                 Random.insideUnitSphere * Random.Range(cow.GetMinDistance(), cow.GetMaxDistance());
@@ -65,7 +65,8 @@ public class PeaceState : ICowState
 
             if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, cow.GetMaxDistance(), NavMesh.AllAreas))
             {
-                NavMeshPath path = new NavMeshPath();
+                var path = new NavMeshPath();
+                
                 if (navMeshAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
                 {
                     navMeshAgent.SetPath(path);
@@ -79,12 +80,11 @@ public class PeaceState : ICowState
 
     private void EnsureOnNavMesh()
     {
-        if (!navMeshAgent.isOnNavMesh)
+        if (navMeshAgent.isOnNavMesh) return;
+        
+        if (NavMesh.SamplePosition(cow.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas))
         {
-            if (NavMesh.SamplePosition(cow.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas))
-            {
-                navMeshAgent.Warp(hit.position);
-            }
+            navMeshAgent.Warp(hit.position);
         }
     }
 }

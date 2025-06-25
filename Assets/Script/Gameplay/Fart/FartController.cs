@@ -12,18 +12,22 @@ public class FartController : MonoBehaviour
     [SerializeField] private float timeToDisappear = 5f;
     [SerializeField] private float fleeSpeed = 3f;
     [SerializeField] private float catchSpeed = 5f;
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private float distanceToBeEvil = 10f;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Animator fartAnimator;
+    [SerializeField] private int maxDistance = 3;
 
     private Vector3 playerDir;
+
+    private Transform playerTransform;
 
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = GameManager.instance;
+        playerTransform = gameManager.GetPlayerTransform();
+        
         SwitchState(new FollowState(this));
     }
 
@@ -56,6 +60,7 @@ public class FartController : MonoBehaviour
     public Animator Animator => fartAnimator;
     
     public float GetSpeedFollowCow() => speedFollowCow;
+    public int GetMaxDistance() => maxDistance;
     public float GetTimeFollowCow() => timeFollowCow;
     public float GetEvilSpeed() => evilSpeed;
     public float GetTimeToDisappear() => timeToDisappear;

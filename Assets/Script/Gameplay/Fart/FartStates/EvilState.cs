@@ -10,8 +10,6 @@ public class EvilState : IFartState
     private float time;
     private float timeToDisappear;
 
-    private Vector3 newDirection;
-
     public EvilState(FartController fart)
     {
         this.fart = fart;
@@ -22,17 +20,28 @@ public class EvilState : IFartState
     public void EnterState()
     {
         timeToDisappear = fart.GetTimeToDisappear();
-        Vector3 playerDir = fart.GetPlayerDirection();
-        newDirection = Quaternion.Euler(0, Random.Range(-fart.GetRangeAngle(), fart.GetRangeAngle()), 0) * -playerDir;
 
-        navMeshAgent.speed = fart.GetEvilSpeed();
-        navMeshAgent.SetDestination(fart.transform.position + newDirection * 10f);
+        EnsureOnNavMesh();
+        ResetState();
+        SetRandomDestination();
+    }
+    
+    private void ResetState()
+    {
+        navMeshAgent.ResetPath();
     }
 
     public void UpdateState()
     {
         time += Time.deltaTime;
         animator.SetTrigger("Idle");
+        
+        if (!navMeshAgent.isOnNavMesh || !navMeshAgent.hasPath ||
+            navMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
+        {
+            SetRandomDestination();
+        }
+
         if (time >= timeToDisappear)
         {
             Object.Destroy(fart.gameObject);
@@ -42,6 +51,40 @@ public class EvilState : IFartState
     public void ExitState()
     {
         time = 0f;
-        newDirection = Vector3.zero;
+        ResetState();
+    }
+
+    private void EnsureOnNavMesh()
+    {
+        if (navMeshAgent.isOnNavMesh) return;
+        
+        if (NavMesh.SamplePosition(fart.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+        {
+            navMeshAgent.Warp(hit.position);
+        }
+    }
+
+    private void SetRandomDestination()
+    {
+        Vector3 startPos = fart.transform.position;
+        Vector3 playerDir = fart.GetPlayerDirection();
+
+        for (var attempts = 0; attempts < 10; attempts++)
+        {
+            var dir = Quaternion.Euler(0, Random.Range(-fart.GetRangeAngle(), fart.GetRangeAngle()), 0) * -playerDir;
+            var candidate = startPos + dir * Random.Range(3f, 10f);
+
+            if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, fart.GetMaxDistance(), NavMesh.AllAreas))
+            {
+                var path = new NavMeshPath();
+                
+                if (navMeshAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    navMeshAgent.speed = fart.GetEvilSpeed();
+                    navMeshAgent.SetPath(path);
+                    return;
+                }
+            }
+        }
     }
 }
