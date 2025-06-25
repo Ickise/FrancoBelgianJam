@@ -1,18 +1,14 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.AI;
+using System.Collections;
 
 public class FartState : ICowState
 {
     private CowController cow;
     private NavMeshAgent navMeshAgent;
-    private Vector3 escapeDirection;
     private Animator animator;
-    private bool isFarting = false;
 
-    public void EnterState(CowController cow)
-    {
-    }
+    public void EnterState(CowController cow) {}
 
     public void EnterState(CowController cow, Vector3 dangerSource)
     {
@@ -21,21 +17,12 @@ public class FartState : ICowState
         animator = cow.Animator;
 
         if (cow.HasBeenFarted()) return;
-
-        cow.SetFarting(true);
         cow.SetFarted(true);
 
-        escapeDirection = -(dangerSource - cow.transform.position).normalized;
-        escapeDirection.y = 0;
+        EnsureOnNavMesh();
 
-        Vector3 targetOffset = escapeDirection * cow.AnticipationLevel;
-        Vector3 targetPosition = cow.transform.position + escapeDirection * cow.GetFartDistance() + targetOffset;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(targetPosition, out hit, cow.GetFartDistance(), NavMesh.AllAreas))
-        {
-            navMeshAgent.SetDestination(hit.position);
-        }
+        Vector3 target = cow.GetEscapePosition(dangerSource, cow.GetFartDistance());
+        navMeshAgent.SetDestination(target);
 
         cow.StartCoroutine(FartRoutine());
     }
@@ -43,38 +30,39 @@ public class FartState : ICowState
     public void UpdateState()
     {
         animator.SetTrigger("RunFart");
-
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-        {
-            cow.SetFarting(false);
-            cow.StartCoroutine(RecoverBeforePeace());
-        }
     }
 
     public void ExitState()
     {
         animator.SetTrigger("Walk");
-        cow.SetFarting(false);
         cow.ResetFartState();
         cow.StopAllCoroutines();
     }
 
     private IEnumerator FartRoutine()
     {
-        isFarting = true;
+        float duration = Random.Range(cow.GetMinTimeRecoverFromFart(), cow.GetMaxTimeRecoverFromFart());
+        float timer = 0f;
 
-        while (isFarting)
+        while (timer < duration)
         {
             cow.SpawnFart();
-
             float waitTime = Random.Range(1f, 3f);
             yield return new WaitForSeconds(waitTime);
+            timer += waitTime;
         }
+
+        cow.SwitchState(new PeaceState());
     }
 
-    private IEnumerator RecoverBeforePeace()
+    private void EnsureOnNavMesh()
     {
-        yield return new WaitForSeconds(Random.Range(cow.GetMinTimeRecoverFromFart(), cow.GetMaxTimeRecoverFromFart()));
-        cow.SwitchState(new PeaceState());
+        if (!navMeshAgent.isOnNavMesh)
+        {
+            if (NavMesh.SamplePosition(cow.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+            {
+                navMeshAgent.Warp(hit.position);
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3577099835575974494}
   - component: {fileID: 6278641582701592012}
   - component: {fileID: 7642869328577525247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Placeholder_Mesh_Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3146637589382628431}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P_Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 4284950186165979045}
   - component: {fileID: 4243659948781980380}
   - component: {fileID: 1827628037572868871}
-  m_Layer: 4
+  m_Layer: 8
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

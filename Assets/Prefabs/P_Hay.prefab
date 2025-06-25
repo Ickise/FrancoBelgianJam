@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5867004878217327154}
   - component: {fileID: 5396392701564592383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3914633229612702406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P_Hay
   m_TagString: Untagged
   m_Icon: {fileID: 0}

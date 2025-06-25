@@ -16,7 +16,7 @@ public class SpawningCowsManager : MonoBehaviour
         PoolCows();
     }
 
-    public void PoolCows()
+    private void PoolCows()
     {
         foreach (var area in spawnCowsAreas)
         {
@@ -24,7 +24,7 @@ public class SpawningCowsManager : MonoBehaviour
             
             for (int i = 0; i < number; i++)
             {
-                if (poolCows.Count > 0) //Pool a Cow rather than instantiate it
+                if (poolCows.Count > 0)
                 {
                     var cowToSet = poolCows[0];
                     cowToSet.position = GetRandomPointInsideCollider(area.spawnArea, false);
@@ -35,7 +35,7 @@ public class SpawningCowsManager : MonoBehaviour
                     poolCows.RemoveAt(0);
                     cowToSet.gameObject.SetActive(true);
                 }
-                else //Instantiate one if pool is empty
+                else 
                 {
                     var cowClone = Instantiate(
                         cowPrefab,
@@ -95,7 +95,6 @@ public class CowsArea
     public BoxCollider spawnArea;
     public Vector2 numberOfCows = new(6,8);
     public int[] numberOfSpecialCows;
-
 }
 
 
