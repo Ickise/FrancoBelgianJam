@@ -124,8 +124,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleEnergyConsumption(Vector3 move)
     {
-        if (move == Vector3.zero) return;
-
+        if (move.x == 0 && move.z == 0) return;
+        
         time += Time.fixedDeltaTime;
 
         if (!(time >= playerData.moveConsumptionRate)) return;
