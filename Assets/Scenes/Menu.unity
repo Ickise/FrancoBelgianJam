@@ -196,7 +196,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 1641439910}
   windowedToggle: {fileID: 1617104866}
   mainMenuSceneName: Menu
-  gameSceneName: Enzo
+  gameSceneName: Terrain
 --- !u!4 &35386556
 Transform:
   m_ObjectHideFlags: 0
