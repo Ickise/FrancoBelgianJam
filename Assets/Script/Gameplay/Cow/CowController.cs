@@ -6,9 +6,11 @@ using UnityEditor;
 public class CowController : MonoBehaviour
 {
     public bool DebugGizmos => debugGizmos;
+    public float ArrivalThreshold => arrivalThreshold;
 
     private ICowState currentState;
-
+    
+    [SerializeField] private float arrivalThreshold = 0.5f;
     [SerializeField] private int minDistance = 1;
     [SerializeField] private int maxDistance = 3;
     [SerializeField] private float speedPeace = 3f;

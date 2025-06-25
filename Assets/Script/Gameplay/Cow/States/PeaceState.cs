@@ -19,11 +19,14 @@ public class PeaceState : ICowState
         SetRandomDestination();
     }
 
-    public void EnterState(CowController cow, Vector3 dangerSource) {}
+    public void EnterState(CowController cow, Vector3 dangerSource)
+    {
+    }
 
     public void UpdateState()
     {
-        if (!navMeshAgent.isOnNavMesh || !navMeshAgent.hasPath || navMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
+        if (!navMeshAgent.isOnNavMesh || !navMeshAgent.hasPath ||
+            navMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
         {
             Debug.LogWarning($"[{cow.name}] Invalid path in PeaceState. Recalculating...");
             SetRandomDestination();
@@ -32,11 +35,14 @@ public class PeaceState : ICowState
 
         animator.SetTrigger("Walk");
 
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-        {
-            SetRandomDestination();
-            Debug.Log("lets go elle bouge");
-        }
+        if (navMeshAgent.pathPending || !navMeshAgent.hasPath) return;
+
+        var dist = Vector3.Distance(cow.transform.position, navMeshAgent.destination);
+
+        if (!(dist <= cow.ArrivalThreshold) &&
+            !(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + 0.1f)) return;
+
+        SetRandomDestination();
     }
 
     public void ExitState()
@@ -53,7 +59,8 @@ public class PeaceState : ICowState
     {
         for (int attempts = 0; attempts < 10; attempts++)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * Random.Range(cow.GetMinDistance(), cow.GetMaxDistance());
+            Vector3 randomDirection =
+                Random.insideUnitSphere * Random.Range(cow.GetMinDistance(), cow.GetMaxDistance());
             randomDirection += cow.transform.position;
 
             if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, cow.GetMaxDistance(), NavMesh.AllAreas))

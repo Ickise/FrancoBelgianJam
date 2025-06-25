@@ -19,20 +19,38 @@ public class AfraidState : ICowState
         navMeshAgent.speed = cow.GetSpeedAfraid();
 
         Vector3 target = cow.GetEscapePosition(dangerSource, cow.GetAfraidDistance());
-        navMeshAgent.SetDestination(target);
+
+        if (NavMesh.SamplePosition(target, out NavMeshHit hit, cow.GetAfraidDistance(), NavMesh.AllAreas))
+        {
+            NavMeshPath path = new NavMeshPath();
+            if (navMeshAgent.CalculatePath(hit.position, path) && path.status == NavMeshPathStatus.PathComplete)
+            {
+                navMeshAgent.SetPath(path);
+            }
+            else
+            {
+                Debug.LogWarning($"[{cow.name}] Failed to calculate path in AfraidState.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"[{cow.name}] Failed to find valid escape point in AfraidState.");
+        }
     }
 
     public void UpdateState()
     {
         if (!navMeshAgent.hasPath || navMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
         {
-            Debug.LogWarning($"[{cow.name}] Invalid path in AfraidState. Recalculating...");
+            Debug.LogWarning($"[{cow.name}] Invalid path in AfraidState. Waiting...");
             return;
         }
 
         animator.SetTrigger("WalkAfraid");
 
-        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        var dist = Vector3.Distance(cow.transform.position, navMeshAgent.destination);
+
+        if (!navMeshAgent.pathPending && (dist <= cow.ArrivalThreshold || navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + 0.1f))
         {
             cow.SwitchState(new PeaceState());
         }
