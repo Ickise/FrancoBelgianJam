@@ -73,28 +73,31 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpdateUpgradeMenu()
     {
+        var allUpgradesPurchased = lPlayerUpgrades.TrueForAll(upgrade => upgrade.index >= 3);
+
+        if (allUpgradesPurchased) return;
+        
+        UIManager.instance.ShowUpgradeCanvas();
+
         ChooseRangeRandomUpgrade();
 
         leftUpgradeButton.onClick.RemoveAllListeners();
         middleUpgradeButton.onClick.RemoveAllListeners();
         rightUpgradeButton.onClick.RemoveAllListeners();
-        
+
         leftUpgradeButton.onClick.AddListener(() =>
         {
             ChooseUpgrade(0);
-            AudioManager.instance.PlaySFX("BuyUpgrade");
             UIManager.instance.ShowUpgradeCanvas();
         });
         middleUpgradeButton.onClick.AddListener(() =>
         {
             ChooseUpgrade(1);
-            AudioManager.instance.PlaySFX("BuyUpgrade");
             UIManager.instance.ShowUpgradeCanvas();
         });
         rightUpgradeButton.onClick.AddListener(() =>
         {
             ChooseUpgrade(2);
-            AudioManager.instance.PlaySFX("BuyUpgrade");
             UIManager.instance.ShowUpgradeCanvas();
         });
 
@@ -105,10 +108,14 @@ public class UpgradeManager : MonoBehaviour
     {
         currentPool.Clear();
         var newList = new List<UpgradesObjects>();
-        
+
         foreach (var upgrades in lPoolUpgrades)
         {
-            newList.Add(upgrades);
+            var playerUpgrade = lPlayerUpgrades.Find(upgrade => upgrade.type == upgrades.upgradeType);
+            if (playerUpgrade != null && playerUpgrade.index < 3)
+            {
+                newList.Add(upgrades);
+            }
         }
 
         for (int i = 0; i < 3; i++)
@@ -125,6 +132,7 @@ public class UpgradeManager : MonoBehaviour
             }
         }
 
+
         for (int i = 0; i < currentPool.Count; i++)
         {
             upgradeTexts[i * 3].text = currentPool[i].upgradeTexts[0];
@@ -137,9 +145,16 @@ public class UpgradeManager : MonoBehaviour
             }
             else
             {
-                upgradeTexts[i * 3 + 2].text = "Level 1"; 
+                upgradeTexts[i * 3 + 2].text = "Level 1";
             }
         }
+
+        leftUpgradeButton.gameObject.SetActive(currentPool.Count > 0 &&
+                                               currentPool[0].upgradeType != EnumUpgradeType.None);
+        middleUpgradeButton.gameObject.SetActive(currentPool.Count > 1 &&
+                                                 currentPool[1].upgradeType != EnumUpgradeType.None);
+        rightUpgradeButton.gameObject.SetActive(currentPool.Count > 2 &&
+                                                currentPool[2].upgradeType != EnumUpgradeType.None);
     }
 
     public void ChooseUpgrade(int position)
@@ -216,11 +231,6 @@ public class UpgradeManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Start()
-    {
-        GameManager.instance.GasManagerRef.ChangeGasStockValue(1000, true);
     }
 }
 

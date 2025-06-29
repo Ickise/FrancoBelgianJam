@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlaySFX("BuyUpgrade");
             ShowInGameCanvas();
         }
     }

@@ -22,7 +22,6 @@ public class FacilityDetection : MonoBehaviour
 
         GameManager.instance.GasManagerRef.ChangeGasStockValue(gasQuantity, false);
 
-        UIManager.instance.ShowUpgradeCanvas();
         UpgradeManager.instance.UpdateUpgradeMenu();
     }
 
