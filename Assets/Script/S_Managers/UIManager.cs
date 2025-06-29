@@ -55,9 +55,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void ShowUpgradeCanvas()
+    public void ShowUpgradeCanvas()
     {
-        SetActiveCanvas(upgradeCanvas);
+        ToggleCanvas(upgradeCanvas);
 
         if (upgradeCanvas.activeSelf)
         {

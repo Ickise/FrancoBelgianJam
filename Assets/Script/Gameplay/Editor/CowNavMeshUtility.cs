@@ -18,7 +18,7 @@ public class CowNavMeshUtility : Editor
 
         if (GUILayout.Button("Reposition ALL Cows In Scene"))
         {
-            CowController[] cows = FindObjectsOfType<CowController>();
+            CowController[] cows = FindObjectsByType<CowController>(FindObjectsSortMode.None);
             int repositioned = 0;
 
             foreach (var c in cows)

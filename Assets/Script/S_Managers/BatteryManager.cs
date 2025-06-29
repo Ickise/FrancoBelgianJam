@@ -120,7 +120,7 @@ public class BatteryManager : MonoBehaviour
             UIManager.instance.ShowEndGameCanvas();
         }
     }
-
+    
     public void RechargeBattery(float gasAmount)
     {
         if (gasAmount <= 0) return;
@@ -147,6 +147,12 @@ public class BatteryManager : MonoBehaviour
     public void ChangeConversion(float value)
     {
         gasIntoEnergyConversion = value;
+    }
+        
+    [ContextMenu("Recharge Battery")]
+    private void GainBattery()
+    {
+        RechargeBattery(1000f);
     }
     
     public float GetCurrentBattery() => currentBattery;

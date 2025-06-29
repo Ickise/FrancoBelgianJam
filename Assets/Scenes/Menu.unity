@@ -196,7 +196,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 1641439910}
   windowedToggle: {fileID: 1617104866}
   mainMenuSceneName: Menu
-  gameSceneName: Terrain
+  gameSceneName: Enzo
 --- !u!4 &35386556
 Transform:
   m_ObjectHideFlags: 0
@@ -1809,6 +1809,11 @@ MonoBehaviour:
     humanize: 0
     source: {fileID: 2034697031}
     clip: {fileID: 8300000, guid: 9d35cafb62841834c82a1a7bb6a02dbe, type: 3}
+  - name: BuyUpgrade
+    loop: 0
+    humanize: 0
+    source: {fileID: 2034697031}
+    clip: {fileID: 8300000, guid: 3dba757e615f06e47921a0b01971c51e, type: 3}
   globalVolume: 0.5
   debug: 1
 --- !u!1 &496012214

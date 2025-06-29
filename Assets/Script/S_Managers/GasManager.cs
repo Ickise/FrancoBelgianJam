@@ -40,4 +40,11 @@ public class GasManager : MonoBehaviour
         maxTankOverfill = overCapa;
         UIManager.instance.GasUI.UpdateGasUI();
     }
+    
+    [ContextMenu("Gain Gas")]
+    public void GainGas()
+    {
+        ChangeGasStockValue(1000f, true);
+        Debug.Log("Gained 1000 gas.");
+    }
 }

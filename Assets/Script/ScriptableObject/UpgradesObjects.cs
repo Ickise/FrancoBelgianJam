@@ -6,7 +6,6 @@ public class UpgradesObjects : ScriptableObject
 {
     public EnumUpgradeType upgradeType;
     public List<string> upgradeTexts;
-
 }
 
 public enum EnumUpgradeType

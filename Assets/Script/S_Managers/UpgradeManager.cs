@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance;
 
+    [Header("Upgrade Buttons")] [SerializeField]
+    private Button leftUpgradeButton;
+
+    [SerializeField] private Button middleUpgradeButton;
+    [SerializeField] private Button rightUpgradeButton;
+
     [SerializeField] private List<float> currentUpgradePrice;
-    [SerializeField] private int currentPriceIndex;
 
     [SerializeField] private float scorePenalty = 0.2f;
     [SerializeField] private List<FacilityDetection> lFacilities;
@@ -24,7 +30,9 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject uiMenuUpgrade;
     [SerializeField] private UpgradesObjects emptyUpgrade;
     [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private GameObject firstButton;
+
+    private int currentPriceIndex;
+
     private void Awake()
     {
         if (instance == null)
@@ -43,10 +51,10 @@ public class UpgradeManager : MonoBehaviour
     void RisePrice()
     {
         if (currentPriceIndex + 1 >= currentUpgradePrice.Count) return;
-        
+
         Debug.Log("Rise price");
         currentPriceIndex++;
-        
+
         foreach (var facility in lFacilities)
         {
             facility.SetGasQuantity(GetPrice());
@@ -63,25 +71,41 @@ public class UpgradeManager : MonoBehaviour
         return scorePenalty;
     }
 
-    public void ChangeMenuUpgradeState(bool state)
+    public void UpdateUpgradeMenu()
     {
-        if (state)
+        ChooseRangeRandomUpgrade();
+
+        leftUpgradeButton.onClick.RemoveAllListeners();
+        middleUpgradeButton.onClick.RemoveAllListeners();
+        rightUpgradeButton.onClick.RemoveAllListeners();
+        
+        leftUpgradeButton.onClick.AddListener(() =>
         {
-            ChooseRangeRandomUpgrade();
-            Time.timeScale = 0;
-        }
-        else
+            ChooseUpgrade(0);
+            AudioManager.instance.PlaySFX("BuyUpgrade");
+            UIManager.instance.ShowUpgradeCanvas();
+        });
+        middleUpgradeButton.onClick.AddListener(() =>
         {
-            Time.timeScale = 1;
-        }
-        uiMenuUpgrade.SetActive(state);
-        eventSystem.SetSelectedGameObject(firstButton);
+            ChooseUpgrade(1);
+            AudioManager.instance.PlaySFX("BuyUpgrade");
+            UIManager.instance.ShowUpgradeCanvas();
+        });
+        rightUpgradeButton.onClick.AddListener(() =>
+        {
+            ChooseUpgrade(2);
+            AudioManager.instance.PlaySFX("BuyUpgrade");
+            UIManager.instance.ShowUpgradeCanvas();
+        });
+
+        eventSystem.SetSelectedGameObject(middleUpgradeButton.gameObject);
     }
 
     private void ChooseRangeRandomUpgrade()
     {
         currentPool.Clear();
         var newList = new List<UpgradesObjects>();
+        
         foreach (var upgrades in lPoolUpgrades)
         {
             newList.Add(upgrades);
@@ -96,16 +120,24 @@ public class UpgradeManager : MonoBehaviour
             else
             {
                 var index = Random.Range(0, newList.Count);
-                currentPool.Add(newList[index]); 
+                currentPool.Add(newList[index]);
                 newList.RemoveAt(index);
             }
         }
 
         for (int i = 0; i < currentPool.Count; i++)
         {
-            for (int j = 0; j < 2; j++)
+            upgradeTexts[i * 3].text = currentPool[i].upgradeTexts[0];
+            upgradeTexts[i * 3 + 1].text = currentPool[i].upgradeTexts[1];
+
+            var playerUpgrade = lPlayerUpgrades.Find(upgrade => upgrade.type == currentPool[i].upgradeType);
+            if (playerUpgrade != null)
             {
-                upgradeTexts[i*3 + j].text = currentPool[i].upgradeTexts[j];
+                upgradeTexts[i * 3 + 2].text = $"Level {playerUpgrade.index + 1}";
+            }
+            else
+            {
+                upgradeTexts[i * 3 + 2].text = "Level 1"; 
             }
         }
     }
@@ -121,6 +153,7 @@ public class UpgradeManager : MonoBehaviour
                 break;
             }
         }
+
         SetUpgrade(upgrade.upgradeType);
     }
 
@@ -130,15 +163,14 @@ public class UpgradeManager : MonoBehaviour
         {
             return;
         }
-        
+
         if (lPlayerUpgrades[(int)upgradeType].index > 3)
         {
             Debug.Log("non");
             return;
         }
-        
+
         RisePrice();
-        ChangeMenuUpgradeState(false);
         switch (upgradeType)
         {
             case EnumUpgradeType.CharacterSpeed:
@@ -146,19 +178,22 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case EnumUpgradeType.BatteryCapacity:
-                GameManager.instance?.BatteryManagerRef.ChangeBatteryCapacities(uList.batteryCapacities[lPlayerUpgrades[1].index], 
+                GameManager.instance?.BatteryManagerRef.ChangeBatteryCapacities(
+                    uList.batteryCapacities[lPlayerUpgrades[1].index],
                     uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index]);
                 break;
-            
+
             case EnumUpgradeType.GasTankCapacity:
-                GameManager.instance.GasManagerRef.ChangeGasTankCapacities(uList.gasTankCapacities[lPlayerUpgrades[2].index],
+                GameManager.instance.GasManagerRef.ChangeGasTankCapacities(
+                    uList.gasTankCapacities[lPlayerUpgrades[2].index],
                     uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index]);
                 break;
-            
+
             case EnumUpgradeType.GasToBatteryConversion:
-                GameManager.instance?.BatteryManagerRef.ChangeConversion(uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
+                GameManager.instance?.BatteryManagerRef.ChangeConversion(
+                    uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
                 break;
-            
+
             case EnumUpgradeType.VacuumArea:
                 var dist = uList.vacuumAreaDistances[lPlayerUpgrades[4].index];
                 var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[4].index];
@@ -185,7 +220,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        //GasManager.instance.ChangeGasStockValue(1000, true);
+        GameManager.instance.GasManagerRef.ChangeGasStockValue(1000, true);
     }
 }
 
