@@ -38,10 +38,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpdateUpgradeMenu()
     {
-        if (AreAllUpgradesPurchased())
-        {
-            return;
-        }
+        if (AreAllUpgradesPurchased()) return;
 
         UIManager.instance.ShowUpgradeCanvas();
         SetupUpgradeMenu();
@@ -71,7 +68,7 @@ public class UpgradeManager : MonoBehaviour
     private List<UpgradesObjects> GetAvailableUpgrades()
     {
         var availableUpgrades = new List<UpgradesObjects>();
-        
+
         foreach (var upgrade in lPoolUpgrades)
         {
             var playerUpgrade = lPlayerUpgrades.Find(u => u.type == upgrade.upgradeType);
@@ -207,7 +204,7 @@ public class UpgradeManager : MonoBehaviour
     {
         return lPoolUpgrades.Count <= 0;
     }
-    
+
     public void NotifyFacilitiesAllUpgradesObtained()
     {
         foreach (var facility in lFacilities)

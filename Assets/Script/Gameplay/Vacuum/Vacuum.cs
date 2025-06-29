@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -44,6 +45,7 @@ public class Vacuum : ToolBase
         {
             animator.SetTrigger("Sucking");
             vacuumEffect.SetActive(true);
+            //  AudioManager.instance.PlaySFX("VacuumLoop");
             //UpdateParticleSystem();
             DetectObjectsInCone();
         }
@@ -51,6 +53,7 @@ public class Vacuum : ToolBase
         {
             animator.SetTrigger("Default");
             vacuumEffect.SetActive(false);
+            AudioManager.instance.Stop("VacuumLoop");
             StopSuction();
         }
     }

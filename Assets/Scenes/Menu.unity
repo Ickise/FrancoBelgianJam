@@ -1814,8 +1814,18 @@ MonoBehaviour:
     humanize: 0
     source: {fileID: 2034697031}
     clip: {fileID: 8300000, guid: 3dba757e615f06e47921a0b01971c51e, type: 3}
+  - name: VacuumLoop
+    loop: 1
+    humanize: 0
+    source: {fileID: 2034697031}
+    clip: {fileID: 8300000, guid: 0f1f529818753ba419755c86e7224c43, type: 3}
+  - name: VacuumBegin
+    loop: 0
+    humanize: 0
+    source: {fileID: 2034697031}
+    clip: {fileID: 8300000, guid: 42ed2445f85964e45a4ffa6a607c6463, type: 3}
   globalVolume: 0.5
-  debug: 0
+  debug: 1
 --- !u!1 &496012214
 GameObject:
   m_ObjectHideFlags: 0
