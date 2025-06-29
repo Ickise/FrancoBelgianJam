@@ -235,6 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a69326eb72a6da40a7b6b3376cefd16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftUpgradeButton: {fileID: 0}
+  middleUpgradeButton: {fileID: 0}
+  rightUpgradeButton: {fileID: 0}
   currentUpgradePrice:
   - 40
   - 50
@@ -242,7 +245,6 @@ MonoBehaviour:
   - 80
   - 100
   - 120
-  currentPriceIndex: 0
   scorePenalty: 0.2
   lFacilities: []
   upgradeTexts: []
@@ -270,7 +272,6 @@ MonoBehaviour:
   uiMenuUpgrade: {fileID: 0}
   emptyUpgrade: {fileID: 11400000, guid: 3ab891e1637d4a943937f4b49ee0c148, type: 2}
   eventSystem: {fileID: 0}
-  firstButton: {fileID: 0}
 --- !u!1 &7412821599674000206
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gasManagerRef: {fileID: 1420780058955293356}
   batteryManagerRef: {fileID: 5279717677443891384}
+  upgradeManagerRef: {fileID: 116623798176234413}
   inputReader: {fileID: 11400000, guid: 4b557b15ad8a02548ae63d82a49c095c, type: 2}
   playerTransform: {fileID: 0}
   vacuumTransform: {fileID: 0}

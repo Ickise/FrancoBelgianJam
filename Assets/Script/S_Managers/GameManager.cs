@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private GasManager gasManagerRef;
 
     [SerializeField] private BatteryManager batteryManagerRef;
+    [SerializeField] private UpgradeManager upgradeManagerRef;
 
     [Header("Data References")] [SerializeField]
     private InputReader inputReader;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public GasManager GasManagerRef => gasManagerRef;
     public BatteryManager BatteryManagerRef => batteryManagerRef;
+    public  UpgradeManager UpgradeManagerRef => upgradeManagerRef;
 
     public InputReader InputReader => inputReader;
 

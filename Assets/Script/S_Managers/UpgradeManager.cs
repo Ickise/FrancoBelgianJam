@@ -8,230 +8,216 @@ using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public static UpgradeManager instance;
-
     [Header("Upgrade Buttons")] [SerializeField]
     private Button leftUpgradeButton;
 
     [SerializeField] private Button middleUpgradeButton;
     [SerializeField] private Button rightUpgradeButton;
 
-    [SerializeField] private List<float> currentUpgradePrice;
+    [Header("Upgrade Settings")] [SerializeField]
+    private List<float> currentUpgradePrice;
 
     [SerializeField] private float scorePenalty = 0.2f;
     [SerializeField] private List<FacilityDetection> lFacilities;
-
     [SerializeField] private List<TextMeshProUGUI> upgradeTexts;
     [SerializeField] private List<UpgradesObjects> lPoolUpgrades;
-    private List<UpgradesObjects> currentPool;
     [SerializeField] private List<PlayerUpgrades> lPlayerUpgrades;
     [SerializeField] private UpgradeList uList;
     [SerializeField] private PlayerMovement pMov;
-    [SerializeField] private GameObject uiMenuUpgrade;
     [SerializeField] private UpgradesObjects emptyUpgrade;
     [SerializeField] private EventSystem eventSystem;
 
+    private List<UpgradesObjects> currentPool;
     private int currentPriceIndex;
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         currentPriceIndex = 0;
         currentPool = new List<UpgradesObjects>();
     }
 
-    void RisePrice()
-    {
-        if (currentPriceIndex + 1 >= currentUpgradePrice.Count) return;
-
-        Debug.Log("Rise price");
-        currentPriceIndex++;
-
-        foreach (var facility in lFacilities)
-        {
-            facility.SetGasQuantity(GetPrice());
-        }
-    }
-
-    public float GetPrice()
-    {
-        return currentUpgradePrice[currentPriceIndex];
-    }
-
-    public float GetPenalty()
-    {
-        return scorePenalty;
-    }
-
     public void UpdateUpgradeMenu()
     {
-        var allUpgradesPurchased = lPlayerUpgrades.TrueForAll(upgrade => upgrade.index >= 3);
+        if (AreAllUpgradesPurchased())
+        {
+            return;
+        }
 
-        if (allUpgradesPurchased) return;
-        
         UIManager.instance.ShowUpgradeCanvas();
+        SetupUpgradeMenu();
+    }
 
+    private void SetupUpgradeMenu()
+    {
         ChooseRangeRandomUpgrade();
-
-        leftUpgradeButton.onClick.RemoveAllListeners();
-        middleUpgradeButton.onClick.RemoveAllListeners();
-        rightUpgradeButton.onClick.RemoveAllListeners();
-
-        leftUpgradeButton.onClick.AddListener(() =>
-        {
-            ChooseUpgrade(0);
-            UIManager.instance.ShowUpgradeCanvas();
-        });
-        middleUpgradeButton.onClick.AddListener(() =>
-        {
-            ChooseUpgrade(1);
-            UIManager.instance.ShowUpgradeCanvas();
-        });
-        rightUpgradeButton.onClick.AddListener(() =>
-        {
-            ChooseUpgrade(2);
-            UIManager.instance.ShowUpgradeCanvas();
-        });
-
+        SetupButtons();
         eventSystem.SetSelectedGameObject(middleUpgradeButton.gameObject);
     }
 
     private void ChooseRangeRandomUpgrade()
     {
         currentPool.Clear();
-        var newList = new List<UpgradesObjects>();
+        var availableUpgrades = GetAvailableUpgrades();
 
-        foreach (var upgrades in lPoolUpgrades)
+        for (var i = 0; i < 3; i++)
         {
-            var playerUpgrade = lPlayerUpgrades.Find(upgrade => upgrade.type == upgrades.upgradeType);
+            currentPool.Add(availableUpgrades.Count > 0 ? GetRandomUpgrade(availableUpgrades) : emptyUpgrade);
+        }
+
+        UpdateUpgradeTexts();
+        UpdateButtonVisibility();
+    }
+
+    private List<UpgradesObjects> GetAvailableUpgrades()
+    {
+        var availableUpgrades = new List<UpgradesObjects>();
+        
+        foreach (var upgrade in lPoolUpgrades)
+        {
+            var playerUpgrade = lPlayerUpgrades.Find(u => u.type == upgrade.upgradeType);
             if (playerUpgrade != null && playerUpgrade.index < 3)
             {
-                newList.Add(upgrades);
+                availableUpgrades.Add(upgrade);
             }
         }
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (newList.Count == 0)
-            {
-                currentPool.Add(emptyUpgrade);
-            }
-            else
-            {
-                var index = Random.Range(0, newList.Count);
-                currentPool.Add(newList[index]);
-                newList.RemoveAt(index);
-            }
-        }
-
-
-        for (int i = 0; i < currentPool.Count; i++)
-        {
-            upgradeTexts[i * 3].text = currentPool[i].upgradeTexts[0];
-            upgradeTexts[i * 3 + 1].text = currentPool[i].upgradeTexts[1];
-
-            var playerUpgrade = lPlayerUpgrades.Find(upgrade => upgrade.type == currentPool[i].upgradeType);
-            if (playerUpgrade != null)
-            {
-                upgradeTexts[i * 3 + 2].text = $"Level {playerUpgrade.index + 1}";
-            }
-            else
-            {
-                upgradeTexts[i * 3 + 2].text = "Level 1";
-            }
-        }
-
-        leftUpgradeButton.gameObject.SetActive(currentPool.Count > 0 &&
-                                               currentPool[0].upgradeType != EnumUpgradeType.None);
-        middleUpgradeButton.gameObject.SetActive(currentPool.Count > 1 &&
-                                                 currentPool[1].upgradeType != EnumUpgradeType.None);
-        rightUpgradeButton.gameObject.SetActive(currentPool.Count > 2 &&
-                                                currentPool[2].upgradeType != EnumUpgradeType.None);
+        return availableUpgrades;
     }
 
-    public void ChooseUpgrade(int position)
+    private UpgradesObjects GetRandomUpgrade(List<UpgradesObjects> upgrades)
+    {
+        var index = Random.Range(0, upgrades.Count);
+        var selectedUpgrade = upgrades[index];
+        upgrades.RemoveAt(index);
+        return selectedUpgrade;
+    }
+
+    private void UpdateUpgradeTexts()
+    {
+        for (var i = 0; i < currentPool.Count; i++)
+        {
+            var upgrade = currentPool[i];
+            upgradeTexts[i * 3].text = upgrade.upgradeTexts[0];
+            upgradeTexts[i * 3 + 1].text = upgrade.upgradeTexts[1];
+
+            var playerUpgrade = lPlayerUpgrades.Find(u => u.type == upgrade.upgradeType);
+            upgradeTexts[i * 3 + 2].text = playerUpgrade != null ? $"Level {playerUpgrade.index + 1}" : "Level 1";
+        }
+    }
+
+    private void UpdateButtonVisibility()
+    {
+        leftUpgradeButton.gameObject.SetActive(IsUpgradeAvailable(0));
+        middleUpgradeButton.gameObject.SetActive(IsUpgradeAvailable(1));
+        rightUpgradeButton.gameObject.SetActive(IsUpgradeAvailable(2));
+    }
+
+    private bool IsUpgradeAvailable(int index)
+    {
+        return index < currentPool.Count && currentPool[index].upgradeType != EnumUpgradeType.None;
+    }
+
+    private void SetupButtons()
+    {
+        leftUpgradeButton.onClick.RemoveAllListeners();
+        middleUpgradeButton.onClick.RemoveAllListeners();
+        rightUpgradeButton.onClick.RemoveAllListeners();
+
+        leftUpgradeButton.onClick.AddListener(() => ApplyUpgrade(0));
+        middleUpgradeButton.onClick.AddListener(() => ApplyUpgrade(1));
+        rightUpgradeButton.onClick.AddListener(() => ApplyUpgrade(2));
+    }
+
+    private void ApplyUpgrade(int position)
     {
         var upgrade = currentPool[position];
-        foreach (var currentUpgrade in lPlayerUpgrades)
-        {
-            if (currentUpgrade.type == upgrade.upgradeType)
-            {
-                currentUpgrade.index++;
-                break;
-            }
-        }
-
+        IncrementUpgradeLevel(upgrade.upgradeType);
         SetUpgrade(upgrade.upgradeType);
+        UIManager.instance.ShowUpgradeCanvas();
     }
 
-    void SetUpgrade(EnumUpgradeType upgradeType)
+    private void IncrementUpgradeLevel(EnumUpgradeType upgradeType)
     {
-        if (upgradeType == EnumUpgradeType.None)
+        var playerUpgrade = lPlayerUpgrades.Find(u => u.type == upgradeType);
+        if (playerUpgrade != null)
         {
-            return;
+            playerUpgrade.index++;
         }
+    }
 
-        if (lPlayerUpgrades[(int)upgradeType].index > 3)
-        {
-            Debug.Log("non");
-            return;
-        }
+    private void SetUpgrade(EnumUpgradeType upgradeType)
+    {
+        if (upgradeType == EnumUpgradeType.None) return;
+
+        var playerUpgrade = lPlayerUpgrades[(int)upgradeType];
+        if (playerUpgrade.index > 3) return;
 
         RisePrice();
+        ApplyUpgradeEffect(upgradeType, playerUpgrade.index);
+
+        if (playerUpgrade.index == 3)
+        {
+            RemoveUpgradeFromPool(upgradeType);
+        }
+    }
+
+    private void ApplyUpgradeEffect(EnumUpgradeType upgradeType, int level)
+    {
         switch (upgradeType)
         {
             case EnumUpgradeType.CharacterSpeed:
-                pMov.ChangeSpeedMultiplier(uList.characterMultiplierSpeeds[lPlayerUpgrades[0].index]);
+                pMov.ChangeSpeedMultiplier(uList.characterMultiplierSpeeds[level]);
                 break;
-
             case EnumUpgradeType.BatteryCapacity:
                 GameManager.instance?.BatteryManagerRef.ChangeBatteryCapacities(
-                    uList.batteryCapacities[lPlayerUpgrades[1].index],
-                    uList.batteryOverchargeCapacities[lPlayerUpgrades[1].index]);
+                    uList.batteryCapacities[level], uList.batteryOverchargeCapacities[level]);
                 break;
-
             case EnumUpgradeType.GasTankCapacity:
                 GameManager.instance.GasManagerRef.ChangeGasTankCapacities(
-                    uList.gasTankCapacities[lPlayerUpgrades[2].index],
-                    uList.gasTankOverloadCapacities[lPlayerUpgrades[2].index]);
+                    uList.gasTankCapacities[level], uList.gasTankOverloadCapacities[level]);
                 break;
-
             case EnumUpgradeType.GasToBatteryConversion:
-                GameManager.instance?.BatteryManagerRef.ChangeConversion(
-                    uList.gasToBatteryConversions[lPlayerUpgrades[3].index]);
+                GameManager.instance?.BatteryManagerRef.ChangeConversion(uList.gasToBatteryConversions[level]);
                 break;
-
             case EnumUpgradeType.VacuumArea:
-                var dist = uList.vacuumAreaDistances[lPlayerUpgrades[4].index];
-                var smallAngle = uList.vacuumAreaSmallAngles[lPlayerUpgrades[4].index];
-                var bigAngle = uList.vacuumAreaBigAngles[lPlayerUpgrades[4].index];
                 break;
-
             case EnumUpgradeType.OverloadSpeedPenalty:
-                pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[lPlayerUpgrades[5].index]);
+                pMov.ChangeOverfillSpeed(uList.overloadSpeedPenalties[level]);
                 break;
-        }
-
-        if (lPlayerUpgrades[(int)upgradeType].index == 3)
-        {
-            foreach (var upgrade in lPoolUpgrades)
-            {
-                if (upgrade.upgradeType == upgradeType)
-                {
-                    lPoolUpgrades.Remove(upgrade);
-                    break;
-                }
-            }
         }
     }
+
+    private void RemoveUpgradeFromPool(EnumUpgradeType upgradeType)
+    {
+        lPoolUpgrades.RemoveAll(upgrade => upgrade.upgradeType == upgradeType);
+    }
+
+    private void RisePrice()
+    {
+        if (currentPriceIndex + 1 >= currentUpgradePrice.Count) return;
+
+        currentPriceIndex++;
+        foreach (var facility in lFacilities)
+        {
+            facility.SetGasQuantity(GetPrice());
+        }
+    }
+
+    public bool AreAllUpgradesPurchased()
+    {
+        return lPoolUpgrades.Count <= 0;
+    }
+    
+    public void NotifyFacilitiesAllUpgradesObtained()
+    {
+        foreach (var facility in lFacilities)
+        {
+            facility.SetUpgradesObtainedText();
+        }
+    }
+
+    public float GetPrice() => currentUpgradePrice[currentPriceIndex];
+    public float GetPenalty() => scorePenalty;
 }
 
 [Serializable]
