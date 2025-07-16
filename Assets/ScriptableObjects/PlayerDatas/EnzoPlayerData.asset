@@ -15,5 +15,5 @@ MonoBehaviour:
   speed: 8
   overchargeSpeed: 10
   overfillSpeedRate: 0.75
-  moveConsumption: 1
-  moveConsumptionRate: 1
+  moveConsumption: 0
+  moveConsumptionRate: 0
