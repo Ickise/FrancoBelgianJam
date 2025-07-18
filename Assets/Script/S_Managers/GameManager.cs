@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private float playTime;
 
-    public int currentGasStock;
+    public int currentGasStock = 0;
 
     public GasManager GasManagerRef => gasManagerRef;
     public BatteryManager BatteryManagerRef => batteryManagerRef;
