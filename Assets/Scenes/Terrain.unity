@@ -1568,6 +1568,10 @@ PrefabInstance:
       propertyPath: coneLength
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2754914665611217287, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
+      propertyPath: holdThreshold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3471554330332372730, guid: 90b8b56bd73a1c649b6057422b65c60b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.5
@@ -1706,6 +1710,78 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 2068908198}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468458392774981492, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488404310269197575, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.6606889
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.8908675
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145259647771546087, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.9529412
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2342,6 +2418,22 @@ PrefabInstance:
       propertyPath: 'upgradeTexts.Array.data[8]'
       value: 
       objectReference: {fileID: 1189047060}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: 'currentUpgradePrice.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: 'currentUpgradePrice.Array.data[3]'
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: 'currentUpgradePrice.Array.data[4]'
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: 'currentUpgradePrice.Array.data[5]'
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: gasUI
       value: 
@@ -2632,15 +2724,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: makeNoiseConsumption
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: vacuumConsumptionRate
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: gasIntoEnergyConversion
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: overchargeDepletionRate
@@ -2648,7 +2740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: makeSoundConsumptionRate
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5500774562125171620, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: uiScore

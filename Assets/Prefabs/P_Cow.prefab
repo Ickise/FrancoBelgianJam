@@ -130,15 +130,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b924d40c89cd5545a9e820623b90bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrivalThreshold: 0.5
   minDistance: 4
   maxDistance: 8
-  speedPeace: 3
+  speedPeace: 1.2
   afraidDistance: 3
   speedAfraid: 5
   fartDistance: 9
   minTimeRecoverFromFart: 5
   maxTimeRecoverFromFart: 9
-  timeFartCreation: 2
   navMeshAgent: {fileID: 6564299633212367500}
   anticipationLevel: 1
   debugGizmos: 1

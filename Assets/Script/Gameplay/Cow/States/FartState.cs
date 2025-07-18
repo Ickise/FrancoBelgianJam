@@ -47,7 +47,7 @@ public class FartState : ICowState
         while (timer < duration)
         {
             cow.SpawnFart();
-            float waitTime = Random.Range(1f, 3f);
+            float waitTime = Random.Range(0.7f, 2f);
             yield return new WaitForSeconds(waitTime);
             timer += waitTime;
         }
