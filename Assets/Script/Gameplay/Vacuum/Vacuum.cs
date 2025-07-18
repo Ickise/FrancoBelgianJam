@@ -12,7 +12,7 @@ public class Vacuum : ToolBase
     [SerializeField] private float suctionAngle = 150f;
     [SerializeField] private float suctionLength = 2f;
     [SerializeField] private float suctionPower = 5f;
-    [SerializeField] private float gasNumber = 1f;
+    [SerializeField] private int gasNumber = 1;
     [SerializeField] private int scorePerObject = 10;
     [SerializeField] private LayerMask objectLayer;
 

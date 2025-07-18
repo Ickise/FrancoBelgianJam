@@ -2342,30 +2342,6 @@ PrefabInstance:
       propertyPath: 'upgradeTexts.Array.data[8]'
       value: 
       objectReference: {fileID: 1189047060}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[0]'
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[1]'
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[2]'
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[3]'
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[4]'
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'currentUpgradePrice.Array.data[5]'
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: gasUI
       value: 

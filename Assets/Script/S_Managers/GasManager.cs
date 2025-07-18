@@ -8,23 +8,23 @@ public class GasManager : MonoBehaviour
 
     private float maxTankOverfill;
 
-    private float currentGasStock = 0;
+    private int currentGasStock = 0;
 
     private void Awake()
     {
         maxTankOverfill = maxTank * maxTankOverfillRate;
     }
 
-    public float GetGasStock()
+    public int GetGasStock()
     {
         return currentGasStock;
     }
 
-    public void ChangeGasStockValue(float amount, bool isIncreasing)
+    public void ChangeGasStockValue(int amount, bool isIncreasing)
     {
         currentGasStock = isIncreasing ? currentGasStock + amount : currentGasStock - amount;
 
-        currentGasStock = Mathf.Clamp(currentGasStock, 0, maxTankOverfill);
+        currentGasStock = (int)Mathf.Clamp(currentGasStock, 0, maxTankOverfill);
 
         UIManager.instance.GasUI.UpdateGasUI();
     }
@@ -44,7 +44,7 @@ public class GasManager : MonoBehaviour
     [ContextMenu("Gain Gas")]
     public void GainGas()
     {
-        ChangeGasStockValue(1000f, true);
+        ChangeGasStockValue(1000, true);
         Debug.Log("Gained 1000 gas.");
     }
 }

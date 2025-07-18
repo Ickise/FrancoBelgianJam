@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StationDetection : MonoBehaviour
 {
-    [SerializeField] private float gasQuantity = 10;
+    [SerializeField] private int gasQuantity = 10;
 
     [SerializeField] private TextMeshProUGUI gasText;
     private void OnTriggerEnter(Collider other)

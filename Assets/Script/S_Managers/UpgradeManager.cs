@@ -15,7 +15,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private Button rightUpgradeButton;
 
     [Header("Upgrade Settings")] [SerializeField]
-    private List<float> currentUpgradePrice;
+    private List<int> currentUpgradePrice;
 
     [SerializeField] private float scorePenalty = 0.2f;
     [SerializeField] private List<FacilityDetection> lFacilities;
@@ -215,7 +215,7 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    public float GetPrice() => currentUpgradePrice[currentPriceIndex];
+    public int GetPrice() => currentUpgradePrice[currentPriceIndex];
     public float GetPenalty() => scorePenalty;
 }
 

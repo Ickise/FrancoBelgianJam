@@ -9,7 +9,7 @@ public class FacilityDetection : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI upgradeText;
 
-    private float gasQuantity;
+    private int gasQuantity;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +32,7 @@ public class FacilityDetection : MonoBehaviour
         upgradeText.text = $"Need {gasQuantity} gas to upgrade!";
     }
 
-    public void SetGasQuantity(float newQuantity)
+    public void SetGasQuantity(int newQuantity)
     {
         gasQuantity = newQuantity;
         upgradeText.text = $"Need {gasQuantity} gas to upgrade!";

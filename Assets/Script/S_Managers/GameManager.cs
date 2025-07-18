@@ -20,9 +20,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform vacuumTransform;
 
     [Header("Game Settings")] [SerializeField]
-    private float gasToDepositToWin = 250;
+    private float gasToDepositToWin = 100;
 
     private float playTime;
+
+    public int currentGasStock;
 
     public GasManager GasManagerRef => gasManagerRef;
     public BatteryManager BatteryManagerRef => batteryManagerRef;
@@ -93,6 +95,16 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
+    }
+    
+    public bool HasPlayerWon()
+    {
+        return currentGasStock >= GetGasThreshold();
+    }
+
+    public bool HasPlayerLost()
+    {
+        return BatteryManagerRef.GetCurrentBattery() <= 0;
     }
     
     public void TryAgain()
