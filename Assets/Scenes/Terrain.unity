@@ -118,6 +118,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &9317800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4146312886867174524, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+  m_PrefabInstance: {fileID: 733876205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &16377062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3911323280846293862, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
@@ -193,6 +204,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 558110389398718041, guid: 4c19c6f11b8f0cd439ece055f69086d0, type: 3}
   m_PrefabInstance: {fileID: 18873654}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &91331757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4429457797415616592, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+  m_PrefabInstance: {fileID: 733876205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &141188028 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 28053361030883711, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
@@ -213,6 +235,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2116250015087844670, guid: ba113a37f323906429c5e79ca0039b57, type: 3}
   m_PrefabInstance: {fileID: 1189047056}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &250257372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7452750074675192817, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+  m_PrefabInstance: {fileID: 733876205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &261416173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6727965563736890649, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
@@ -698,6 +731,17 @@ Transform:
   - {fileID: 322901510}
   m_Father: {fileID: 450972016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532385509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8324655466991246401, guid: 70e1fb87be67ea640a8ef0a1b83e8bb1, type: 3}
+  m_PrefabInstance: {fileID: 733876205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &584687594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8263470323737585729, guid: 987b8a38c5178774e8a1fc48c8c40f1e, type: 3}
@@ -2189,7 +2233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: upgradeTexts.Array.size
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'lFacilities.Array.data[0]'
@@ -2210,38 +2254,42 @@ PrefabInstance:
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'upgradeTexts.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 250257372}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'upgradeTexts.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9317800}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'upgradeTexts.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 532385509}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: 'upgradeTexts.Array.data[3]'
       value: 
+      objectReference: {fileID: 91331757}
+    - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: 'currentUpgradePrice.Array.data[0]'
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'upgradeTexts.Array.data[4]'
-      value: 
+      propertyPath: 'currentUpgradePrice.Array.data[1]'
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'upgradeTexts.Array.data[5]'
-      value: 
+      propertyPath: 'currentUpgradePrice.Array.data[2]'
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'upgradeTexts.Array.data[6]'
-      value: 
+      propertyPath: 'currentUpgradePrice.Array.data[3]'
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'upgradeTexts.Array.data[7]'
-      value: 
+      propertyPath: 'currentUpgradePrice.Array.data[4]'
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 116623798176234413, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
-      propertyPath: 'upgradeTexts.Array.data[8]'
-      value: 
+      propertyPath: 'currentUpgradePrice.Array.data[5]'
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1420780058955293356, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: gasUI
@@ -2541,7 +2589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: gasIntoEnergyConversion
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5279717677443891384, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: overchargeDepletionRate
@@ -2602,6 +2650,10 @@ PrefabInstance:
     - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: firstDefeatButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
+      propertyPath: gasToDepositToWin
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6770849126706382987, guid: 6fc0bff073732d44eba00e48838b1a96, type: 3}
       propertyPath: firstVictoryButton
