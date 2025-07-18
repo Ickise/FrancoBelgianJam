@@ -202,11 +202,13 @@ public class UpgradeManager : MonoBehaviour
 
     public bool AreAllUpgradesPurchased()
     {
-        return lPoolUpgrades.Count <= 0;
+        return lPlayerUpgrades.TrueForAll(upgrade => upgrade.index >= 3);
     }
 
     public void NotifyFacilitiesAllUpgradesObtained()
     {
+        if (!AreAllUpgradesPurchased()) return;
+        
         foreach (var facility in lFacilities)
         {
             facility.SetUpgradesObtainedText();
