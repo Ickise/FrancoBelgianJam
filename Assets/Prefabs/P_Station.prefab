@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad45cf5c8ea6dcc469ad5c8f2df322a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gasQuantity: 10
+  gasQuantity: 5
   gasText: {fileID: 6866376305144396036}
 --- !u!1001 &3641770830110429262
 PrefabInstance:
